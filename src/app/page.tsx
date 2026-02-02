@@ -12,7 +12,7 @@ const researchInterests = [
   "Scalable ML Systems",
   "Foundation Models",
   "Geometric Deep Learning",
-  "Multi-Agent Automation"
+  "Agentic AI"
 ];
 
 export default function Home() {
@@ -23,13 +23,13 @@ export default function Home() {
         {/* Lead Text */}
         <Box sx={{ flex: 1 }}>
           <Typography variant="h1" gutterBottom sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800 }}>
-            Architecting <Box component="span" sx={{ color: 'primary.main' }}>scalable learning systems</Box> <br />
-            for biomedical discovery.
+            Scalable learning systems <br />
+            for <Box component="span" sx={{ color: 'primary.main' }}>biomedical discovery</Box>.
           </Typography>
           <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', mb: 4, color: '#555', lineHeight: 1.8 }}>
             I am a <strong>Research Engineer in AI for Biology</strong> at <strong>DKFZ & EMBL Heidelberg</strong>.
-            I bridge the gap between elegant modeling and production-grade systems, translating complex biological world-models into reliable,
-            distributed infrastructure for therapeutic discovery.
+            My work targets the gap between elegant modeling ideas and scalable, reproducible systems—building
+            foundation models and agentic workflows that turn massive multimodal data into reliable substrates for discovery.
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 5 }}>
@@ -58,38 +58,28 @@ export default function Home() {
         </Box>
       </Box>
 
-      {/* Philosophy */}
+      {/* Philosophy - Concise */}
       <Box sx={{ mb: 12, p: 4, bgcolor: '#fafafa', borderRadius: 4, borderLeft: '4px solid #2BBC8A' }}>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>Discovery Infrastructure</Typography>
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>Research Engineering</Typography>
         <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem', fontStyle: 'italic', color: '#444' }}>
-          "Moving beyond impressive but fragile artifacts toward biological representations that earn their value through downstream utility and uncertainty-aware reasoning."
-        </Typography>
-        <Typography variant="body1" sx={{ color: '#444' }}>
-          My work operates at the intersection of <strong>representation learning</strong> and <strong>research engineering</strong>.
-          I focus on evaluation realism, data contracts, and deployment ergonomics to turn high-dimensional multimodal signals into a dependable substrate for biological interrogation.
+          "Moving beyond impressive but fragile artifacts toward biological representations that earn their value through predictive utility and uncertainty-aware reasoning."
         </Typography>
       </Box>
 
-      {/* Technical Pillar Highlights */}
+      {/* Technical Highlights */}
       <Box sx={{ mb: 8 }}>
-        <Typography variant="h2" gutterBottom>Technical Pillars</Typography>
+        <Typography variant="h2" gutterBottom>Selected Highlights</Typography>
         <Box component="ul" sx={{ pl: 2, '& li': { mb: 3 } }}>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Distributed Graph Learning</Typography>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Scale & Performance</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Scaling GNNs and Transformers to <strong>10M+ molecular measurements</strong> with multi-GPU distributed pipelines (<em>Segger</em>, <em>SageNet</em>).
+              Engineered distributed GNN training pipelines for spatial transcriptomics handling <strong>10M+ nodes</strong> with 1000x speedups (<em>Segger</em>).
             </Typography>
           </li>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Multi-Agent Research Engineering</Typography>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Methodological Innovation</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Designing agentic workflows for automated code generation, refactoring, and data-driven hypothesis testing in biological discovery.
-            </Typography>
-          </li>
-          <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Reliability & Interoperability</Typography>
-            <Typography variant="body1" sx={{ color: '#666' }}>
-              Building <strong>universal data frameworks</strong> and benchmarking systems that ensure cross-site robustness and operational stability.
+              Pioneered supervised spatial inference using <strong>Graph Attention Networks</strong> and Transformers (<em>SageNet</em>).
             </Typography>
           </li>
         </Box>
