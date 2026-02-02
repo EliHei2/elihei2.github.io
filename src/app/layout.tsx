@@ -4,8 +4,8 @@ import Header from '@/components/Header';
 import Box from '@mui/material/Box';
 
 export const metadata: Metadata = {
-  title: 'Elyas Heidari',
-  description: 'Research Engineer in Computational Biology.',
+  title: 'Elyas Heidari | Research Engineer in AI for Biology',
+  description: 'Research Engineer in AI for Biology focusing on scalable learning systems for biomedical discovery.',
   icons: {
     icon: '/icon.svg',
   },

@@ -8,12 +8,11 @@ import Link from 'next/link';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
 
-// Extracted from motivation letters
 const researchInterests = [
+  "Scalable ML Systems",
+  "Foundation Models",
   "Geometric Deep Learning",
-  "Agentic Systems",
-  "Spatial Omics",
-  "Foundation Models"
+  "Multi-Agent Automation"
 ];
 
 export default function Home() {
@@ -24,13 +23,13 @@ export default function Home() {
         {/* Lead Text */}
         <Box sx={{ flex: 1 }}>
           <Typography variant="h1" gutterBottom sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800 }}>
-            Building robust <br />
-            <Box component="span" sx={{ color: 'primary.main' }}>discovery infrastructure</Box> <br />
-            for biology.
+            Architecting <Box component="span" sx={{ color: 'primary.main' }}>scalable learning systems</Box> <br />
+            for biomedical discovery.
           </Typography>
           <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', mb: 4, color: '#555', lineHeight: 1.8 }}>
-            I am a PhD Researcher at <strong>DKFZ & EMBL Heidelberg</strong>. My work targets the gap between elegant modeling ideas and scalable, reproducible learning systems.
-            I build <strong>foundation models</strong> and <strong>agentic workflows</strong> that turn massive multimodal data into reliable substrates for therapeutic discovery.
+            I am a <strong>Research Engineer in AI for Biology</strong> at <strong>DKFZ & EMBL Heidelberg</strong>.
+            I bridge the gap between elegant modeling and production-grade systems, translating complex biological world-models into reliable,
+            distributed infrastructure for therapeutic discovery.
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 5 }}>
@@ -59,37 +58,38 @@ export default function Home() {
         </Box>
       </Box>
 
-      {/* Vision / Gist from Motivation Letters */}
+      {/* Philosophy */}
       <Box sx={{ mb: 12, p: 4, bgcolor: '#fafafa', borderRadius: 4, borderLeft: '4px solid #2BBC8A' }}>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>Research Philosophy</Typography>
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>Discovery Infrastructure</Typography>
         <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem', fontStyle: 'italic', color: '#444' }}>
-          "The most important work sits between representation learning and adoption: defining operational meaning, building evaluations that resist shortcut learning, and engineering interfaces that allow safe fine-tuning."
+          "Moving beyond impressive but fragile artifacts toward biological representations that earn their value through downstream utility and uncertainty-aware reasoning."
         </Typography>
         <Typography variant="body1" sx={{ color: '#444' }}>
-          My goal is to ensure that biological foundation models become <strong>reliable infrastructure</strong> rather than just impressive artifacts. I focus on evaluation realism, data contracts, and deployment ergonomics to shorten the path from mechanistic understanding to actionable therapeutic hypotheses.
+          My work operates at the intersection of <strong>representation learning</strong> and <strong>research engineering</strong>.
+          I focus on evaluation realism, data contracts, and deployment ergonomics to turn high-dimensional multimodal signals into a dependable substrate for biological interrogation.
         </Typography>
       </Box>
 
-      {/* Highlights */}
+      {/* Technical Pillar Highlights */}
       <Box sx={{ mb: 8 }}>
-        <Typography variant="h2" gutterBottom>Selected Highlights</Typography>
+        <Typography variant="h2" gutterBottom>Technical Pillars</Typography>
         <Box component="ul" sx={{ pl: 2, '& li': { mb: 3 } }}>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Scale & Performance</Typography>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Distributed Graph Learning</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Engineered distributed GNN training pipelines for spatial transcriptomics handling <strong>10M+ nodes</strong> with 1000x speedups (<em>Segger</em>).
+              Scaling GNNs and Transformers to <strong>10M+ molecular measurements</strong> with multi-GPU distributed pipelines (<em>Segger</em>, <em>SageNet</em>).
             </Typography>
           </li>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Methodological Innovation</Typography>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Multi-Agent Research Engineering</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Pioneered supervised spatial inference using <strong>Graph Attention Networks</strong> and Transformers (<em>SageNet</em>).
+              Designing agentic workflows for automated code generation, refactoring, and data-driven hypothesis testing in biological discovery.
             </Typography>
           </li>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Open Source Leadership</Typography>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Reliability & Interoperability</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Maintainer of <Link href="/projects" style={{ color: '#2BBC8A' }}>multiple production-grade tools</Link> with extensive documentation and community adoption.
+              Building <strong>universal data frameworks</strong> and benchmarking systems that ensure cross-site robustness and operational stability.
             </Typography>
           </li>
         </Box>
