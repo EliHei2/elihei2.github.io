@@ -28,7 +28,7 @@ export default function Home() {
           </Typography>
           <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', mb: 4, color: '#555', lineHeight: 1.8 }}>
             I am a <strong>Research Engineer in AI for Biology</strong> at <strong>DKFZ & EMBL Heidelberg</strong>.
-            I bridge the gap between elegant modeling and production-grade systems, translating complex biological world-models into reliable infrastructure for therapeutic discovery.
+            I bridge the gap between elegant modeling and production-grade systems, translating complex biological world-models into reliable infrastructure for clinical discovery.
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 5 }}>
@@ -61,7 +61,7 @@ export default function Home() {
       <Box sx={{ mb: 12, p: 4, bgcolor: '#fafafa', borderRadius: 4, borderLeft: '4px solid #2BBC8A' }}>
         <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>Research Philosophy</Typography>
         <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem', fontStyle: 'italic', color: '#444' }}>
-          "The most important work in AI for biology sits between representation learning and its operational adoption: defining meaning, building evaluations that resist shortcut learning, and engineering interfaces for scientific interrogation."
+          "The most important work in AI for biology sits between representation learning and its operational adoption: building evaluations that resist shortcut learning and engineering interfaces for scientific interrogation."
         </Typography>
       </Box>
 
@@ -72,19 +72,19 @@ export default function Home() {
           <li>
             <Typography variant="h6" sx={{ color: '#383838' }}>Unlocking Scale in Spatial Omics</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Engineered distributed GNN pipelines for the <em>Segger</em> framework, enabling cell segmentation on <strong>10M+ nodes</strong> with 1000x speedups over previous SOTA.
+              Engineered distributed GNN pipelines for the <em>Segger</em> framework, enabling cell segmentation on <strong>10M+ nodes</strong> with 1000x speedups.
             </Typography>
           </li>
           <li>
             <Typography variant="h6" sx={{ color: '#383838' }}>Supervised Representation Learning</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Pioneered <em>SageNet</em>, a transformer-based framework for supervised spatial inference, outperforming established tools in mapping dissociated cells to tissue context.
+              Pioneered <em>SageNet</em>, a transformer-based framework for supervised spatial inference, mapping dissociated cells with state-of-the-art precision.
             </Typography>
           </li>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Multi-Agent System Design</Typography>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Geometric Deep Learning for Biology</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Designing agentic workflows that automate high-throughput hypothesis generation and data-driven code refinement for complex biomedical datasets.
+              Developed <em>scGCN</em>, introducing geometric deep learning to single-cell data integration and landmark-free spatial mapping.
             </Typography>
           </li>
         </Box>
