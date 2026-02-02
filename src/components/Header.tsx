@@ -25,8 +25,14 @@ export default function Header() {
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
                     {/* Logo / Name */}
                     <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        {/* Pixel Flower Placeholder - modeled after inspiration */}
-                        <Box sx={{ width: 24, height: 24, bgcolor: '#2BBC8A', opacity: 0.2 }} />
+                        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
+                            <Box
+                                component="img"
+                                src="/icon.svg"
+                                sx={{ width: 32, height: 32, transition: '0.3s', '&:hover': { transform: 'scale(1.1)' } }}
+                                alt="Logo"
+                            />
+                        </Link>
                         <Typography variant="h6" component={Link} href="/" sx={{ color: '#383838', textDecoration: 'none', fontWeight: 700 }}>
                             Elyas Heidari
                         </Typography>
