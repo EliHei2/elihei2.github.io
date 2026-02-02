@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import ThemeRegistry from '@/theme/ThemeRegistry';
-import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
 
 export const metadata: Metadata = {
   title: 'Elyas Heidari | Research Engineer',
@@ -16,8 +16,9 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <ThemeRegistry>
-          <Navbar />
-          <main>{children}</main>
+          <Sidebar>
+            {children}
+          </Sidebar>
         </ThemeRegistry>
       </body>
     </html>

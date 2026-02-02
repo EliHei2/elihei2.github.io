@@ -17,7 +17,7 @@ export default function ReadingList() {
             <Typography variant="h2" component="h1" gutterBottom sx={{ mb: 2 }}>
                 Reading List
             </Typography>
-            <Typography variant="h5" color="text.secondary" paragraph sx={{ mb: 6 }}>
+            <Typography variant="h5" color="text.secondary" paragraph sx={{ mb: 6, fontWeight: 300 }}>
                 "I've just read this" — A collection of books and papers that influence my research.
             </Typography>
 
@@ -31,14 +31,13 @@ export default function ReadingList() {
                                         label={item.type}
                                         color={item.type === 'Book' ? 'primary' : 'secondary'}
                                         size="small"
-                                        variant="outlined"
                                     />
-                                    <Typography variant="caption" color="text.secondary">
-                                        Read: {item.dateRead}
+                                    <Typography variant="caption" color="text.secondary" sx={{ fontFamily: 'monospace' }}>
+                                        {item.dateRead}
                                     </Typography>
                                 </Box>
 
-                                <Typography variant="h6" component="div" gutterBottom>
+                                <Typography variant="h6" component="div" gutterBottom sx={{ fontWeight: 600 }}>
                                     {item.title}
                                 </Typography>
                                 <Typography variant="subtitle2" color="text.secondary" gutterBottom>
@@ -49,7 +48,7 @@ export default function ReadingList() {
                                     <Rating value={item.rating} readOnly size="small" />
                                 </Box>
 
-                                <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic', bgcolor: 'action.hover', p: 2, borderRadius: 1 }}>
+                                <Typography variant="body2" color="text.secondary" sx={{ fontStyle: 'italic', bgcolor: 'rgba(255,255,255,0.03)', p: 2, borderRadius: 2, borderLeft: '3px solid #5f6368' }}>
                                     "{item.comment}"
                                 </Typography>
                             </CardContent>
