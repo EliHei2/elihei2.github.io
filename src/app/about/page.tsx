@@ -141,14 +141,9 @@ export default function About() {
             <Box sx={{ mb: 8 }}>
                 <Typography variant="h1" sx={{ mb: 3 }}>About</Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-                    I am a **Research Engineer** operating at the gap between elegant modeling and production-grade systems.
-                    I build scalable, multi-scale learning architectures that turn complex biological signals into reliable discovery infrastructure.
-                    My work emphasizes **evaluation realism**, stress-testing models under real-world heterogeneity—including cohort shifts and site effects—to ensure
-                    biological representations earn their value through predictive utility and scientific interrogation.
-                </Typography>
-                <Typography variant="body1" sx={{ mb: 3 }}>
-                    I operate fluently across deep learning systems, single-cell biology, and translational research, connecting efficient computation with
-                    biomedical domain insight through close collaboration with experimentalists and mathematicians.
+                    I build scalable learning systems for biomedical data that transform ill-posed real-world structure into robust, high-performance implementations.
+                    I operate across disciplines and institutions, connecting efficient computation with biomedical domain insight
+                    through close collaboration with experimentalists, mathematicians, and engineers.
                 </Typography>
                 <Typography variant="body1">
                     <Link href="/CV_Elyas_Heidari.pdf" target="_blank" style={{ textDecoration: 'none', borderBottom: '2px solid #2BBC8A', color: '#383838', fontWeight: 600 }}>
