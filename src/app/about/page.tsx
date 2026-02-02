@@ -5,7 +5,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
-import Divider from '@mui/material/Divider';
 import Chip from '@mui/material/Chip';
 
 // Icons using Material UI for consistency/minimalism
@@ -13,9 +12,7 @@ import TerminalIcon from '@mui/icons-material/Terminal';
 import SchoolIcon from '@mui/icons-material/School';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import MicIcon from '@mui/icons-material/Mic';
-import ArticleIcon from '@mui/icons-material/Article';
-
-// Detailed CV Data extracted from CV_optimized.tex
+import ConstructionIcon from '@mui/icons-material/Construction';
 
 const experience = [
     {
@@ -88,42 +85,11 @@ const posters = [
     { title: 'scGCN', events: ['ISMB/ECCB 2019 (Basel)'] }
 ];
 
-const publications = [
-    {
-        title: 'Segger: Fast and accurate cell segmentation of imaging-based spatial transcriptomics data',
-        citation: 'Heidari, E.*, Moorman, A.*, Unyi, D., et al. bioRxiv, 2025 (under revision Nature Methods).',
-        role: 'Lead developer: formulated cell segmentation as a large-scale heterogeneous GNN problem; designed multi-GPU pipeline (10–100M nodes) achieving 1000× speedup.'
-    },
-    {
-        title: 'Integrated in vivo combinatorial functional genomics and spatial transcriptomics of tumours',
-        citation: 'Breinig, M.*, Lomakin, A.*, Heidari, E.*, et al. Nature Biomedical Engineering, 2025.',
-        role: 'Co-lead developer: built end-to-end spatial phenotyping pipeline linking genetic perturbations to tumor microenvironments.'
-    },
-    {
-        title: 'SpatialData: an open and universal data framework for spatial omics',
-        citation: 'Marconato, L.*, ..., Heidari, E., et al. Nature Methods 22:58–62, 2025.',
-        role: 'Contributor: designed multi-layer breast cancer analysis demonstrating universal grammar for multimodal spatial omics.'
-    },
-    {
-        title: 'Supervised spatial inference of dissociated single-cell data with SageNet',
-        citation: 'Heidari, E., Lohoff, T., et al. bioRxiv, 2022.',
-        role: 'Lead developer: introduced graph-attention-based spatial inference; outperformed Tangram and NovoSpaRc.'
-    },
-    {
-        title: 'An end-to-end workflow for high-throughput discovery... from large biomedical datasets',
-        citation: 'Heidari, E., Sadeghi, M.A., et al. bioRxiv, 2020.',
-        role: 'Lead developer: designed scalable analytics pipeline for population-scale biomedical data.'
-    },
-    {
-        title: 'snRNA-seq stratifies multiple sclerosis patients into distinct white matter glial responses',
-        citation: 'Macnair, W., ..., Heidari, E., et al. Neuron 113(3), 2025.',
-        role: 'Contributor: architected large-scale sc/snRNA-seq pipelines (1M cells).'
-    },
-    {
-        title: 'Meta-analysis of single-cell method benchmarks...',
-        citation: 'Sonrel, A., ..., Heidari, E., et al. Genome Biology 24:119, 2023.',
-        role: 'Contributor: analysis and synthesis of benchmarking results.'
-    }
+const skills = [
+    { category: "Programming", items: ["Python (PyTorch, JAX, scikit-learn)", "R (Bioconductor)", "C++", "JavaScript (Next.js, Node.js)"] },
+    { category: "AI & Machine Learning", items: ["Graph Neural Networks (GNNs)", "Transformers", "Foundation Models", "Multi-Agent Systems", "Bayesian Inference"] },
+    { category: "Bioinformatics", items: ["Single-Cell Omics", "Spatial Transcriptomics", "Multi-Omics Integration", "Computational Pathology"] },
+    { category: "Cloud & Infrastructure", items: ["Distributed GPU Training", "Docker", "HPC (Slurm)", "Nextflow / Snakemake"] }
 ];
 
 const SectionHeader = ({ icon, title }: { icon: React.ReactNode, title: string }) => (
@@ -141,15 +107,35 @@ export default function About() {
             <Box sx={{ mb: 8 }}>
                 <Typography variant="h1" sx={{ mb: 3 }}>About</Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-                    I build scalable learning systems for biomedical data that transform ill-posed real-world structure into robust, high-performance implementations.
-                    I operate across disciplines and institutions, connecting efficient computation with biomedical domain insight
-                    through close collaboration with experimentalists, mathematicians, and engineers.
+                    I am a **Research Engineer** operating at the gap between elegant modeling and production-grade systems.
+                    I build scalable, multi-scale learning architectures that turn complex biological signals into reliable discovery infrastructure.
+                    My work emphasizes **evaluation realism**, stress-testing models under real-world heterogeneity—including cohort shifts and site effects—to ensure
+                    biological representations earn their value through predictive utility and scientific interrogation.
+                </Typography>
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                    I operate fluently across deep learning systems, single-cell biology, and translational research, connecting efficient computation with
+                    biomedical domain insight through close collaboration with experimentalists and mathematicians.
                 </Typography>
                 <Typography variant="body1">
                     <Link href="/CV_Elyas_Heidari.pdf" target="_blank" style={{ textDecoration: 'none', borderBottom: '2px solid #2BBC8A', color: '#383838', fontWeight: 600 }}>
                         Download Full Curriculum Vitae (PDF)
                     </Link>
                 </Typography>
+            </Box>
+
+            {/* Skills Section */}
+            <SectionHeader icon={<ConstructionIcon fontSize="large" />} title="Technical Skills" />
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4 }}>
+                {skills.map((group, i) => (
+                    <Box key={i}>
+                        <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1.5 }}>{group.category}</Typography>
+                        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                            {group.items.map((skill, j) => (
+                                <Chip key={j} label={skill} variant="outlined" size="small" sx={{ borderRadius: 1, borderColor: '#eee' }} />
+                            ))}
+                        </Box>
+                    </Box>
+                ))}
             </Box>
 
             {/* Experience Timeline */}
@@ -172,20 +158,36 @@ export default function About() {
                 ))}
             </Box>
 
-            {/* Publications */}
-            <SectionHeader icon={<ArticleIcon fontSize="large" />} title="Publications" />
+            {/* Education */}
+            <SectionHeader icon={<SchoolIcon fontSize="large" />} title="Education" />
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                {publications.map((pub, i) => (
-                    <Box key={i} sx={{ p: 2, borderLeft: '2px solid transparent', '&:hover': { borderLeft: '2px solid #2BBC8A', bgcolor: '#fafafa' }, transition: '0.2s' }}>
-                        <Typography variant="body1" sx={{ fontWeight: 700, mb: 0.5, color: '#383838' }}>
-                            {pub.title}
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#666', fontStyle: 'italic', mb: 1 }}>
-                            {pub.citation}
-                        </Typography>
-                        <Typography variant="body2" sx={{ color: '#555', fontSize: '0.9rem' }}>
-                            <Box component="span" sx={{ color: '#2BBC8A', fontWeight: 600 }}>Role:</Box> {pub.role}
-                        </Typography>
+                <Box>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>Heidelberg University</Typography>
+                    <Typography variant="body2" color="text.secondary">PhD, Faculty of Biosciences (2022 – 2026)</Typography>
+                    <Typography variant="body2" sx={{ mt: 0.5 }}><em>Structured Representation Learning for Large-Scale Spatial Omics Data</em></Typography>
+                </Box>
+                <Box>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>ETH Zurich</Typography>
+                    <Typography variant="body2" color="text.secondary">MSc, Computational Biology & Bioinformatics (2019 – 2022)</Typography>
+                    <Typography variant="body2" sx={{ mt: 0.5 }}>GPA: 5.76/6.0 (Top 3 in cohort). Received <strong>ETH Medal</strong> for outstanding thesis.</Typography>
+                </Box>
+                <Box>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>Sharif University of Technology</Typography>
+                    <Typography variant="body2" color="text.secondary">BSc, Computer Engineering & Applied Mathematics (2014 – 2019)</Typography>
+                    <Typography variant="body2" sx={{ mt: 1, color: '#555' }}>
+                        Founder of **Sharif DataDays**. Head Teaching Assistant for Advanced Programming and Probability & Statistics.
+                    </Typography>
+                </Box>
+            </Box>
+
+            {/* Awards */}
+            <SectionHeader icon={<EmojiEventsIcon fontSize="large" />} title="Awards" />
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 3 }}>
+                {awards.map((award, i) => (
+                    <Box key={i} sx={{ border: '1px solid #eee', p: 3, borderRadius: 2 }}>
+                        <Typography variant="h6" sx={{ color: '#2BBC8A', mb: 1 }}>{award.title}</Typography>
+                        <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>{award.date}</Typography>
+                        <Typography variant="body2" sx={{ color: '#666' }}>{award.detail}</Typography>
                     </Box>
                 ))}
             </Box>
@@ -217,40 +219,6 @@ export default function About() {
                             </li>
                         ))}
                     </Box>
-                </Box>
-            </Box>
-
-            {/* Awards */}
-            <SectionHeader icon={<EmojiEventsIcon fontSize="large" />} title="Awards" />
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 3 }}>
-                {awards.map((award, i) => (
-                    <Box key={i} sx={{ border: '1px solid #eee', p: 3, borderRadius: 2 }}>
-                        <Typography variant="h6" sx={{ color: '#2BBC8A', mb: 1 }}>{award.title}</Typography>
-                        <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>{award.date}</Typography>
-                        <Typography variant="body2" sx={{ color: '#666' }}>{award.detail}</Typography>
-                    </Box>
-                ))}
-            </Box>
-
-            {/* Education */}
-            <SectionHeader icon={<SchoolIcon fontSize="large" />} title="Education" />
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>Heidelberg University</Typography>
-                    <Typography variant="body2" color="text.secondary">PhD, Faculty of Biosciences (2022 – 2026)</Typography>
-                    <Typography variant="body2" sx={{ mt: 0.5 }}><em>Structured Representation Learning for Large-Scale Spatial Omics Data</em></Typography>
-                </Box>
-                <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>ETH Zurich</Typography>
-                    <Typography variant="body2" color="text.secondary">MSc, Computational Biology & Bioinformatics (2019 – 2022)</Typography>
-                    <Typography variant="body2" sx={{ mt: 0.5 }}>GPA: 5.76/6.0 (Top 3 in cohort). Received <strong>ETH Medal</strong> for outstanding thesis.</Typography>
-                </Box>
-                <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 700 }}>Sharif University of Technology</Typography>
-                    <Typography variant="body2" color="text.secondary">BSc, Computer Engineering & Applied Mathematics (2014 – 2019)</Typography>
-                    <Typography variant="body2" sx={{ mt: 1, color: '#555' }}>
-                        Founder of **Sharif DataDays**. Head Teaching Assistant for Advanced Programming and Probability & Statistics.
-                    </Typography>
                 </Box>
             </Box>
 
