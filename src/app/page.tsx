@@ -12,7 +12,7 @@ const researchInterests = [
   "Scalable ML Systems",
   "Foundation Models",
   "Geometric Deep Learning",
-  "Agentic AI"
+  "Multi-Agent Automation"
 ];
 
 export default function Home() {
@@ -28,8 +28,7 @@ export default function Home() {
           </Typography>
           <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', mb: 4, color: '#555', lineHeight: 1.8 }}>
             I am a <strong>Research Engineer in AI for Biology</strong> at <strong>DKFZ & EMBL Heidelberg</strong>.
-            My work targets the gap between elegant modeling ideas and scalable, reproducible systems—building
-            foundation models and agentic workflows that turn massive multimodal data into reliable substrates for discovery.
+            I bridge the gap between elegant modeling and production-grade systems, translating complex biological world-models into reliable infrastructure for therapeutic discovery.
           </Typography>
 
           <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 5 }}>
@@ -58,28 +57,34 @@ export default function Home() {
         </Box>
       </Box>
 
-      {/* Philosophy - Concise */}
+      {/* Research Philosophy Box */}
       <Box sx={{ mb: 12, p: 4, bgcolor: '#fafafa', borderRadius: 4, borderLeft: '4px solid #2BBC8A' }}>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>Research Engineering</Typography>
+        <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>Research Philosophy</Typography>
         <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem', fontStyle: 'italic', color: '#444' }}>
-          "Moving beyond impressive but fragile artifacts toward biological representations that earn their value through predictive utility and uncertainty-aware reasoning."
+          "The most important work in AI for biology sits between representation learning and its operational adoption: defining meaning, building evaluations that resist shortcut learning, and engineering interfaces for scientific interrogation."
         </Typography>
       </Box>
 
-      {/* Technical Highlights */}
+      {/* Selected Highlights */}
       <Box sx={{ mb: 8 }}>
         <Typography variant="h2" gutterBottom>Selected Highlights</Typography>
         <Box component="ul" sx={{ pl: 2, '& li': { mb: 3 } }}>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Scale & Performance</Typography>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Unlocking Scale in Spatial Omics</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Engineered distributed GNN training pipelines for spatial transcriptomics handling <strong>10M+ nodes</strong> with 1000x speedups (<em>Segger</em>).
+              Engineered distributed GNN pipelines for the <em>Segger</em> framework, enabling cell segmentation on <strong>10M+ nodes</strong> with 1000x speedups over previous SOTA.
             </Typography>
           </li>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Methodological Innovation</Typography>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Supervised Representation Learning</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Pioneered supervised spatial inference using <strong>Graph Attention Networks</strong> and Transformers (<em>SageNet</em>).
+              Pioneered <em>SageNet</em>, a transformer-based framework for supervised spatial inference, outperforming established tools in mapping dissociated cells to tissue context.
+            </Typography>
+          </li>
+          <li>
+            <Typography variant="h6" sx={{ color: '#383838' }}>Multi-Agent System Design</Typography>
+            <Typography variant="body1" sx={{ color: '#666' }}>
+              Designing agentic workflows that automate high-throughput hypothesis generation and data-driven code refinement for complex biomedical datasets.
             </Typography>
           </li>
         </Box>

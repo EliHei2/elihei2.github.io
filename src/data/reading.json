@@ -4,31 +4,38 @@
     "items": [
       {
         "title": "Behave: The Biology of Humans at Our Best and Worst",
-        "author": "Robert Sapolsky"
+        "author": "Robert Sapolsky",
+        "url": "https://www.penguinrandomhouse.com/books/311780/behave-by-robert-m-sapolsky/"
       },
       {
         "title": "Thinking, Fast and Slow",
-        "author": "Daniel Kahneman"
+        "author": "Daniel Kahneman",
+        "url": "https://us.macmillan.com/books/9780374533557/thinkingfastandslow"
       },
       {
         "title": "Deep Work",
-        "author": "Cal Newport"
+        "author": "Cal Newport",
+        "url": "https://www.calnewport.com/books/deep-work/"
       },
       {
         "title": "Notes from Underground",
-        "author": "Fyodor Dostoevsky"
+        "author": "Fyodor Dostoevsky",
+        "url": "https://www.gutenberg.org/ebooks/600"
       },
       {
         "title": "Ethics",
-        "author": "Baruch Spinoza"
+        "author": "Baruch Spinoza",
+        "url": "https://www.gutenberg.org/ebooks/3800"
       },
       {
         "title": "The Human Condition",
-        "author": "Hannah Arendt"
+        "author": "Hannah Arendt",
+        "url": "https://press.uchicago.edu/ucp/books/book/chicago/H/bo27521191.html"
       },
       {
         "title": "Man's Search for Meaning",
-        "author": "Viktor Frankl"
+        "author": "Viktor Frankl",
+        "url": "https://www.beacon.org/Mans-Search-for-Meaning-P1437.aspx"
       }
     ]
   },
@@ -37,31 +44,38 @@
     "items": [
       {
         "title": "The Elements of Statistical Learning",
-        "author": "Hastie, Tibshirani, Friedman"
+        "author": "Hastie, Tibshirani, Friedman",
+        "url": "https://web.stanford.edu/~hastie/ElemStatLearn/"
       },
       {
         "title": "Probabilistic Graphical Models",
-        "author": "Daphne Koller, Nir Friedman"
+        "author": "Daphne Koller, Nir Friedman",
+        "url": "https://mitpress.mit.edu/9780262013192/probabilistic-graphical-models/"
       },
       {
         "title": "Deep Learning",
-        "author": "Goodfellow, Bengio, Courville"
+        "author": "Goodfellow, Bengio, Courville",
+        "url": "https://www.deeplearningbook.org/"
       },
       {
-        "title": "Data Analysis for the Life Sciences",
-        "author": "Wolfgang Huber"
+        "title": "Modern Statistics for Modern Biology",
+        "author": "Holmes, Huber",
+        "url": "https://www.huber.embl.de/msmb/"
       },
       {
         "title": "Statistics for High-Dimensional Data",
-        "author": "Bühlmann, van de Geer"
+        "author": "Bühlmann, van de Geer",
+        "url": "https://link.springer.com/book/10.1007/978-3-642-20192-9"
       },
       {
         "title": "An Introduction to Systems Biology",
-        "author": "Uri Alon"
+        "author": "Uri Alon",
+        "url": "https://www.urialon.info/introduction-to-systems-biology"
       },
       {
         "title": "Molecular Biology of the Cell",
-        "author": "Alberts et al."
+        "author": "Alberts et al.",
+        "url": "https://www.garlandscience.com/molecular-biology-of-the-cell/"
       }
     ]
   },
@@ -71,57 +85,68 @@
       {
         "title": "Auto-Encoding Variational Bayes (VAE)",
         "author": "Kingma, Welling",
-        "year": "2013"
+        "year": "2013",
+        "url": "https://arxiv.org/abs/1312.6114"
       },
       {
         "title": "Graph Attention Networks",
         "author": "Velickovic et al.",
-        "year": "2017"
+        "year": "2017",
+        "url": "https://arxiv.org/abs/1710.10903"
       },
       {
         "title": "Attention Is All You Need",
         "author": "Vaswani et al.",
-        "year": "2017"
+        "year": "2017",
+        "url": "https://arxiv.org/abs/1706.03762"
       },
       {
         "title": "Diffusion Pseudotime",
         "author": "Haghverdi et al.",
-        "year": "2016"
+        "year": "2016",
+        "url": "https://www.nature.com/articles/nmeth.3971"
       },
       {
         "title": "scGen: predicts single-cell perturbation responses",
         "author": "Lotfollahi et al.",
-        "year": "2019"
+        "year": "2019",
+        "url": "https://www.nature.com/articles/s41592-019-0494-8"
       },
       {
         "title": "A common coordinate framework for spatial transcriptomics",
         "author": "Ghazanfar et al.",
-        "year": "2020"
+        "year": "2020",
+        "url": "https://www.nature.com/articles/s41587-020-0562-y"
       },
       {
         "title": "Multi-Omics Factor Analysis (MOFA)",
         "author": "Argelaguet, Stegle et al.",
-        "year": "2018"
+        "year": "2018",
+        "url": "https://www.embopress.org/doi/full/10.15252/msb.20178124"
       },
       {
         "title": "edgeR: a Bioconductor package for differential expression",
         "author": "Robinson et al.",
-        "year": "2010"
+        "year": "2010",
+        "url": "https://academic.oup.com/bioinformatics/article/26/1/139/182458"
       },
       {
         "title": "Regression Shrinkage and Selection via the Lasso",
         "author": "Tibshirani",
-        "year": "1996"
+        "year": "1996",
+        "url": "https://www.jstor.org/stable/2346178"
       },
       {
         "title": "RNA velocity of single cells",
         "author": "La Manno, Theis et al.",
-        "year": "2018"
+        "year": "2018",
+        "url": "https://www.nature.com/articles/s41586-018-0414-6"
       },
       {
-        "title": "Generalizing RNA velocity to transient cell states through dynamical modeling (scVelo)",
+        "title": "Generalizing RNA velocity to transient cell states (scVelo)",
         "author": "Bergen, Theis et al.",
-        "year": "2020"
+        "year": "2020",
+        "url": "https://www.nature.com/articles/s41587-020-0591-6"
       }
     ]
   }
