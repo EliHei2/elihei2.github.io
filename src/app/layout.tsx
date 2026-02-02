@@ -1,10 +1,14 @@
 import type { Metadata } from 'next';
 import ThemeRegistry from '@/theme/ThemeRegistry';
-import Sidebar from '@/components/Sidebar';
+import Header from '@/components/Header';
+import Box from '@mui/material/Box';
 
 export const metadata: Metadata = {
-  title: 'Elyas Heidari | Research Engineer',
-  description: 'Portfolio of Elyas Heidari, Research Engineer in Computational Biology.',
+  title: 'Elyas Heidari',
+  description: 'Research Engineer in Computational Biology.',
+  icons: {
+    icon: '/favicon.ico',
+  },
 };
 
 export default function RootLayout({
@@ -14,11 +18,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body style={{ backgroundColor: '#ffffff' }}>
         <ThemeRegistry>
-          <Sidebar>
-            {children}
-          </Sidebar>
+          <Box sx={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
+            <Header />
+            <Box component="main" sx={{ flexGrow: 1 }}>
+              {children}
+            </Box>
+            <Box component="footer" sx={{ py: 4, textAlign: 'center', color: '#999' }}>
+              <small>© {new Date().getFullYear()} Elyas Heidari</small>
+            </Box>
+          </Box>
         </ThemeRegistry>
       </body>
     </html>

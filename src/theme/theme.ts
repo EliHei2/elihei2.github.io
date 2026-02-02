@@ -1,14 +1,8 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
-import { Inter, Roboto_Mono } from 'next/font/google';
+import { JetBrains_Mono } from 'next/font/google';
 
-const inter = Inter({
-    weight: ['300', '400', '500', '600', '700'],
-    subsets: ['latin'],
-    display: 'swap',
-});
-
-const robotoMono = Roboto_Mono({
+const jetbrainsMono = JetBrains_Mono({
     weight: ['400', '500', '700'],
     subsets: ['latin'],
     display: 'swap',
@@ -16,93 +10,97 @@ const robotoMono = Roboto_Mono({
 
 const theme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: 'light',
         primary: {
-            main: '#bb86fc', // Google Purple (more prominent)
-            light: '#e2d3fe',
-            dark: '#8858c8',
-            contrastText: '#000000',
+            main: '#2BBC8A', // The "Geeky" Teal Green from inspiration
+            contrastText: '#ffffff',
         },
         secondary: {
-            main: '#8ab4f8', // Google Blue (moved to secondary for balance)
-        },
-        error: {
-            main: '#f28b82', // Google Red
-        },
-        warning: {
-            main: '#fdd663', // Google Yellow
-        },
-        success: {
-            main: '#81c995', // Google Green
+            main: '#383838', // Dark Grey for text-like elements
         },
         background: {
-            default: '#202124', // Google Dark Gray
-            paper: '#292a2d', // Lighter Dark Gray for cards/sidebar
+            default: '#ffffff',
+            paper: '#ffffff',
         },
         text: {
-            primary: '#e8eaed',
-            secondary: '#9aa0a6',
+            primary: '#383838', // Dark Grey
+            secondary: '#666666', // Medium Grey
+        },
+        action: {
+            hover: 'rgba(43, 188, 138, 0.08)',
         },
     },
     typography: {
-        fontFamily: inter.style.fontFamily,
+        fontFamily: jetbrainsMono.style.fontFamily,
+        allVariants: {
+            fontFamily: jetbrainsMono.style.fontFamily,
+        },
         h1: {
-            fontFamily: robotoMono.style.fontFamily,
-            fontSize: '3rem',
+            fontSize: '2.5rem',
             fontWeight: 700,
-            letterSpacing: '-0.02em',
-            color: '#e8eaed',
+            letterSpacing: '-0.03em',
+            color: '#383838',
         },
         h2: {
-            fontFamily: robotoMono.style.fontFamily,
-            fontSize: '2.25rem',
-            fontWeight: 600,
-            letterSpacing: '-0.01em',
+            fontSize: '1.75rem',
+            fontWeight: 700,
+            letterSpacing: '-0.02em',
+            color: '#2BBC8A', // Accent color for headers
+            marginBottom: '1rem',
         },
         h3: {
-            fontFamily: robotoMono.style.fontFamily,
-            fontSize: '1.75rem',
-            fontWeight: 600,
+            fontSize: '1.5rem',
+            fontWeight: 700,
+            color: '#383838',
         },
         h4: {
-            fontFamily: robotoMono.style.fontFamily,
-            fontSize: '1.5rem',
-            fontWeight: 600,
+            fontSize: '1.25rem',
+            fontWeight: 700,
+            color: '#383838',
         },
         h5: {
-            fontWeight: 600,
+            fontSize: '1.1rem',
+            fontWeight: 700,
         },
         h6: {
+            fontSize: '1rem',
             fontWeight: 600,
-            letterSpacing: '0.05em',
             textTransform: 'uppercase',
-            fontSize: '0.875rem',
+            letterSpacing: '0.05em',
         },
         body1: {
-            fontSize: '1.05rem',
-            lineHeight: 1.7,
-            color: '#d0d0d0',
+            fontSize: '1rem',
+            lineHeight: 1.8,
+            color: '#383838',
+        },
+        body2: {
+            fontSize: '0.9rem',
+            lineHeight: 1.6,
+            color: '#666666',
         },
         button: {
             textTransform: 'none',
-            fontWeight: 600,
+            fontWeight: 700,
         },
     },
     shape: {
-        borderRadius: 12,
+        borderRadius: 8, // Slightly more square for "tech" feel
     },
     components: {
         MuiButton: {
             styleOverrides: {
                 root: {
-                    borderRadius: 20, // Pill shaped
-                    padding: '8px 20px',
+                    borderRadius: 4,
+                    boxShadow: 'none',
+                    '&:hover': {
+                        boxShadow: 'none',
+                        backgroundColor: 'rgba(43, 188, 138, 0.1)',
+                    },
                 },
                 contained: {
                     boxShadow: 'none',
                     '&:hover': {
-                        boxShadow: '0 1px 3px rgba(0,0,0,0.12)',
-                        backgroundColor: '#cfbcff', // Lighter purple
+                        boxShadow: 'none',
                     },
                 },
             },
@@ -110,40 +108,33 @@ const theme = createTheme({
         MuiCard: {
             styleOverrides: {
                 root: {
-                    backgroundColor: '#292a2d',
-                    backgroundImage: 'none',
-                    border: '1px solid #3c4043',
-                    transition: 'transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out',
-                    '&:hover': {
-                        borderColor: '#bb86fc', // Purple border hover
-                        transform: 'translateY(-2px)',
-                    },
+                    border: '1px solid #eeeeee',
+                    boxShadow: 'none',
+                    borderRadius: 8,
                 },
             },
         },
         MuiChip: {
             styleOverrides: {
                 root: {
-                    backgroundColor: 'rgba(187, 134, 252, 0.1)', // Faint purple background
-                    border: '1px solid rgba(187, 134, 252, 0.3)',
-                    color: '#bb86fc',
-                    fontWeight: 500,
+                    borderRadius: 4,
+                    fontWeight: 600,
+                    backgroundColor: '#f5f5f5',
+                    color: '#383838',
                 },
             },
         },
-        MuiListItemButton: {
+        MuiLink: {
             styleOverrides: {
                 root: {
-                    '&.Mui-selected': {
-                        backgroundColor: 'rgba(187, 134, 252, 0.12) !important', // Purple selection
-                        color: '#bb86fc',
-                        '& .MuiListItemIcon-root': {
-                            color: '#bb86fc',
-                        },
+                    textDecoration: 'none',
+                    color: '#2BBC8A',
+                    '&:hover': {
+                        textDecoration: 'underline',
                     },
-                },
-            },
-        },
+                }
+            }
+        }
     },
 });
 

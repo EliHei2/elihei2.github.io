@@ -5,116 +5,75 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import CardMedia from '@mui/material/CardMedia';
-import Button from '@mui/material/Button';
-import GitHubIcon from '@mui/icons-material/GitHub';
 import Box from '@mui/material/Box';
 import Chip from '@mui/material/Chip';
+import Link from 'next/link';
 
 const projects = [
     {
         title: 'segger',
-        description: 'Graph-neural-network-based tool for cell segmentation in single-molecule spatial omics data. Capable of processing 10M+ transcripts.',
+        description: 'Graph-neural-network-based tool for cell segmentation in single-molecule spatial omics data. 10M+ transcripts.',
         github: 'https://github.com/EliHei2/segger_dev',
         logo: '/segger_logo.png',
-        tags: ['Python', 'PyTorch Geometric', 'GNN', 'Spatial Omics']
+        tags: ['Python', 'PyTorch Geometric', 'GNN']
     },
     {
         title: 'SageNet',
-        description: 'A robust computational framework for mapping single-cell gene expression to spatial locations using graph attention networks and transformers.',
+        description: 'Computational framework for mapping single-cell gene expression to spatial locations using GNNs and transformers.',
         github: 'https://github.com/MarioniLab/sagenet',
-        logo: '/sagenet_logo.png',
-        tags: ['Python', 'PyTorch', 'Transformers', 'Spatial Inference']
+        logo: '/sagenet_logo.png', // Original logo
+        tags: ['Python', 'PyTorch', 'Transformers']
     },
     {
         title: 'scGCN',
-        description: 'Early Graph Convolutional Modeling on gene regulatory networks for single-cell annotation.',
+        description: 'Graph Convolutional Networks for single-cell annotation.',
         github: 'https://github.com/EliHei2/scPotter',
-        logo: '/scgcn_logo.png',
-        tags: ['Python', 'TensorFlow', 'GCN', 'scRNA-seq']
+        logo: '/scgcn_logo.png', // Generated
+        tags: ['Python', 'TensorFlow', 'GCN']
     },
     {
         title: 'MUVis',
         description: 'Structured dependency modeling and visualization for mixed-type multivariate data.',
         github: 'https://baio-lab.github.io/muvis/',
-        logo: '/muvis_logo.png',
-        tags: ['R', 'Visualization', 'Statistics']
+        logo: '/muvis_logo.png', // Generated
+        tags: ['R', 'Visualization']
     }
 ];
 
 export default function Projects() {
     return (
-        <Container maxWidth="lg" sx={{ py: 8 }}>
-            <Typography variant="h2" component="h1" gutterBottom sx={{ mb: 6 }}>
-                Selected Software
-            </Typography>
-            <Grid container spacing={4}>
+        <Container maxWidth="md">
+            <Typography variant="h2" gutterBottom>Selected Software</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {projects.map((project) => (
-                    <Grid key={project.title} size={{ xs: 12, sm: 6, md: 4 }}>
-                        <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column', position: 'relative', overflow: 'visible', mt: 4 }}>
-                            {/* Logo Badge */}
-                            <Box
-                                sx={{
-                                    width: 80,
-                                    height: 80,
-                                    position: 'absolute',
-                                    top: -40,
-                                    left: 24,
-                                    borderRadius: '50%',
-                                    bgcolor: 'background.paper',
-                                    border: '4px solid #202124',
-                                    boxShadow: 3,
-                                    overflow: 'hidden',
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    justifyContent: 'center'
-                                }}
-                            >
-                                <img
-                                    src={project.logo}
-                                    alt={`${project.title} logo`}
-                                    style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                                />
-                            </Box>
+                    <Card key={project.title} sx={{ display: 'flex', p: 3, alignItems: 'start', transition: '0.2s', '&:hover': { bgcolor: '#fafafa' } }}>
+                        {/* Logo */}
+                        <Box sx={{ mr: 3, flexShrink: 0, width: 64, height: 64, display: { xs: 'none', sm: 'block' } }}>
+                            <img src={project.logo} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        </Box>
 
-                            <CardContent sx={{ flexGrow: 1, pt: 6 }}>
-                                <Typography variant="h5" gutterBottom sx={{ fontFamily: 'monospace', fontWeight: 700 }}>
-                                    {project.title}
-                                </Typography>
-                                <Typography variant="body2" color="text.secondary" paragraph>
-                                    {project.description}
-                                </Typography>
-                                <Box sx={{ display: 'flex', gap: 0.5, flexWrap: 'wrap', mt: 2 }}>
-                                    {project.tags.map(tag => (
-                                        <Chip
-                                            key={tag}
-                                            label={tag}
-                                            size="small"
-                                            variant="outlined"
-                                            sx={{ borderRadius: 1, fontSize: '0.7rem' }}
-                                        />
-                                    ))}
-                                </Box>
-                            </CardContent>
-                            <CardActions sx={{ p: 2, pt: 0 }}>
-                                <Button
-                                    size="small"
-                                    startIcon={<GitHubIcon />}
-                                    href={project.github}
-                                    target="_blank"
-                                    fullWidth
-                                    variant="contained"
-                                    sx={{ borderRadius: 2 }}
-                                >
-                                    View Code
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
+                        <Box>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
+                                <Link href={project.github} target="_blank" style={{ textDecoration: 'none' }}>
+                                    <Typography variant="h5" sx={{ color: '#383838', '&:hover': { color: '#2BBC8A', textDecoration: 'underline' } }}>
+                                        {project.title}
+                                    </Typography>
+                                </Link>
+                            </Box>
+                            <Typography variant="body1" sx={{ color: '#555', mb: 2 }}>
+                                {project.description}
+                            </Typography>
+                            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                                {project.tags.map(tag => (
+                                    <Typography key={tag} variant="caption" sx={{ color: '#999', fontFamily: 'monospace', bgcolor: '#f5f5f5', px: 1, py: 0.5, borderRadius: 1 }}>
+                                        {tag}
+                                    </Typography>
+                                ))}
+                            </Box>
+                        </Box>
+                    </Card>
                 ))}
-            </Grid>
+            </Box>
         </Container>
     );
 }
