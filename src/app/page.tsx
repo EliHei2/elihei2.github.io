@@ -23,8 +23,8 @@ export default function Home() {
         {/* Lead Text */}
         <Box sx={{ flex: 1 }}>
           <Typography variant="h1" gutterBottom sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800 }}>
-            Scalable learning systems <br />
-            for <Box component="span" sx={{ color: 'primary.main' }}>real-world biology</Box>.
+            <Box component="span" sx={{ color: 'primary.main' }}>Scalable learning systems</Box> <br />
+            for real-world biology.
           </Typography>
           <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', mb: 4, color: '#555', lineHeight: 1.8 }}>
             I am a <strong>Research Engineer in AI for Science</strong> at <strong>DKFZ & EMBL Heidelberg</strong>.
