@@ -141,8 +141,14 @@ export default function About() {
             <Box sx={{ mb: 8 }}>
                 <Typography variant="h1" sx={{ mb: 3 }}>About</Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-                    I build scalable learning systems for biomedical data that transform ill-posed real-world structure into robust, high-performance implementations.
-                    I operate across disciplines and institutions, connecting efficient computation with biomedical domain insight through close collaboration with experimentalists.
+                    I am a **Research Engineer** operating at the gap between elegant modeling and production-grade systems.
+                    I build scalable, multi-scale learning architectures that turn complex biological signals into reliable discovery infrastructure.
+                    My work emphasizes **evaluation realism**, stress-testing models under real-world heterogeneity—including cohort shifts and site effects—to ensure
+                    biological representations earn their value through predictive utility and scientific interrogation.
+                </Typography>
+                <Typography variant="body1" sx={{ mb: 3 }}>
+                    I operate fluently across deep learning systems, single-cell biology, and translational research, connecting efficient computation with
+                    biomedical domain insight through close collaboration with experimentalists and mathematicians.
                 </Typography>
                 <Typography variant="body1">
                     <Link href="/CV_Elyas_Heidari.pdf" target="_blank" style={{ textDecoration: 'none', borderBottom: '2px solid #2BBC8A', color: '#383838', fontWeight: 600 }}>
@@ -233,18 +239,25 @@ export default function About() {
 
             {/* Education */}
             <SectionHeader icon={<SchoolIcon fontSize="large" />} title="Education" />
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 <Box>
-                    <Typography variant="h6">Heidelberg University</Typography>
-                    <Typography variant="body2">PhD, Faculty of Biosciences (2022 – 2026)</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>Heidelberg University</Typography>
+                    <Typography variant="body2" color="text.secondary">PhD, Faculty of Biosciences (2022 – 2026)</Typography>
+                    <Typography variant="body2" sx={{ mt: 0.5 }}><em>Structured Representation Learning for Large-Scale Spatial Omics Data</em></Typography>
                 </Box>
                 <Box>
-                    <Typography variant="h6">ETH Zurich</Typography>
-                    <Typography variant="body2">MSc, Computational Biology (Top 3 in cohort) (2019 – 2022)</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>ETH Zurich</Typography>
+                    <Typography variant="body2" color="text.secondary">MSc, Computational Biology & Bioinformatics (2019 – 2022)</Typography>
+                    <Typography variant="body2" sx={{ mt: 0.5 }}>GPA: 5.76/6.0 (Top 3 in cohort). Received <strong>ETH Medal</strong> for outstanding thesis.</Typography>
                 </Box>
                 <Box>
-                    <Typography variant="h6">Sharif University of Technology</Typography>
-                    <Typography variant="body2">BSc, Computer Engineering (2014 – 2019)</Typography>
+                    <Typography variant="h6" sx={{ fontWeight: 700 }}>Sharif University of Technology</Typography>
+                    <Typography variant="body2" color="text.secondary">BSc, Computer Engineering & Applied Mathematics (2014 – 2019)</Typography>
+                    <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                        <Chip label="Founder, Sharif DataDays" size="small" variant="outlined" sx={{ color: '#2BBC8A', borderColor: '#2BBC8A' }} />
+                        <Chip label="Head TA, Advanced Programming" size="small" variant="outlined" />
+                        <Chip label="Head TA, Prob & Stats" size="small" variant="outlined" />
+                    </Box>
                 </Box>
             </Box>
 
