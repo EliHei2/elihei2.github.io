@@ -248,11 +248,9 @@ export default function About() {
                 <Box>
                     <Typography variant="h6" sx={{ fontWeight: 700 }}>Sharif University of Technology</Typography>
                     <Typography variant="body2" color="text.secondary">BSc, Computer Engineering & Applied Mathematics (2014 – 2019)</Typography>
-                    <Box sx={{ mt: 1, display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                        <Chip label="Founder, Sharif DataDays" size="small" variant="outlined" sx={{ color: '#2BBC8A', borderColor: '#2BBC8A' }} />
-                        <Chip label="Head TA, Advanced Programming" size="small" variant="outlined" />
-                        <Chip label="Head TA, Prob & Stats" size="small" variant="outlined" />
-                    </Box>
+                    <Typography variant="body2" sx={{ mt: 1, color: '#555' }}>
+                        Founder of **Sharif DataDays**. Head Teaching Assistant for Advanced Programming and Probability & Statistics.
+                    </Typography>
                 </Box>
             </Box>
 

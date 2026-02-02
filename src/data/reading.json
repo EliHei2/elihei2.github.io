@@ -80,13 +80,31 @@
     ]
   },
   {
-    "category": "Key Papers",
+    "category": "Key Papers & AI Foundations",
     "items": [
       {
-        "title": "Auto-Encoding Variational Bayes (VAE)",
-        "author": "Kingma, Welling",
-        "year": "2013",
-        "url": "https://arxiv.org/abs/1312.6114"
+        "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+        "author": "Yao et al.",
+        "year": "2022",
+        "url": "https://arxiv.org/abs/2210.03629"
+      },
+      {
+        "title": "Toolformer: Language Models Can Teach Themselves to Use Tools",
+        "author": "Schick et al.",
+        "year": "2023",
+        "url": "https://arxiv.org/abs/2302.04761"
+      },
+      {
+        "title": "Generative Agents: Interactive Simulacra of Human Behavior",
+        "author": "Park et al.",
+        "year": "2023",
+        "url": "https://arxiv.org/abs/2304.03442"
+      },
+      {
+        "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+        "author": "Kipf & Welling",
+        "year": "2017",
+        "url": "https://arxiv.org/abs/1609.02907"
       },
       {
         "title": "Graph Attention Networks",
@@ -95,10 +113,22 @@
         "url": "https://arxiv.org/abs/1710.10903"
       },
       {
+        "title": "Inductive Representation Learning on Large Graphs (GraphSAGE)",
+        "author": "Hamilton et al.",
+        "year": "2017",
+        "url": "https://arxiv.org/abs/1706.02216"
+      },
+      {
         "title": "Attention Is All You Need",
         "author": "Vaswani et al.",
         "year": "2017",
         "url": "https://arxiv.org/abs/1706.03762"
+      },
+      {
+        "title": "Auto-Encoding Variational Bayes (VAE)",
+        "author": "Kingma, Welling",
+        "year": "2013",
+        "url": "https://arxiv.org/abs/1312.6114"
       },
       {
         "title": "Diffusion Pseudotime",
@@ -117,24 +147,6 @@
         "author": "Ghazanfar et al.",
         "year": "2020",
         "url": "https://www.nature.com/articles/s41587-020-0562-y"
-      },
-      {
-        "title": "Multi-Omics Factor Analysis (MOFA)",
-        "author": "Argelaguet, Stegle et al.",
-        "year": "2018",
-        "url": "https://www.embopress.org/doi/full/10.15252/msb.20178124"
-      },
-      {
-        "title": "edgeR: a Bioconductor package for differential expression",
-        "author": "Robinson et al.",
-        "year": "2010",
-        "url": "https://academic.oup.com/bioinformatics/article/26/1/139/182458"
-      },
-      {
-        "title": "Regression Shrinkage and Selection via the Lasso",
-        "author": "Tibshirani",
-        "year": "1996",
-        "url": "https://www.jstor.org/stable/2346178"
       },
       {
         "title": "RNA velocity of single cells",

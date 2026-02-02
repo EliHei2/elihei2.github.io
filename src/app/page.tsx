@@ -57,34 +57,39 @@ export default function Home() {
         </Box>
       </Box>
 
-      {/* Research Philosophy Box */}
+      {/* Concrete Research Philosophy */}
       <Box sx={{ mb: 12, p: 4, bgcolor: '#fafafa', borderRadius: 4, borderLeft: '4px solid #2BBC8A' }}>
         <Typography variant="h4" gutterBottom sx={{ fontWeight: 700 }}>Research Philosophy</Typography>
-        <Typography variant="body1" paragraph sx={{ fontSize: '1.05rem', fontStyle: 'italic', color: '#444' }}>
-          "The most important work in AI for biology sits between representation learning and its operational adoption: building evaluations that resist shortcut learning and engineering interfaces for scientific interrogation."
+        <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', color: '#444', lineHeight: 1.7 }}>
+          I target the <strong>representational gap</strong> between biological complexity and machine learning efficiency.
+          My goal is to build discovery infrastructure that transforms high-dimensional signals into robust,
+          uncertainty-aware substrates for therapeutic interrogation—moving fromImpressive artifacts to reliable engines of mechanistic insight.
         </Typography>
       </Box>
 
-      {/* Selected Highlights */}
+      {/* Scientific Axis Highlights */}
       <Box sx={{ mb: 8 }}>
-        <Typography variant="h2" gutterBottom>Selected Highlights</Typography>
-        <Box component="ul" sx={{ pl: 2, '& li': { mb: 3 } }}>
+        <Typography variant="h2" gutterBottom>Scientific Highlights</Typography>
+        <Box component="ul" sx={{ pl: 2, '& li': { mb: 4 } }}>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Unlocking Scale in Spatial Omics</Typography>
+            <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700 }}>Domain Mastery in Biology</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Engineered distributed GNN pipelines for the <em>Segger</em> framework, enabling cell segmentation on <strong>10M+ nodes</strong> with 1000x speedups.
+              Deep technical expertise in <strong>single-cell and spatial omics</strong>, bridging computational
+              methodology with clinical translation and mechanistic experimental design.
             </Typography>
           </li>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Supervised Representation Learning</Typography>
+            <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700 }}>Modeling & Large-Scale Compute</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Pioneered <em>SageNet</em>, a transformer-based framework for supervised spatial inference, mapping dissociated cells with state-of-the-art precision.
+              Engineering distributed training pipelines for <strong>GNNs and Transformers</strong> on 10M+ node graphs,
+              achieving 1000x speedups in high-throughput spatial phenotyping.
             </Typography>
           </li>
           <li>
-            <Typography variant="h6" sx={{ color: '#383838' }}>Geometric Deep Learning for Biology</Typography>
+            <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700 }}>Open-Source Software Leadership</Typography>
             <Typography variant="body1" sx={{ color: '#666' }}>
-              Developed <em>scGCN</em>, introducing geometric deep learning to single-cell data integration and landmark-free spatial mapping.
+              Architecting and maintaining production-ready frameworks (<em>Segger</em>, <em>SageNet</em>, <em>scGCN</em>) adopted
+              globally for robust biological data integration and inference.
             </Typography>
           </li>
         </Box>

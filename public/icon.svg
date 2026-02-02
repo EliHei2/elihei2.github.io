@@ -1,37 +1,45 @@
 <svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <rect width="512" height="512" fill="white"/>
+  <!-- Mix of black (#1A1A1A) and teal (#2BBC8A) -->
   
-  <!-- Skewed/Italic Graph edges forming an 'E' -->
   <g transform="skewX(-15) translate(80, 0)">
-    <!-- Vertical Bar -->
-    <line x1="160" y1="120" x2="140" y2="392" stroke="#2BBC8A" stroke-width="4" stroke-dasharray="8 8"/>
+    <!-- Vertical Bar - Shadow/Accent Edges -->
+    <line x1="160" y1="120" x2="140" y2="392" stroke="#1A1A1A" stroke-width="6" stroke-opacity="0.2"/>
+    <line x1="160" y1="120" x2="140" y2="392" stroke="#2BBC8A" stroke-width="2" stroke-dasharray="8 4"/>
     
-    <!-- Horizontal Bars -->
-    <line x1="160" y1="120" x2="360" y2="120" stroke="#2BBC8A" stroke-width="4" stroke-dasharray="4 4"/>
-    <line x1="150" y1="256" x2="320" y2="256" stroke="#2BBC8A" stroke-width="4" stroke-dasharray="4 4"/>
-    <line x1="140" y1="392" x2="360" y2="392" stroke="#2BBC8A" stroke-width="4" stroke-dasharray="4 4"/>
+    <!-- Horizontal Bars - Mixed colors -->
+    <line x1="160" y1="120" x2="360" y2="120" stroke="#1A1A1A" stroke-width="2" stroke-dasharray="4 4"/>
+    <line x1="150" y1="256" x2="320" y2="256" stroke="#1A1A1A" stroke-width="2" stroke-dasharray="4 4"/>
+    <line x1="140" y1="392" x2="360" y2="392" stroke="#1A1A1A" stroke-width="2" stroke-dasharray="4 4"/>
 
-    <!-- Connections for 'Graph' look -->
-    <line x1="360" y1="120" x2="160" y2="120" stroke="#2BBC8A" stroke-width="8"/>
-    <line x1="160" y1="120" x2="150" y2="256" stroke="#2BBC8A" stroke-width="8"/>
-    <line x1="150" y1="256" x2="140" y2="392" stroke="#2BBC8A" stroke-width="8"/>
-    <line x1="150" y1="256" x2="320" y2="256" stroke="#2BBC8A" stroke-width="8"/>
-    <line x1="140" y1="392" x2="360" y2="392" stroke="#2BBC8A" stroke-width="8"/>
+    <!-- Main Connectivity (Graph edges) -->
+    <line x1="360" y1="120" x2="160" y2="120" stroke="#1A1A1A" stroke-width="8"/>
+    <line x1="160" y1="120" x2="150" y2="256" stroke="#1A1A1A" stroke-width="8"/>
+    <line x1="150" y1="256" x2="140" y2="392" stroke="#1A1A1A" stroke-width="8"/>
+    <line x1="150" y1="256" x2="320" y2="256" stroke="#1A1A1A" stroke-width="8"/>
+    <line x1="140" y1="392" x2="360" y2="392" stroke="#1A1A1A" stroke-width="8"/>
 
-    <!-- Nodes (Circles) at vertices -->
-    <!-- Top Bar -->
-    <circle cx="160" cy="120" r="12" fill="#2BBC8A"/>
-    <circle cx="260" cy="120" r="8" fill="#2BBC8A" fill-opacity="0.6"/>
-    <circle cx="360" cy="120" r="12" fill="#2BBC8A"/>
+    <!-- Nodes with Green Highlight -->
+    <circle cx="160" cy="120" r="14" fill="#1A1A1A"/>
+    <circle cx="160" cy="120" r="8" fill="#2BBC8A"/>
     
-    <!-- Middle Bar -->
-    <circle cx="150" cy="256" r="12" fill="#2BBC8A"/>
-    <circle cx="235" cy="256" r="8" fill="#2BBC8A" fill-opacity="0.6"/>
-    <circle cx="320" cy="256" r="12" fill="#2BBC8A"/>
+    <circle cx="360" cy="120" r="14" fill="#1A1A1A"/>
+    <circle cx="360" cy="120" r="8" fill="#2BBC8A"/>
     
-    <!-- Bottom Bar -->
-    <circle cx="140" cy="392" r="12" fill="#2BBC8A"/>
-    <circle cx="250" cy="392" r="8" fill="#2BBC8A" fill-opacity="0.6"/>
-    <circle cx="360" cy="392" r="12" fill="#2BBC8A"/>
+    <circle cx="150" cy="256" r="14" fill="#1A1A1A"/>
+    <circle cx="150" cy="256" r="8" fill="#2BBC8A"/>
+    
+    <circle cx="320" cy="256" r="14" fill="#1A1A1A"/>
+    <circle cx="320" cy="256" r="8" fill="#2BBC8A"/>
+    
+    <circle cx="140" cy="392" r="14" fill="#1A1A1A"/>
+    <circle cx="140" cy="392" r="8" fill="#2BBC8A"/>
+    
+    <circle cx="360" cy="392" r="14" fill="#1A1A1A"/>
+    <circle cx="360" cy="392" r="8" fill="#2BBC8A"/>
+
+    <!-- Auxiliary Nodes -->
+    <circle cx="260" cy="120" r="6" fill="#2BBC8A" fill-opacity="0.4"/>
+    <circle cx="235" cy="256" r="6" fill="#2BBC8A" fill-opacity="0.4"/>
+    <circle cx="250" cy="392" r="6" fill="#2BBC8A" fill-opacity="0.4"/>
   </g>
 </svg>
