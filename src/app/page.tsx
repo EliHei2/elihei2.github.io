@@ -1,66 +1,95 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client';
+
+import * as React from 'react';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Link from 'next/link';
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <Box>
+      {/* Hero Section */}
+      <Box
+        sx={{
+          bgcolor: 'background.default',
+          pt: 15,
+          pb: 10,
+          textAlign: 'center',
+          animation: 'fadeIn 1s ease-in',
+        }}
+      >
+        <Container maxWidth="md">
+          <Typography
+            component="h1"
+            variant="h1"
+            color="text.primary"
+            gutterBottom
+            sx={{
+              background: 'linear-gradient(45deg, #005f73 30%, #94d2bd 90%)',
+              backgroundClip: 'text',
+              textFillColor: 'transparent',
+              mb: 4,
+            }}
           >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            Elyas Heidari
+          </Typography>
+          <Typography variant="h3" color="text.secondary" paragraph sx={{ mb: 4, fontWeight: 400 }}>
+            Research Engineer
+            <br />
+            Computational Biologist
+          </Typography>
+          <Typography variant="body1" color="text.secondary" paragraph sx={{ maxWidth: '600px', mx: 'auto', mb: 6 }}>
+            Specializing in single-cell spatial genomics, graph neural networks, and statistical machine learning.
+            Creator of <strong>segger</strong> and <strong>SageNet</strong>.
+          </Typography>
+          <Box sx={{ display: 'flex', gap: 2, justifyContent: 'center' }}>
+            <Button variant="contained" size="large" component={Link} href="/projects">
+              View Projects
+            </Button>
+            <Button variant="outlined" size="large" component={Link} href="/about">
+              More About Me
+            </Button>
+          </Box>
+        </Container>
+      </Box>
+
+      {/* Featured Highlights (Placeholder for now) */}
+      <Container maxWidth="lg" sx={{ py: 8 }}>
+        <Typography variant="h4" gutterBottom sx={{ mb: 4, textAlign: 'center' }}>
+          Research Highlights
+        </Typography>
+        <Grid container spacing={4}>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Card sx={{ height: '100%' }}>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  segger
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  A graph-neural-network-based tool for cell segmentation in single-molecule spatial omics data.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Card sx={{ height: '100%' }}>
+              <CardContent>
+                <Typography variant="h5" gutterBottom>
+                  SageNet
+                </Typography>
+                <Typography variant="body2" color="text.secondary">
+                  A robust framework for spatial gene expression reconstruction and mapping.
+                </Typography>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+      </Container>
+    </Box>
   );
 }

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "title": "Probabilistic Graphical Models: Principles and Techniques",
+    "author": "Daphne Koller, Nir Friedman",
+    "type": "Book",
+    "dateRead": "2025-11-15",
+    "rating": 5,
+    "comment": "Essential reading for understanding the foundations of my work with SageNet."
+  },
+  {
+    "id": 2,
+    "title": "Deep Learning on Graphs",
+    "author": "Yao Ma, Jiliang Tang",
+    "type": "Book",
+    "dateRead": "2025-12-10",
+    "rating": 4,
+    "comment": "Great overview of GNN architectures, very relevant for segger development."
+  },
+  {
+    "id": 3,
+    "title": "The Selfish Gene",
+    "author": "Richard Dawkins",
+    "type": "Book",
+    "dateRead": "2024-05-20",
+    "rating": 5,
+    "comment": "A classic. Always good to revisit the fundamentals of evolutionary biology."
+  },
+  {
+    "id": 4,
+    "title": "Graph attention networks",
+    "author": "Veličković et al.",
+    "type": "Paper",
+    "dateRead": "2025-09-01",
+    "rating": 5,
+    "comment": "Seminal paper. The attention mechanism is crucial for handling heterogeneity in spatial omics data."
+  }
+]
