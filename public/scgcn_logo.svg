@@ -1,0 +1,12 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M100 5L186.603 55V155L100 205L13.3975 155V55L100 5Z" fill="#0f172a" stroke="white" stroke-width="5"/>
+<circle cx="100" cy="100" r="15" fill="#2BBC8A"/>
+<circle cx="100" cy="60" r="10" fill="white"/>
+<circle cx="100" cy="140" r="10" fill="white"/>
+<circle cx="60" cy="80" r="10" fill="white"/>
+<circle cx="140" cy="80" r="10" fill="white"/>
+<circle cx="60" cy="120" r="10" fill="white"/>
+<circle cx="140" cy="120" r="10" fill="white"/>
+<path d="M100 100L100 60M100 100L100 140M100 100L60 80M100 100L140 80M100 100L60 120M100 100L140 120" stroke="#2BBC8A" stroke-width="2"/>
+<text x="100" y="180" font-family="monospace" font-weight="bold" font-size="24" fill="white" text-anchor="middle">scGCN</text>
+</svg>

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: 'Elyas Heidari',
   description: 'Research Engineer in Computational Biology.',
   icons: {
-    icon: '/favicon.ico',
+    icon: '/icon.svg',
   },
 };
 

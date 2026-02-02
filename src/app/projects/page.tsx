@@ -12,31 +12,31 @@ import Link from 'next/link';
 const projects = [
     {
         title: 'segger',
-        description: 'Graph-neural-network-based tool for cell segmentation in single-molecule spatial omics data. 10M+ transcripts.',
+        description: 'Large-scale GNN-based cell segmentation for spatial transcriptomics. Scaling to 10M+ nodes/30M transcripts with 1000x speedup via multi-GPU distributed training.',
         github: 'https://github.com/EliHei2/segger_dev',
         logo: '/segger_logo.png',
-        tags: ['Python', 'PyTorch Geometric', 'GNN']
+        tags: ['Python', 'PyTorch Geometric', 'Distributed GNN']
     },
     {
         title: 'SageNet',
-        description: 'Computational framework for mapping single-cell gene expression to spatial locations using GNNs and transformers.',
+        description: 'Supervised graph-attention framework for mapping single-cell gene expression to spatial locations. Outperforms Tangram/NovoSpaRc.',
         github: 'https://github.com/MarioniLab/sagenet',
         logo: '/sagenet_logo.png', // Original logo
         tags: ['Python', 'PyTorch', 'Transformers']
     },
     {
         title: 'scGCN',
-        description: 'Graph Convolutional Networks for single-cell annotation.',
+        description: 'Geometric deep learning framework on single-cell gene regulatory networks for cell annotation and discovery.',
         github: 'https://github.com/EliHei2/scPotter',
-        logo: '/scgcn_logo.png', // Generated
+        logo: '/scgcn_logo.svg', // Generated
         tags: ['Python', 'TensorFlow', 'GCN']
     },
     {
         title: 'MUVis',
-        description: 'Structured dependency modeling and visualization for mixed-type multivariate data.',
+        description: 'Structured dependency modeling and visualization for mixed-type multivariate data using probabilistic graphical models.',
         github: 'https://baio-lab.github.io/muvis/',
-        logo: '/muvis_logo.png', // Generated
-        tags: ['R', 'Visualization']
+        logo: '/muvis_logo.svg', // Generated
+        tags: ['R', 'Visualization', 'PGM']
     }
 ];
 

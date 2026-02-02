@@ -4,11 +4,7 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Link from 'next/link';
-
-// Dummy list for visual verification, assuming reading.json will be connected or parsed
-// For now, retaining structure but simplifying UI
-import readingList from '@/data/reading.json';
+import readingData from '@/data/reading.json';
 
 export default function Reading() {
     return (
@@ -18,20 +14,24 @@ export default function Reading() {
                 Books and papers that have shaped my thinking.
             </Typography>
 
-            <Box component="ul" sx={{ pl: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 3 }}>
-                {readingList.map((item: any, i: number) => (
-                    <Box component="li" key={i} sx={{ display: 'flex', gap: 2, alignItems: 'baseline' }}>
-                        <Typography variant="body1" sx={{ color: '#383838', fontWeight: 600, minWidth: '200px' }}>
-                            {item.title}
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                {readingData.map((category: any, i: number) => (
+                    <Box key={i}>
+                        <Typography variant="h4" gutterBottom sx={{ borderBottom: '1px solid #eee', pb: 1, mb: 3 }}>
+                            {category.category}
                         </Typography>
-                        <Typography variant="body2" sx={{ color: '#777', fontStyle: 'italic' }}>
-                            by {item.author}
-                        </Typography>
-                        {item.comment && (
-                            <Typography variant="body2" sx={{ color: '#999', ml: 'auto', maxWidth: '400px', display: { xs: 'none', sm: 'block' } }}>
-                                "{item.comment}"
-                            </Typography>
-                        )}
+                        <Box component="ul" sx={{ pl: 0, listStyle: 'none', display: 'grid', gap: 2 }}>
+                            {category.items.map((item: any, j: number) => (
+                                <Box component="li" key={j} sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 0, sm: 2 }, alignItems: { sm: 'baseline' } }}>
+                                    <Typography variant="body1" sx={{ color: '#383838', fontWeight: 600, minWidth: '350px' }}>
+                                        {item.title}
+                                    </Typography>
+                                    <Typography variant="body2" sx={{ color: '#777', fontStyle: 'italic', fontFamily: 'monospace' }}>
+                                        {item.author} {item.year && `(${item.year})`}
+                                    </Typography>
+                                </Box>
+                            ))}
+                        </Box>
                     </Box>
                 ))}
             </Box>

@@ -1,38 +1,128 @@
 [
   {
-    "id": 1,
-    "title": "Probabilistic Graphical Models: Principles and Techniques",
-    "author": "Daphne Koller, Nir Friedman",
-    "type": "Book",
-    "dateRead": "2025-11-15",
-    "rating": 5,
-    "comment": "Essential reading for understanding the foundations of my work with SageNet."
+    "category": "Philosophy & Non-Fiction",
+    "items": [
+      {
+        "title": "Behave: The Biology of Humans at Our Best and Worst",
+        "author": "Robert Sapolsky"
+      },
+      {
+        "title": "Thinking, Fast and Slow",
+        "author": "Daniel Kahneman"
+      },
+      {
+        "title": "Deep Work",
+        "author": "Cal Newport"
+      },
+      {
+        "title": "Notes from Underground",
+        "author": "Fyodor Dostoevsky"
+      },
+      {
+        "title": "Ethics",
+        "author": "Baruch Spinoza"
+      },
+      {
+        "title": "The Human Condition",
+        "author": "Hannah Arendt"
+      },
+      {
+        "title": "Man's Search for Meaning",
+        "author": "Viktor Frankl"
+      }
+    ]
   },
   {
-    "id": 2,
-    "title": "Deep Learning on Graphs",
-    "author": "Yao Ma, Jiliang Tang",
-    "type": "Book",
-    "dateRead": "2025-12-10",
-    "rating": 4,
-    "comment": "Great overview of GNN architectures, very relevant for segger development."
+    "category": "Scientific Textbooks",
+    "items": [
+      {
+        "title": "The Elements of Statistical Learning",
+        "author": "Hastie, Tibshirani, Friedman"
+      },
+      {
+        "title": "Probabilistic Graphical Models",
+        "author": "Daphne Koller, Nir Friedman"
+      },
+      {
+        "title": "Deep Learning",
+        "author": "Goodfellow, Bengio, Courville"
+      },
+      {
+        "title": "Data Analysis for the Life Sciences",
+        "author": "Wolfgang Huber"
+      },
+      {
+        "title": "Statistics for High-Dimensional Data",
+        "author": "Bühlmann, van de Geer"
+      },
+      {
+        "title": "An Introduction to Systems Biology",
+        "author": "Uri Alon"
+      },
+      {
+        "title": "Molecular Biology of the Cell",
+        "author": "Alberts et al."
+      }
+    ]
   },
   {
-    "id": 3,
-    "title": "The Selfish Gene",
-    "author": "Richard Dawkins",
-    "type": "Book",
-    "dateRead": "2024-05-20",
-    "rating": 5,
-    "comment": "A classic. Always good to revisit the fundamentals of evolutionary biology."
-  },
-  {
-    "id": 4,
-    "title": "Graph attention networks",
-    "author": "Veličković et al.",
-    "type": "Paper",
-    "dateRead": "2025-09-01",
-    "rating": 5,
-    "comment": "Seminal paper. The attention mechanism is crucial for handling heterogeneity in spatial omics data."
+    "category": "Key Papers",
+    "items": [
+      {
+        "title": "Auto-Encoding Variational Bayes (VAE)",
+        "author": "Kingma, Welling",
+        "year": "2013"
+      },
+      {
+        "title": "Graph Attention Networks",
+        "author": "Velickovic et al.",
+        "year": "2017"
+      },
+      {
+        "title": "Attention Is All You Need",
+        "author": "Vaswani et al.",
+        "year": "2017"
+      },
+      {
+        "title": "Diffusion Pseudotime",
+        "author": "Haghverdi et al.",
+        "year": "2016"
+      },
+      {
+        "title": "scGen: predicts single-cell perturbation responses",
+        "author": "Lotfollahi et al.",
+        "year": "2019"
+      },
+      {
+        "title": "A common coordinate framework for spatial transcriptomics",
+        "author": "Ghazanfar et al.",
+        "year": "2020"
+      },
+      {
+        "title": "Multi-Omics Factor Analysis (MOFA)",
+        "author": "Argelaguet, Stegle et al.",
+        "year": "2018"
+      },
+      {
+        "title": "edgeR: a Bioconductor package for differential expression",
+        "author": "Robinson et al.",
+        "year": "2010"
+      },
+      {
+        "title": "Regression Shrinkage and Selection via the Lasso",
+        "author": "Tibshirani",
+        "year": "1996"
+      },
+      {
+        "title": "RNA velocity of single cells",
+        "author": "La Manno, Theis et al.",
+        "year": "2018"
+      },
+      {
+        "title": "Generalizing RNA velocity to transient cell states through dynamical modeling (scVelo)",
+        "author": "Bergen, Theis et al.",
+        "year": "2020"
+      }
+    ]
   }
 ]
