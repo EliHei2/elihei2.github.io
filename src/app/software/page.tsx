@@ -40,10 +40,10 @@ const projects = [
     }
 ];
 
-export default function Projects() {
+export default function Software() {
     return (
         <Container maxWidth="md">
-            <Typography variant="h2" gutterBottom>Selected Software</Typography>
+            <Typography variant="h2" gutterBottom>Software</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {projects.map((project) => (
                     <Card key={project.title} sx={{ display: 'flex', p: 3, alignItems: 'start', transition: '0.2s', '&:hover': { bgcolor: '#fafafa' } }}>

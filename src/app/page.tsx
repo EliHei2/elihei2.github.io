@@ -38,7 +38,7 @@ export default function Home() {
           </Box>
 
           <Box sx={{ display: 'flex', gap: 4 }}>
-            <Link href="/projects" style={{ textDecoration: 'none', color: '#2BBC8A', fontWeight: 700, fontSize: '1.1rem' }}>
+            <Link href="/software" style={{ textDecoration: 'none', color: '#2BBC8A', fontWeight: 700, fontSize: '1.1rem' }}>
               &rarr; View Software
             </Link>
             <Link href="/about" style={{ textDecoration: 'none', color: '#383838', fontWeight: 700, fontSize: '1.1rem' }}>
