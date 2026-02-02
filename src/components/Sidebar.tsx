@@ -22,7 +22,7 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import SchoolIcon from '@mui/icons-material/School';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useTheme, Theme, CSSObject, styled } from '@mui/material/styles';
 
 const drawerWidth = 280;
@@ -38,6 +38,7 @@ const pages = [
 export default function Sidebar({ children }: { children: React.ReactNode }) {
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const pathname = usePathname();
+    const router = useRouter();
     const theme = useTheme();
 
     const handleDrawerToggle = () => {
@@ -82,8 +83,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
                     return (
                         <ListItem key={page.name} disablePadding sx={{ mb: 1 }}>
                             <ListItemButton
-                                component={Link}
-                                href={page.path}
+                                onClick={() => router.push(page.path)}
                                 selected={isActive}
                                 sx={{
                                     borderRadius: 2,
