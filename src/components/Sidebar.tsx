@@ -20,6 +20,7 @@ import WorkIcon from '@mui/icons-material/Work';
 import MenuIcon from '@mui/icons-material/Menu';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import SchoolIcon from '@mui/icons-material/School';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useTheme, Theme, CSSObject, styled } from '@mui/material/styles';
@@ -49,7 +50,7 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
                 <Avatar
                     sx={{ width: 120, height: 120, mb: 2, border: `4px solid ${theme.palette.background.default}` }}
                     alt="Elyas Heidari"
-                    src="/profile.jpg" // Placeholder, user might need to add this
+                    src="/profile.jpg"
                 >
                     EH
                 </Avatar>
@@ -66,6 +67,9 @@ export default function Sidebar({ children }: { children: React.ReactNode }) {
                     </IconButton>
                     <IconButton href="https://linkedin.com/in/elyas-heidari" target="_blank" size="small" color="primary">
                         <LinkedInIcon />
+                    </IconButton>
+                    <IconButton href="https://tinyurl.com/gglscl" target="_blank" size="small" color="primary">
+                        <SchoolIcon />
                     </IconButton>
                 </Box>
             </Box>
