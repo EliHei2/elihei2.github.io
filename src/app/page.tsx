@@ -62,12 +62,12 @@ export default function Home() {
       <Box sx={{ mb: 12, p: 4, bgcolor: '#fafafa', borderRadius: 2, borderLeft: '4px solid #2BBC8A' }}>
         <Typography variant="h4" gutterBottom sx={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '-0.02em' }}>Research Philosophy</Typography>
         <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', color: '#444', lineHeight: 1.7 }}>
-          I target the <strong>representational gap</strong> between cellular topology and machine learning efficiency.
-          True discovery infrastructure must resist shortcut learning and out-of-distribution shifts inherent in clinical cohorts.
-          My work focuses on engineering pipelines that ensure expressive models (Transformers, GNNs) maintain high-fidelity mechanistic
-          utility when deployed at the scale of <strong>millions of objects and multi-modal constraints</strong>.
+          I build learning systems that transform messy, large-scale biological data into reliable, production-grade infrastructure.
+          My focus: designing <strong>GNN and Transformer pipelines</strong> that scale to <strong>10M+ cells and transcripts</strong> while
+          preserving mechanistic interpretability—from spatial omics segmentation to multi-modal integration.
         </Typography>
       </Box>
+
 
       {/* Scientific Axis Highlights */}
       <Box sx={{ mb: 8 }}>
@@ -75,33 +75,34 @@ export default function Home() {
         <Box component="ul" sx={{ pl: 0, listStyle: 'none', display: 'grid', gap: 4 }}>
           <li>
             <Box sx={{ borderBottom: '1px solid #eee', pb: 2 }}>
-              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Biological Domain Logic</Typography>
+              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Spatial & Single-Cell Omics</Typography>
               <Typography variant="body1" sx={{ color: '#666' }}>
-                Deep technical integration of <strong>spatial niche dynamics</strong> and molecular heterogeneity into modeling priors.
-                I bridge computational topology with mechanistic experimental design to unlock therapeutic insights.
+                End-to-end pipelines for <strong>spatial transcriptomics</strong>, <strong>scRNA-seq</strong>, and multi-modal integration.
+                I design models that capture cell neighborhood structure and molecular heterogeneity to drive biological discovery.
               </Typography>
             </Box>
           </li>
           <li>
             <Box sx={{ borderBottom: '1px solid #eee', pb: 2 }}>
-              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Modeling & High-Performance Compute</Typography>
+              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Scalable Graph Neural Networks</Typography>
               <Typography variant="body1" sx={{ color: '#666' }}>
-                Engineering distributed training orchestration for large-scale <strong>Graph Neural Networks</strong>.
-                Enabled high-throughput spatial phenotyping on 10M+ node graphs with 1000x speedups relative to established baselines.
+                Multi-GPU training and inference for <strong>heterogeneous GNNs</strong> on graphs with 10M+ nodes and 100M+ edges.
+                Achieved <strong>1000x speedups</strong> for spatial phenotyping tasks previously considered computationally intractable.
               </Typography>
             </Box>
           </li>
           <li>
             <Box>
-              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Open-Source Framework Architecture</Typography>
+              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Open-Source Tooling</Typography>
               <Typography variant="body1" sx={{ color: '#666' }}>
-                Architecting global-scale toolkits (<em>Segger</em>, <em>SageNet</em>, <em>scGCN</em>) and contributing to universal data
-                standards like <strong>SpatialData</strong> to ensure reproducibility and community-driven discovery.
+                Architecting production-grade frameworks (<em>Segger</em>, <em>SageNet</em>, <em>scGCN</em>) and contributing to
+                community standards like <strong>SpatialData</strong> to ensure reproducibility and extensibility.
               </Typography>
             </Box>
           </li>
         </Box>
       </Box>
+
 
     </Container>
   );
