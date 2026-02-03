@@ -11,6 +11,12 @@ export interface BlogPost {
     excerpt: string;
     content: string;
     tags?: string[];
+    readingTime: number;
+}
+
+export function calculateReadingTime(content: string): number {
+    const words = content.trim().split(/\s+/).length;
+    return Math.ceil(words / 200);
 }
 
 export function getAllPosts(): BlogPost[] {
@@ -38,6 +44,7 @@ export function getAllPosts(): BlogPost[] {
             date: data.date,
             excerpt: data.excerpt,
             tags: data.tags,
+            readingTime: calculateReadingTime(content),
         } as BlogPost;
     });
 
@@ -66,5 +73,6 @@ export function getPostBySlug(slug: string): BlogPost | null {
         date: data.date,
         excerpt: data.excerpt,
         tags: data.tags,
+        readingTime: calculateReadingTime(content),
     } as BlogPost;
 }

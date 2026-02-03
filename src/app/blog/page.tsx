@@ -1,20 +1,9 @@
-
-
 import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from 'next/link';
-// Note: In a real Next.js App Router, this data fetching should be passed from a Server Component.
-// Since we are doing a quick refactor, I will assume we might need to fetch this or hardcode for now if strict client.
-// However, looking at previous implementation, it was client-side listing?
-// Ah, `getSortedPostsData` is fs based, so must run on server. 
-// Refactoring to Server Component is safer for fs access.
-
-// Let's check if the previous file was a server or client component.
-// It WAS a Server Component (default).
-// I will keep it as a Server Component.
-
+import Chip from '@mui/material/Chip';
 import { getAllPosts as fetchPosts } from '../../lib/blog';
 
 export default async function Blog() {
@@ -22,21 +11,45 @@ export default async function Blog() {
 
     return (
         <Container maxWidth="md" sx={{ mb: 12 }}>
-            <Typography variant="h2" gutterBottom>Writings</Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
-                {allPostsData.map(({ slug, date, title, excerpt }) => (
-                    <Box key={slug}>
-                        <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', mb: 1 }}>
+            <Typography variant="h2" gutterBottom sx={{ fontWeight: 800, mb: 6 }}>Writings</Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {allPostsData.map(({ slug, date, title, excerpt, tags, readingTime }) => (
+                    <Box key={slug} sx={{ borderLeft: '2px solid transparent', pl: 0, transition: '0.3s', '&:hover': { borderLeft: '2px solid #2BBC8A', pl: 3 } }}>
+                        <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', mb: 1, flexWrap: 'wrap', gap: 2 }}>
                             <Link href={`/blog/${slug}`} style={{ textDecoration: 'none' }}>
-                                <Typography variant="h5" sx={{ color: '#383838', '&:hover': { color: '#2BBC8A', textDecoration: 'underline' } }}>
+                                <Typography variant="h5" sx={{ fontWeight: 700, color: '#383838', '&:hover': { color: '#2BBC8A' } }}>
                                     {title}
                                 </Typography>
                             </Link>
-                            <Typography variant="caption" sx={{ color: '#999', fontFamily: 'monospace' }}>
-                                {date}
-                            </Typography>
+                            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                                <Typography variant="caption" sx={{ color: '#999', fontFamily: 'monospace' }}>
+                                    {date}
+                                </Typography>
+                                <Typography variant="caption" sx={{ color: '#2BBC8A', fontWeight: 600, bgcolor: '#f0fbf7', px: 1, py: 0.2, borderRadius: 1 }}>
+                                    {readingTime} min
+                                </Typography>
+                            </Box>
                         </Box>
-                        <Typography variant="body2" sx={{ color: '#666' }}>
+
+                        <Box sx={{ display: 'flex', gap: 1, mb: 1.5, flexWrap: 'wrap' }}>
+                            {tags?.map((tag) => (
+                                <Chip
+                                    key={tag}
+                                    label={tag}
+                                    size="small"
+                                    sx={{
+                                        height: '20px',
+                                        fontSize: '0.7rem',
+                                        bgcolor: '#f5f5f5',
+                                        color: '#666',
+                                        fontWeight: 600,
+                                        '& .MuiChip-label': { px: 1 }
+                                    }}
+                                />
+                            ))}
+                        </Box>
+
+                        <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.6 }}>
                             {excerpt}
                         </Typography>
                     </Box>

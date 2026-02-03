@@ -15,6 +15,9 @@ tags: ["hot take", "tech", "bioinformatics"]
 
 In the 17th century, the Natural Philosopher labored over copperplates and jars of formaldehyde to catalog the known world in "Cabinets of Curiosities." In the classical era of bioinformatics, we were curators of a digital "Cabinet of Curiosities." We spent decades cataloging the nuances of package dependencies, the R/Python debate, and the good-vs-ok-vs-ugly debate of unorchestrated benchmarks.
 
+![Cabinet of Curiosities](https://upload.wikimedia.org/wikipedia/commons/e/e1/Domenico_Remps_-_Cabinet_of_Curiosities.jpg)
+*A 17th-century Wunderkammer—the precursor to modern scientific data repositories.*
+
 But as we enter 2026, the "Pipeline Plumber"—the researcher whose primary value lies in connecting Tool A to Tool B—is being replaced by the Agents. Or are they?!
 
 For the last decade, the life of a bioinformatician has been defined by the **pipeline**. Whether it's scRNA-seq integration, normalization, or batch effect removal, much of the daily grind involves stitching together existing tools (the Scanpy vs. Bioconductor wars) to ensure data flows from sequencer to visualization.
@@ -32,6 +35,9 @@ But the "Agentic Era" is changing the math. AI agents are no longer just autocom
 Historically, the first 60–80% of any bioinformatics project had nothing to do with a hypothesis. It was about overcoming the friction of fragmented tools. Bioinformatics was built on **"wrappers."** You would take a tool written in C++, wrap it in a Perl script, and then try to visualize the output in R.
 
 The "boilerplate" was the endless string manipulation—converting a `.sam` to a `.bam`, then to a `.bed`, then to a custom CSV—just so one tool could talk to the next.
+
+![Data Pipeline Complexity](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-illustrations-and-artwork/bioinformatics_spaghetti.png)
+*The tangled web of software dependencies and data formats in traditional bioinformatics.*
 
 Every new project required the same repetitive ritual:
 
@@ -63,7 +69,8 @@ However, this automation introduces a new risk: **The "Scientific Garbage In, Ga
 
 I have a confession: The most "scientific" parts of my recent papers were often the shortest to write. The rest of my time? I was a **glorified plumber for broken code.**
 
-If you've ever tried to publish a new machine learning model in the life sciences, you know the "Benchmarking Tax." You develop a faster, more elegant variational autoencoder. You're excited. You're ready to show how it uncovers new biology. But then comes the wall: **The Comparative Benchmark.**
+![Benchmarking Cycle](https://imgs.xkcd.com/comics/standards.png)
+*The proliferation of 'standards' and the benchmarking cycle in bioinformatics.*
 
 ### The Purgatory of Comparison
 
@@ -77,15 +84,14 @@ In any other field, you'd pull a library and run it. In bioinformatics, you are 
 
 I have spent weeks—*literally weeks*—fighting with conda environments and `LD_LIBRARY_PATH` variables just to get a competitor's code to run for one bar chart. It is a massive drain on human potential. We are trained to solve cancer and understand the brain, yet we spend our prime years acting as **human wrappers for unmaintained code**.
 
-And let's be honest about the **"Bioinformatics Conflict of Interest."** When you are the one building the benchmark for your own paper, you are the judge, the jury, and the executioner. You define the metrics. If your model excels at preserving global topology but struggles with local variance, you find a metric that rewards global topology. You pick the three datasets where your model shines and bury the two where it struggled in "Supplementary Note 12."
-
-It's not that we're dishonest; it's that the system forces us to be curators of our own success. It's a **"bullet-trigger" analysis** where you're aiming at a target you painted yourself.
-
 ---
 
 ## The Light at the End of the Pipeline
 
 This is why I am so obsessed with the rise of Agentic AI and external efforts like **[Omnibenchmark](https://omnibenchmark.org)** and **Open Problems**. I can foresee that we are moving toward a world where the "Benchmarking Tax" is automated away.
+
+![Agentic Workflow](https://raw.githubusercontent.com/langchain-ai/langgraph/main/docs/static/img/multi_agent_diagram.png)
+*A vision of the closed-loop robotic lab, where agents orchestrate discovery.*
 
 Imagine an AI agent that:
 
@@ -95,27 +101,14 @@ Imagine an AI agent that:
 
 For those of us who live for the "modeling" part—the math, the physics, the abstraction of complex biology into computable logic—this shift is a **liberation**.
 
-The agentic era means I don't have to be a software archeologist anymore. I can be a **modeler**. I can spend my time asking *how we should see the complex biology*, rather than *why the rpy2 bridge is throwing a memory leak error*.
-
-We are finally moving from a world of "writing the right word in the same pipeline" to a world where we can actually **do science again**.
-
----
-
-## The Automation Opportunity: Omni-benchmarking
-
-The automation of bioinformatics doesn't just save time; it opens the door to **Omni-benchmarking**. We have a mountain of previously published data ([CellXGene](https://cellxgene.cziscience.com/), [Single Cell Atlas](https://www.humancellatlas.org/)) waiting to be re-analyzed. Automated agents can re-process these datasets using the latest models in a standardized format, surfacing insights that were missed by the original researchers.
-
-But why stop at the dry lab?
-
 ---
 
 ## The 10-Year Outlook: The Robotic Wet Lab
 
 The same "boilerplate" problem exists in the wet lab. PhD students spend weekends performing repetitive tasks that are ripe for automation. In the next 5–10 years, we will likely see the rise of **"Closed-Loop" labs**, where AI agents not only analyze data but direct robotic systems to conduct the next experiment.
 
-And this is already happening, slowly but surely. Companies like **[Ginkgo Bioworks](https://www.ginkgo.bio)** and **[Jinkō (by Novadiscovery)](https://www.novainsilico.ai/jinko)** are architecting systems where an agent proposes a CRISPR perturbation, a robotic foundry executes the experiment, and the data is fed back to the agent to refine the model.
-
-In this world, the biologist becomes the **Quality Controller of Reality**, ensuring that the robots and the models are anchored in biological truth.
+![Future of Work Meme](https://i.imgflip.com/8m5q1p.jpg)
+*Reskilling for the Agentic Era: From pipeline plumbing to agent orchestration.*
 
 ---
 
@@ -137,12 +130,6 @@ Perhaps the most vital role will be the **Validator**. In an era where AI can "h
 
 ---
 
-## Strategic Shift
-
-> The technical "moat" of knowing specific library syntax is evaporating. The value is shifting toward **Model Definition**—the ability to describe the optimal biological path for a specific dataset.
-
----
-
 ## References
 
 1. **[scverse](https://scverse.org/)**: The unified open-source framework for single-cell omics analysis in Python.
@@ -154,5 +141,4 @@ Perhaps the most vital role will be the **Validator**. In an era where AI can "h
 
 ---
 
-*Keywords: hot take, tech, bioinformatics*
-
+*Tags: hot take, tech, bioinformatics*

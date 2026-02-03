@@ -27,7 +27,7 @@ export default function Home() {
             for real-world biology.
           </Typography>
           <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', mb: 4, color: '#555', lineHeight: 1.8 }}>
-            I am a <strong>Research Engineer in AI for Science</strong> at <strong>DKFZ & EMBL Heidelberg</strong>.
+            I am a <strong>PhD Researcher & Research Engineer in AI for Science</strong> at <strong>DKFZ & EMBL Heidelberg</strong>.
             I specialize in bridging the gap between expressive geometric modeling and production-scale systems,
             translating high-dimensional biological signals into robust, uncertainty-aware infrastructure for clinical and mechanistic discovery.
           </Typography>

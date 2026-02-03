@@ -12,12 +12,6 @@ interface Props {
     params: Promise<{ slug: string }>;
 }
 
-// Calculate reading time (average 200 words per minute)
-function calculateReadingTime(content: string): number {
-    const words = content.trim().split(/\s+/).length;
-    return Math.ceil(words / 200);
-}
-
 export async function generateStaticParams() {
     const posts = getAllPosts();
     return posts.map((post) => ({
@@ -51,7 +45,7 @@ export default async function BlogPost({ params }: Props) {
         );
     }
 
-    const readingTime = calculateReadingTime(post.content);
+    const readingTime = post.readingTime;
 
     return (
         <Container maxWidth="md" sx={{ py: 8 }}>
