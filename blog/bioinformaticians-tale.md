@@ -90,8 +90,8 @@ I have spent weeks—*literally weeks*—fighting with conda environments and `L
 
 This is why I am so obsessed with the rise of Agentic AI and external efforts like **[Omnibenchmark](https://omnibenchmark.org)** and **Open Problems**. I can foresee that we are moving toward a world where the "Benchmarking Tax" is automated away.
 
-![Agentic Workflow](https://raw.githubusercontent.com/langchain-ai/langgraph/main/docs/static/img/multi-agent-diagram.png)
-*A vision of the closed-loop robotic lab, where agents orchestrate discovery.*
+
+
 
 Imagine an AI agent that:
 
@@ -107,8 +107,8 @@ For those of us who live for the "modeling" part—the math, the physics, the ab
 
 The same "boilerplate" problem exists in the wet lab. PhD students spend weekends performing repetitive tasks that are ripe for automation. In the next 5–10 years, we will likely see the rise of **"Closed-Loop" labs**, where AI agents not only analyze data but direct robotic systems to conduct the next experiment.
 
-![Future of Work Meme](https://i.imgflip.com/8m5q1p.jpg)
-*Reskilling for the Agentic Era: From pipeline plumbing to agent orchestration.*
+
+
 
 ---
 
