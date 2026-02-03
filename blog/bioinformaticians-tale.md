@@ -36,7 +36,7 @@ Historically, the first 60–80% of any bioinformatics project had nothing to do
 
 The "boilerplate" was the endless string manipulation—converting a `.sam` to a `.bam`, then to a `.bed`, then to a custom CSV—just so one tool could talk to the next.
 
-![Data Pipeline Complexity](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/other-illustrations-and-artwork/bioinformatics_spaghetti.png)
+![Data Pipeline Complexity](https://raw.githubusercontent.com/allisonhorst/stats-illustrations/main/bioinformatics_spaghetti.png)
 *The tangled web of software dependencies and data formats in traditional bioinformatics.*
 
 Every new project required the same repetitive ritual:
@@ -90,7 +90,7 @@ I have spent weeks—*literally weeks*—fighting with conda environments and `L
 
 This is why I am so obsessed with the rise of Agentic AI and external efforts like **[Omnibenchmark](https://omnibenchmark.org)** and **Open Problems**. I can foresee that we are moving toward a world where the "Benchmarking Tax" is automated away.
 
-![Agentic Workflow](https://raw.githubusercontent.com/langchain-ai/langgraph/main/docs/static/img/multi_agent_diagram.png)
+![Agentic Workflow](https://raw.githubusercontent.com/langchain-ai/langgraph/main/docs/static/img/multi-agent-diagram.png)
 *A vision of the closed-loop robotic lab, where agents orchestrate discovery.*
 
 Imagine an AI agent that:

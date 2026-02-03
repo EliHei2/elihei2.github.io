@@ -98,6 +98,28 @@ export default async function BlogPost({ params }: Props) {
                 '& hr': { border: 'none', borderTop: '2px solid #eee', my: 4 },
                 '& ol': { pl: 3 },
                 '& ul': { pl: 3 },
+                // Center images and captions
+                '& img': {
+                    display: 'block',
+                    mx: 'auto',
+                    maxWidth: '100%',
+                    height: 'auto',
+                    borderRadius: 2,
+                    my: 4
+                },
+                '& p:has(img)': {
+                    textAlign: 'center',
+                    mb: 1
+                },
+                '& p:has(img) + p > em, & p:has(img) + em, & img + em': {
+                    display: 'block',
+                    textAlign: 'center',
+                    color: '#888',
+                    fontSize: '0.9rem',
+                    mt: -1,
+                    mb: 4,
+                    fontStyle: 'italic'
+                },
             }}>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
             </Box>
