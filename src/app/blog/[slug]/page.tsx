@@ -7,6 +7,7 @@ import ReactMarkdown from 'react-markdown';
 import { Metadata } from 'next';
 import Divider from '@mui/material/Divider';
 import rehypeRaw from 'rehype-raw';
+import BlogInteractions from '@/components/BlogInteractions';
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -62,6 +63,13 @@ export default async function BlogPost({ params }: Props) {
                     size="small"
                     sx={{ bgcolor: '#2BBC8A', color: '#fff', fontWeight: 600 }}
                 />
+                <Box component="span" sx={{ display: 'flex', alignItems: 'center' }}>
+                    <img
+                        src={`https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Felihei2.github.io%2Fblog%2F${slug}&count_bg=%232BBC8A&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=Readers&edge_flat=false`}
+                        alt="Readers"
+                        style={{ height: '24px', borderRadius: '4px' }}
+                    />
+                </Box>
             </Box>
 
             <Box sx={{ display: 'flex', gap: 1, mb: 4, flexWrap: 'wrap' }}>
@@ -123,6 +131,8 @@ export default async function BlogPost({ params }: Props) {
             }}>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
             </Box>
+
+            <BlogInteractions slug={slug} />
         </Container>
     );
 }

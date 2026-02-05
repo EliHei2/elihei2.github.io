@@ -11,6 +11,8 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.1",
+    "@giscus/react": "^3.1.0",
+    "@lyket/react": "^2.1.0",
     "@mui/icons-material": "^7.3.7",
     "@mui/material": "^7.3.7",
     "gray-matter": "^4.0.3",
