@@ -30,8 +30,8 @@ Picasso's *Les Demoiselles d'Avignon*—the painting that essentially invented C
 ![Les Demoiselles d'Avignon](https://www.moma.org/media/W1siZiIsIjQzODQ1MiJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg)
 *The Signal: Les Demoiselles d'Avignon (1907). A "hit" that required hundreds of preparatory iterations. [MoMA Collection](https://www.moma.org/collection/works/79766)*
 
-![Picasso Ceramic](https://www.pablo-picasso.org/images/paintings/ceramic-plate.jpg)
-*The Noise: One of thousands of ceramic plates Picasso produced—often dismissed as "commercial filler," but essential to maintaining the volume required for hits to occur. [Pablo-Picasso.org](https://www.pablo-picasso.org/ceramics.jsp)*
+![Picasso Ceramic](https://upload.wikimedia.org/wikipedia/commons/f/ff/Plat_en_fa%C3%AFence._Pablo_Picasso.jpg)
+*The Noise: One of thousands of ceramic plates Picasso produced—often dismissed as "commercial filler," but essential to maintaining the volume required for hits to occur. [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Plat_en_fa%C3%AFence._Pablo_Picasso.jpg)*
 
 This is the math most perfectionists get wrong. They try to increase P(H)—the probability of a hit—through endless refinement. But P(H) is largely determined by factors outside your control: timing, luck, what the world happens to need right now. What you *can* control is n, the number of attempts. And S = n × P(H) doesn't care about your feelings.
 
@@ -52,8 +52,8 @@ Here's how it plays out across three phases:
 
 **When you fail**, ego turns a data point into an existential crisis. If your identity is "The Best," then a mediocre Tuesday isn't just an off day—it's evidence that you're a fraud. The iterative creator sees a miss and moves on. The ego-driven creator sees a permanent stain.
 
-![Fixed vs Growth Mindset](https://www.teachthought.com/wp-content/uploads/2015/03/growth-mindset.png)
-*Mindset Mechanics: Ego-attachment (Fixed) treats failures as identity threats. Process-attachment (Growth) treats them as data points. [TeachThought](https://www.teachthought.com/learning/what-is-growth-mindset/)*
+![Fixed vs Growth Mindset](https://upload.wikimedia.org/wikipedia/commons/c/c7/Fixed_versus_growth_mindset.png)
+*Mindset Mechanics: Ego-attachment (Fixed) treats failures as identity threats. Process-attachment (Growth) treats them as data points. [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Fixed_versus_growth_mindset.png)*
 
 ---
 
@@ -65,8 +65,8 @@ When you set an impossible standard, your brain perceives the task as a threat t
 
 This maps perfectly to the Yerkes-Dodson curve: moderate pressure optimizes performance, but ego-driven pressure pushes you past the peak into anxiety and breakdown.
 
-![Yerkes-Dodson Curve](https://upload.wikimedia.org/wikipedia/commons/thumb/1/1e/Yerkes-Dodson_curve.svg/1200px-Yerkes-Dodson_curve.svg.png)
-*The Yerkes-Dodson Law: Performance peaks at moderate arousal. Ego-driven perfectionism pushes you past optimal into the anxiety and breakdown zones. [Wikimedia Commons](https://en.wikipedia.org/wiki/Yerkes%E2%80%93Dodson_law)*
+![Yerkes-Dodson Curve](https://upload.wikimedia.org/wikipedia/commons/5/5f/HebbianYerkesDodson.JPG)
+*The Yerkes-Dodson Law: Performance peaks at moderate arousal. Ego-driven perfectionism pushes you past optimal into the anxiety and breakdown zones. [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:HebbianYerkesDodson.JPG)*
 
 I've lived both sides of this. Growing up in Iranian Olympiad culture, the ego stakes were crushing—every problem set felt like an identity referendum. The result was performance paralysis and constant self-handicapping. Later, learning German in a low-stakes environment where I genuinely loved the process, I experienced what Csikszentmihalyi calls Flow: self-consciousness disappears, time distorts, and neural efficiency peaks.
 
@@ -78,13 +78,13 @@ Same brain. Completely different outputs.
 
 You can see this dynamic play out in bodybuilding history through Mike Mentzer and Arnold Schwarzenegger.
 
-![Mike Mentzer](https://www.mikementzer.com/images/mike-mentzer-heavy-duty.jpg)
-*Mike Mentzer: High-intensity, low-volume training fueled by a need for logical "perfection." His identity was fused to his theory. [MikeMentzer.com](https://www.mikementzer.com/)*
+![Mike Mentzer](https://upload.wikimedia.org/wikipedia/commons/d/d9/Mike_Mentzer.jpg)
+*Mike Mentzer: High-intensity, low-volume training fueled by a need for logical "perfection." His identity was fused to his theory. [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Mike_Mentzer.jpg)*
 
 Mentzer developed "Heavy Duty" training—a hyper-logical, low-volume system built on the premise that every set should be maximally efficient. He was obsessed with being *right*. His ego was fused to the perfection of his theory, which created immense psychological pressure. One suboptimal workout wasn't a data point; it was a refutation of his entire philosophy.
 
-![Arnold Schwarzenegger](https://www.schwarzenegger.com/images/arnold-pumping-iron.jpg)
-*Arnold Schwarzenegger: High-volume, iterative training fueled by "the pump" and process enjoyment. Psychological flexibility enabled him to reinvent himself across multiple careers. [Schwarzenegger.com](https://www.schwarzenegger.com/)*
+![Arnold Schwarzenegger](https://upload.wikimedia.org/wikipedia/commons/0/05/Arnold_Schwarzenegger_1974.jpg)
+*Arnold Schwarzenegger: High-volume, iterative training fueled by "the pump" and process enjoyment. Psychological flexibility enabled him to reinvent himself across multiple careers. [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Arnold_Schwarzenegger_1974.jpg)*
 
 Schwarzenegger took the opposite approach: high-volume, iterative training. He didn't need every set to be "right." He focused on cumulative load and—crucially—the enjoyment of the process. This psychological flexibility let him move from bodybuilding to cinema to politics without the friction of a fixed identity. He wasn't "Arnold the Bodybuilder." He was Arnold, who happened to be bodybuilding right now.
 
