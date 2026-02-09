@@ -11,53 +11,76 @@ export default async function Blog() {
 
     return (
         <Container maxWidth="md" sx={{ mb: 12 }}>
-            <Typography variant="h2" gutterBottom sx={{ fontWeight: 800, mb: 6 }}>Writings</Typography>
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <Typography variant="h2" sx={{
+                mb: 6,
+                display: 'inline-block',
+                borderBottom: '2px solid #E0F58F',
+                pb: 0.5
+            }}>
+                writings.log
+            </Typography>
+
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {allPostsData.map(({ slug, date, title, excerpt, tags, readingTime }) => (
-                    <Box key={slug} sx={{ borderLeft: '2px solid transparent', pl: 0, transition: '0.3s', '&:hover': { borderLeft: '2px solid #2BBC8A', pl: 3 } }}>
-                        <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', mb: 1, flexWrap: 'wrap', gap: 2 }}>
+                    <Box key={slug} sx={{
+                        p: 4,
+                        border: '1px solid rgba(255, 255, 255, 0.1)',
+                        transition: '0.2s',
+                        '&:hover': {
+                            borderColor: '#E0F58F',
+                            bgcolor: 'rgba(224, 245, 143, 0.02)',
+                            transform: 'translateY(-2px)'
+                        }
+                    }}>
+                        <Box sx={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', mb: 2, flexWrap: 'wrap', gap: 2 }}>
                             <Link href={`/blog/${slug}`} style={{ textDecoration: 'none' }}>
-                                <Typography variant="h5" sx={{ fontWeight: 700, color: '#383838', '&:hover': { color: '#2BBC8A' } }}>
-                                    {title}
+                                <Typography variant="h5" sx={{
+                                    fontWeight: 700,
+                                    color: '#E0F58F',
+                                    fontSize: '1.25rem'
+                                }}>
+                                    {title.toLowerCase()}
                                 </Typography>
                             </Link>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                                <Typography variant="caption" sx={{ color: '#999', fontFamily: 'monospace' }}>
-                                    {date}
+                                <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.4)', fontFamily: 'monospace' }}>
+                                    [{date}]
                                 </Typography>
-                                <Typography variant="caption" sx={{ color: '#2BBC8A', fontWeight: 600, bgcolor: '#f0fbf7', px: 1, py: 0.2, borderRadius: 1 }}>
-                                    {readingTime} min
+                                <Typography variant="caption" sx={{
+                                    color: '#E0F58F',
+                                    fontWeight: 600,
+                                    fontFamily: 'monospace',
+                                    bgcolor: 'rgba(224, 245, 143, 0.1)',
+                                    px: 1,
+                                    py: 0.2
+                                }}>
+                                    {readingTime}min
                                 </Typography>
                             </Box>
                         </Box>
 
-                        <Box sx={{ display: 'flex', gap: 1, mb: 1.5, flexWrap: 'wrap' }}>
+                        <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.6)', lineHeight: 1.6, mb: 3 }}>
+                            {excerpt}
+                        </Typography>
+
+                        <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                             {tags?.map((tag) => (
                                 <Chip
                                     key={tag}
                                     label={tag}
                                     size="small"
-                                    sx={{
-                                        height: '20px',
-                                        fontSize: '0.7rem',
-                                        bgcolor: '#f5f5f5',
-                                        color: '#666',
-                                        fontWeight: 600,
-                                        '& .MuiChip-label': { px: 1 }
-                                    }}
                                 />
                             ))}
                         </Box>
-
-                        <Typography variant="body1" sx={{ color: '#666', lineHeight: 1.6 }}>
-                            {excerpt}
-                        </Typography>
                     </Box>
                 ))}
+
                 {allPostsData.length === 0 && (
-                    <Typography variant="body1" sx={{ color: '#999', fontStyle: 'italic' }}>
-                        No posts yet. Check back soon.
-                    </Typography>
+                    <Box sx={{ p: 4, border: '1px dashed rgba(255, 255, 255, 0.2)', textAlign: 'center' }}>
+                        <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.4)', fontStyle: 'italic' }}>
+                            // no_posts_found
+                        </Typography>
+                    </Box>
                 )}
             </Box>
         </Container>

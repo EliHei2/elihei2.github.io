@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import Giscus from '@giscus/react';
 import { RateButton, ClapButton, Provider as LyketProvider } from '@lyket/react';
 
@@ -14,27 +13,21 @@ interface BlogInteractionsProps {
 export default function BlogInteractions({ slug }: BlogInteractionsProps) {
     return (
         <Box sx={{ mt: 8 }}>
-            <Divider sx={{ mb: 6 }} />
-
             {/* Engagement & Star Review Section */}
             <Box sx={{
-                display: 'flex',
-                flexDirection: { xs: 'column', sm: 'row' },
-                alignItems: { xs: 'flex-start', sm: 'center' },
-                justifyContent: 'space-between',
-                gap: 4,
+                display: 'grid',
+                gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+                gap: 0,
                 mb: 8,
-                p: 4,
-                bgcolor: '#fafafa',
-                borderRadius: 2,
-                border: '1px solid #eee'
+                border: '1px solid rgba(255, 255, 255, 0.1)',
+                bgcolor: 'rgba(255, 255, 255, 0.02)'
             }}>
-                <Box>
-                    <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: '#383838' }}>
-                        Rate this post
+                <Box sx={{ p: 4, borderRight: { md: '1px solid rgba(255, 255, 255, 0.1)' }, borderBottom: { xs: '1px solid rgba(255, 255, 255, 0.1)', md: 0 } }}>
+                    <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: '#E0F58F', fontSize: '0.9rem' }}>
+                        // rate_this_post
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        What did you think of this article?
+                    <Typography variant="body2" sx={{ mb: 2, color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.8rem' }}>
+                        qualitative metric collection
                     </Typography>
                     <LyketProvider apiKey="pt-f6079c6ad8d6693c046e7f8e1290ed">
                         <RateButton
@@ -45,12 +38,12 @@ export default function BlogInteractions({ slug }: BlogInteractionsProps) {
                     </LyketProvider>
                 </Box>
 
-                <Box sx={{ textAlign: { sm: 'right' } }}>
-                    <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: '#383838' }}>
-                        Show appreciation
+                <Box sx={{ p: 4 }}>
+                    <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: '#E0F58F', fontSize: '0.9rem' }}>
+                        // show_appreciation
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                        If you found this helpful, let me know!
+                    <Typography variant="body2" sx={{ mb: 2, color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.8rem' }}>
+                        signal peer support
                     </Typography>
                     <LyketProvider apiKey="pt-f6079c6ad8d6693c046e7f8e1290ed">
                         <ClapButton
@@ -64,24 +57,34 @@ export default function BlogInteractions({ slug }: BlogInteractionsProps) {
 
             {/* Comments Section */}
             <Box sx={{ mt: 8 }}>
-                <Typography variant="h4" sx={{ fontWeight: 800, mb: 4, color: '#383838', borderBottom: '2px solid #2BBC8A', pb: 1, display: 'inline-block' }}>
-                    Comments
+                <Typography variant="h4" sx={{
+                    fontWeight: 800,
+                    mb: 4,
+                    color: '#E0F58F',
+                    borderBottom: '2px solid #E0F58F',
+                    pb: 0.5,
+                    display: 'inline-block',
+                    fontSize: '1.25rem'
+                }}>
+                    discussions.log
                 </Typography>
-                <Giscus
-                    id="comments"
-                    repo="EliHei2/elihei2.github.io"
-                    repoId="R_kgDOM7Z-_A"
-                    category="Announcements"
-                    categoryId="DIC_kwDOM7Z-_M4Cik-B"
-                    mapping="pathname"
-                    strict="0"
-                    reactionsEnabled="1"
-                    emitMetadata="0"
-                    inputPosition="bottom"
-                    theme="light"
-                    lang="en"
-                    loading="lazy"
-                />
+                <Box sx={{ p: 3, border: '1px solid rgba(255, 255, 255, 0.1)', bgcolor: '#1a1a1a' }}>
+                    <Giscus
+                        id="comments"
+                        repo="EliHei2/elihei2.github.io"
+                        repoId="R_kgDOM7Z-_A"
+                        category="Announcements"
+                        categoryId="DIC_kwDOM7Z-_M4Cik-B"
+                        mapping="pathname"
+                        strict="0"
+                        reactionsEnabled="1"
+                        emitMetadata="0"
+                        inputPosition="bottom"
+                        theme="dark"
+                        lang="en"
+                        loading="lazy"
+                    />
+                </Box>
             </Box>
         </Box>
     );

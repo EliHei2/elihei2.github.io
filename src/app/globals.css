@@ -1,11 +1,35 @@
-/* Global styles if needed, but mostly relying on MUI Theme */
+/* Global styles inspired by aubr.ai technical minimalist aesthetic */
 html,
 body {
   padding: 0;
   margin: 0;
+  background-color: #171717;
+  color: #ffffff;
+  /* Thin grid background */
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
 a {
-  color: inherit;
+  color: #E0F58F;
   text-decoration: none;
+}
+
+/* Custom scrollbar for terminal feel */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #171717;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E0F58F;
 }

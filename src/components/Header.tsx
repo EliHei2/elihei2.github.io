@@ -20,52 +20,70 @@ export default function Header() {
     const pathname = usePathname();
 
     return (
-        <Box component="header" sx={{ py: 4, mb: 4, borderBottom: '1px solid #eeeeee' }}>
+        <Box component="header" sx={{
+            py: 2,
+            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            bgcolor: 'rgba(23, 23, 23, 0.8)',
+            backdropFilter: 'blur(8px)',
+            position: 'sticky',
+            top: 0,
+            zIndex: 1100
+        }}>
             <Container maxWidth="md">
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-                    {/* Logo / Name */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Link href="/" style={{ display: 'flex', alignItems: 'center' }}>
-                            <Box
-                                component="img"
-                                src="/icon.svg"
-                                sx={{ width: 32, height: 32, transition: '0.3s', '&:hover': { transform: 'scale(1.1)' } }}
-                                alt="Logo"
-                            />
-                        </Link>
-                        <Typography variant="h6" component={Link} href="/" sx={{ color: '#383838', textDecoration: 'none', fontWeight: 700 }}>
-                            Elyas Heidari
+                    {/* Logo / Name with Status Indicator */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                        <Box
+                            sx={{
+                                width: 8,
+                                height: 8,
+                                borderRadius: '50%',
+                                bgcolor: '#E0F58F',
+                                boxShadow: '0 0 10px #E0F58F',
+                                animation: 'pulse 2s infinite'
+                            }}
+                        />
+                        <Typography variant="h6" component={Link} href="/" sx={{
+                            color: '#E0F58F',
+                            textDecoration: 'none',
+                            fontWeight: 700,
+                            letterSpacing: '-0.02em'
+                        }}>
+                            elyas_heidari.sys
                         </Typography>
                     </Box>
 
                     {/* Navigation */}
-                    <Box component="nav" sx={{ display: 'flex', gap: 2, flexWrap: 'wrap', justifyContent: 'center' }}>
-                        {navItems.map((item, index) => {
+                    <Box component="nav" sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', justifyContent: 'center' }}>
+                        {navItems.map((item) => {
                             const isActive = pathname === item.path;
                             return (
-                                <React.Fragment key={item.name}>
-                                    {index > 0 && (
-                                        <Typography component="span" sx={{ color: '#e0e0e0', userSelect: 'none' }}>
-                                            |
-                                        </Typography>
-                                    )}
-                                    <Link
-                                        href={item.path}
-                                        style={{
-                                            textDecoration: isActive ? 'underline' : 'none',
-                                            color: isActive ? '#2BBC8A' : '#666666',
-                                            fontWeight: isActive ? 700 : 500,
-                                            fontSize: '0.95rem'
-                                        }}
-                                    >
-                                        {item.name}
-                                    </Link>
-                                </React.Fragment>
+                                <Link
+                                    key={item.name}
+                                    href={item.path}
+                                    style={{
+                                        textDecoration: 'none',
+                                        color: isActive ? '#E0F58F' : 'rgba(255, 255, 255, 0.5)',
+                                        fontWeight: isActive ? 700 : 400,
+                                        fontSize: '0.85rem',
+                                        transition: '0.2s',
+                                        borderBottom: isActive ? '1px solid #E0F58F' : '1px solid transparent'
+                                    }}
+                                >
+                                    {isActive ? `> ${item.name.toLowerCase()}` : item.name.toLowerCase()}
+                                </Link>
                             );
                         })}
                     </Box>
                 </Box>
             </Container>
+            <style jsx global>{`
+                @keyframes pulse {
+                    0% { opacity: 1; }
+                    50% { opacity: 0.4; }
+                    100% { opacity: 1; }
+                }
+            `}</style>
         </Box>
     );
 }

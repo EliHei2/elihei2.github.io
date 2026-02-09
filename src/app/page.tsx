@@ -18,89 +18,96 @@ const researchInterests = [
 export default function Home() {
   return (
     <Container maxWidth="md">
-      <Box sx={{ display: 'flex', flexDirection: { xs: 'column-reverse', md: 'row' }, alignItems: 'center', gap: 6, mb: 12, mt: 4 }}>
-
-        {/* Lead Text */}
-        <Box sx={{ flex: 1 }}>
-          <Typography variant="h1" gutterBottom sx={{ fontSize: { xs: '2rem', md: '2.5rem' }, fontWeight: 800 }}>
-            <Box component="span" sx={{ color: 'primary.main' }}>Scalable learning systems</Box> <br />
-            for real-world biology.
+      {/* Dashboard Top Row: Identity & Status */}
+      <Box sx={{
+        display: 'grid',
+        gridTemplateColumns: { xs: '1fr', md: '1.5fr 1fr' },
+        gap: 0,
+        mt: 4,
+        mb: 8,
+        border: '1px solid rgba(255, 255, 255, 0.1)'
+      }}>
+        {/* Identity Box */}
+        <Box sx={{ p: 4, borderRight: { md: '1px solid rgba(255, 255, 255, 0.1)' }, borderBottom: { xs: '1px solid rgba(255, 255, 255, 0.1)', md: 0 } }}>
+          <Typography variant="h1" sx={{ color: '#E0F58F', mb: 2, fontSize: { xs: '2rem', md: '2.5rem' } }}>
+            scalable_learning.sys
           </Typography>
-          <Typography variant="body1" paragraph sx={{ fontSize: '1.15rem', mb: 4, color: '#555', lineHeight: 1.8 }}>
-            I am a <strong>PhD Researcher & Research Engineer in AI for Science</strong> at <strong>DKFZ & EMBL Heidelberg</strong>.
-            I specialize in bridging the gap between expressive geometric modeling and production-scale systems,
-            translating high-dimensional biological signals into robust, uncertainty-aware infrastructure for clinical and mechanistic discovery.
+          <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.7)', mb: 3 }}>
+            phd researcher & research engineer <br />
+            [dkfz & embl heidelberg]
           </Typography>
-
-          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mb: 5 }}>
+          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
             {researchInterests.map(tag => (
-              <Chip key={tag} label={tag} size="small" sx={{ bgcolor: '#f0f0f0', fontWeight: 600, color: '#333', borderRadius: 1 }} />
+              <Chip key={tag} label={tag} size="small" />
             ))}
           </Box>
+        </Box>
 
-          <Box sx={{ display: 'flex', gap: 4 }}>
-            <Link href="/about" style={{ textDecoration: 'none', color: '#2BBC8A', fontWeight: 700, fontSize: '1.1rem' }}>
-              &rarr; More about me
-            </Link>
+        {/* Status Box */}
+        <Box sx={{ p: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center', bgcolor: 'rgba(255, 255, 255, 0.02)' }}>
+          <Box sx={{ mb: 2 }}>
+            <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.4)', display: 'block' }}>current_location</Typography>
+            <Typography variant="body2">heidelberg, germany (49.4° n, 8.7° e)</Typography>
+          </Box>
+          <Box>
+            <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.4)', display: 'block' }}>specialization</Typography>
+            <Typography variant="body2">ai for science / geometric dl</Typography>
           </Box>
         </Box>
+      </Box>
 
-        {/* Profile Image */}
-        <Box>
-          <Avatar
-            src="/profile.jpg"
-            alt="Elyas Heidari"
-            sx={{ width: 240, height: 240, border: '4px solid #fff', boxShadow: '0 20px 40px -10px rgba(0,0,0,0.1)' }}
-          />
+      {/* Main Content Grid */}
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 4, mb: 12 }}>
+        {/* Philosophy & Approach */}
+        <Box sx={{ p: 4, border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+          <Typography variant="h4" sx={{ color: '#E0F58F', mb: 3 }}>research_philosophy</Typography>
+          <Typography variant="body1" paragraph>
+            i build learning systems that transform messy, large-scale biological data into reliable infrastructure.
+          </Typography>
+          <Typography variant="body1" paragraph>
+            my focus is designing gnn and transformer pipelines that scale to 10m+ nodes while preserving mechanistic interpretability.
+          </Typography>
+          <Link href="/about" style={{ color: '#E0F58F', fontWeight: 700 }}>
+            [view_detailed_bio]
+          </Link>
+        </Box>
+
+        {/* Quick Links / Metadata */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={{ p: 3, border: '1px solid rgba(255, 255, 255, 0.1)', bgcolor: 'rgba(224, 245, 143, 0.05)' }}>
+            <Typography variant="h6" sx={{ color: '#E0F58F', mb: 2 }}>latest_updates</Typography>
+            <Box component="ul" sx={{ pl: 2, m: 0, color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.85rem' }}>
+              <li>segger_framework v1.0 released</li>
+              <li>spatial_data_standardization update</li>
+            </Box>
+          </Box>
         </Box>
       </Box>
 
-      {/* Concrete Research Philosophy */}
-      <Box sx={{ mb: 12, p: 4, bgcolor: '#fafafa', borderRadius: 2, borderLeft: '4px solid #2BBC8A' }}>
-        <Typography variant="h4" gutterBottom sx={{ fontWeight: 800, fontSize: '1.5rem', letterSpacing: '-0.02em' }}>Research Philosophy</Typography>
-        <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', color: '#444', lineHeight: 1.7 }}>
-          I build learning systems that transform messy, large-scale biological data into reliable, production-grade infrastructure.
-          My focus: designing <strong>GNN and Transformer pipelines</strong> that scale to <strong>10M+ cells and transcripts</strong> while
-          preserving mechanistic interpretability—from spatial omics segmentation to multi-modal integration.
-        </Typography>
-      </Box>
-
-
-      {/* Scientific Axis Highlights */}
+      {/* Scientific Dimensions Section */}
       <Box sx={{ mb: 8 }}>
-        <Typography variant="h2" gutterBottom sx={{ fontSize: '1.75rem', fontWeight: 800 }}>Scientific Dimensions</Typography>
-        <Box component="ul" sx={{ pl: 0, listStyle: 'none', display: 'grid', gap: 4 }}>
-          <li>
-            <Box sx={{ borderBottom: '1px solid #eee', pb: 2 }}>
-              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Spatial & Single-Cell Omics</Typography>
-              <Typography variant="body1" sx={{ color: '#666' }}>
-                End-to-end pipelines for <strong>spatial transcriptomics</strong>, <strong>scRNA-seq</strong>, and multi-modal integration.
-                I design models that capture cell neighborhood structure and molecular heterogeneity to drive biological discovery.
-              </Typography>
-            </Box>
-          </li>
-          <li>
-            <Box sx={{ borderBottom: '1px solid #eee', pb: 2 }}>
-              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Scalable Graph Neural Networks</Typography>
-              <Typography variant="body1" sx={{ color: '#666' }}>
-                Multi-GPU training and inference for <strong>heterogeneous GNNs</strong> on graphs with 10M+ nodes and 100M+ edges.
-                Achieved <strong>1000x speedups</strong> for spatial phenotyping tasks previously considered computationally intractable.
-              </Typography>
-            </Box>
-          </li>
-          <li>
-            <Box>
-              <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1 }}>Open-Source Tooling</Typography>
-              <Typography variant="body1" sx={{ color: '#666' }}>
-                Architecting production-grade frameworks (<em>Segger</em>, <em>SageNet</em>, <em>scGCN</em>) and contributing to
-                community standards like <strong>SpatialData</strong> to ensure reproducibility and extensibility.
-              </Typography>
-            </Box>
-          </li>
+        <Typography variant="h2" sx={{ mb: 4, display: 'inline-block', borderBottom: '2px solid #E0F58F', pb: 0.5 }}>scientific_dimensions</Typography>
+        <Box sx={{ border: '1px solid rgba(255, 255, 255, 0.1)' }}>
+          <Box sx={{ p: 4, borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+            <Typography variant="h6" sx={{ color: '#E0F58F', mb: 1 }}>spatial & single-cell omics</Typography>
+            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+              end-to-end pipelines for spatial transcriptomics and multimodal integration.
+            </Typography>
+          </Box>
+          <Box sx={{ p: 4, borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
+            <Typography variant="h6" sx={{ color: '#E0F58F', mb: 1 }}>scalable graph neural networks</Typography>
+            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+              multi-gpu training for heterogeneous gnns on graphs with 100m+ edges.
+            </Typography>
+          </Box>
+          <Box sx={{ p: 4 }}>
+            <Typography variant="h6" sx={{ color: '#E0F58F', mb: 1 }}>open-source tooling</Typography>
+            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
+              architecting frameworks (segger, sagenet, scgcn) for biological discovery.
+            </Typography>
+          </Box>
         </Box>
       </Box>
-
-
     </Container>
   );
 }

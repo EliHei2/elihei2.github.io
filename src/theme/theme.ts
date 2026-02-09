@@ -1,8 +1,8 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
-import { JetBrains_Mono } from 'next/font/google';
+import { Red_Hat_Mono } from 'next/font/google';
 
-const jetbrainsMono = JetBrains_Mono({
+const redHatMono = Red_Hat_Mono({
     weight: ['400', '500', '700'],
     subsets: ['latin'],
     display: 'swap',
@@ -10,53 +10,51 @@ const jetbrainsMono = JetBrains_Mono({
 
 const theme = createTheme({
     palette: {
-        mode: 'light',
+        mode: 'dark',
         primary: {
-            main: '#2BBC8A', // The "Geeky" Teal Green from inspiration
-            contrastText: '#ffffff',
+            main: '#E0F58F', // Lime Yellow from aubr.ai
+            contrastText: '#171717',
         },
         secondary: {
-            main: '#383838', // Dark Grey for text-like elements
+            main: '#FFFFFF',
         },
         background: {
-            default: '#ffffff',
-            paper: '#ffffff',
+            default: '#171717', // Deep Charcoal
+            paper: '#171717',
         },
         text: {
-            primary: '#383838', // Dark Grey
-            secondary: '#666666', // Medium Grey
+            primary: '#FFFFFF',
+            secondary: 'rgba(255, 255, 255, 0.6)',
         },
+        divider: 'rgba(255, 255, 255, 0.1)',
         action: {
-            hover: 'rgba(43, 188, 138, 0.08)',
+            hover: 'rgba(224, 245, 143, 0.08)',
         },
     },
     typography: {
-        fontFamily: jetbrainsMono.style.fontFamily,
+        fontFamily: redHatMono.style.fontFamily,
         allVariants: {
-            fontFamily: jetbrainsMono.style.fontFamily,
+            fontFamily: redHatMono.style.fontFamily,
+            textTransform: 'lowercase',
         },
         h1: {
             fontSize: '2.5rem',
             fontWeight: 700,
             letterSpacing: '-0.03em',
-            color: '#383838',
         },
         h2: {
             fontSize: '1.75rem',
             fontWeight: 700,
             letterSpacing: '-0.02em',
-            color: '#2BBC8A', // Accent color for headers
             marginBottom: '1rem',
         },
         h3: {
             fontSize: '1.5rem',
             fontWeight: 700,
-            color: '#383838',
         },
         h4: {
             fontSize: '1.25rem',
             fontWeight: 700,
-            color: '#383838',
         },
         h5: {
             fontSize: '1.1rem',
@@ -65,36 +63,38 @@ const theme = createTheme({
         h6: {
             fontSize: '1rem',
             fontWeight: 600,
-            textTransform: 'uppercase',
             letterSpacing: '0.05em',
         },
         body1: {
             fontSize: '1rem',
             lineHeight: 1.8,
-            color: '#383838',
+            textTransform: 'none', // Keep body text normal
         },
         body2: {
             fontSize: '0.9rem',
             lineHeight: 1.6,
-            color: '#666666',
+            textTransform: 'none',
         },
         button: {
-            textTransform: 'none',
+            textTransform: 'lowercase',
             fontWeight: 700,
         },
     },
     shape: {
-        borderRadius: 8, // Slightly more square for "tech" feel
+        borderRadius: 0, // Brutalist sharp corners
     },
     components: {
         MuiButton: {
             styleOverrides: {
                 root: {
-                    borderRadius: 4,
+                    borderRadius: 0,
                     boxShadow: 'none',
+                    border: '1px solid rgba(255, 255, 255, 0.2)',
                     '&:hover': {
                         boxShadow: 'none',
-                        backgroundColor: 'rgba(43, 188, 138, 0.1)',
+                        backgroundColor: '#E0F58F',
+                        color: '#171717',
+                        borderColor: '#E0F58F',
                     },
                 },
                 contained: {
@@ -108,19 +108,21 @@ const theme = createTheme({
         MuiCard: {
             styleOverrides: {
                 root: {
-                    border: '1px solid #eeeeee',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                     boxShadow: 'none',
-                    borderRadius: 8,
+                    borderRadius: 0,
+                    backgroundColor: 'transparent',
                 },
             },
         },
         MuiChip: {
             styleOverrides: {
                 root: {
-                    borderRadius: 4,
+                    borderRadius: 0,
                     fontWeight: 600,
-                    backgroundColor: '#f5f5f5',
-                    color: '#383838',
+                    backgroundColor: 'rgba(255, 255, 255, 0.05)',
+                    color: '#FFFFFF',
+                    border: '1px solid rgba(255, 255, 255, 0.1)',
                 },
             },
         },
@@ -128,10 +130,18 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     textDecoration: 'none',
-                    color: '#2BBC8A',
+                    color: '#E0F58F',
                     '&:hover': {
                         textDecoration: 'underline',
+                        textDecorationStyle: 'dotted',
                     },
+                }
+            }
+        },
+        MuiDivider: {
+            styleOverrides: {
+                root: {
+                    borderColor: 'rgba(255, 255, 255, 0.1)',
                 }
             }
         }
