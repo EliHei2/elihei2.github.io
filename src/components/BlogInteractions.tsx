@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import Giscus from '@giscus/react';
-import { RateButton, ClapButton } from '@lyket/react';
+import { RateButton, ClapButton, Provider as LyketProvider } from '@lyket/react';
 
 interface BlogInteractionsProps {
     slug: string;
@@ -36,11 +36,13 @@ export default function BlogInteractions({ slug }: BlogInteractionsProps) {
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                         What did you think of this article?
                     </Typography>
-                    <RateButton
-                        id={`stars-${slug}`}
-                        namespace="blog"
-                        component={RateButton.templates.Star}
-                    />
+                    <LyketProvider apiKey="pt-f6079c6ad8d6693c046e7f8e1290ed">
+                        <RateButton
+                            id={`stars-${slug}`}
+                            namespace="blog"
+                            component={RateButton.templates.Star}
+                        />
+                    </LyketProvider>
                 </Box>
 
                 <Box sx={{ textAlign: { sm: 'right' } }}>
@@ -50,11 +52,13 @@ export default function BlogInteractions({ slug }: BlogInteractionsProps) {
                     <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
                         If you found this helpful, let me know!
                     </Typography>
-                    <ClapButton
-                        id={`clap-${slug}`}
-                        namespace="blog"
-                        component={ClapButton.templates.Medium}
-                    />
+                    <LyketProvider apiKey="pt-f6079c6ad8d6693c046e7f8e1290ed">
+                        <ClapButton
+                            id={`clap-${slug}`}
+                            namespace="blog"
+                            component={ClapButton.templates.Medium}
+                        />
+                    </LyketProvider>
                 </Box>
             </Box>
 
