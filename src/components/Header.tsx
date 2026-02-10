@@ -4,6 +4,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
+import { useTheme } from '@mui/material/styles';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -18,11 +19,13 @@ const navItems = [
 
 export default function Header() {
     const pathname = usePathname();
+    const theme = useTheme();
 
     return (
         <Box component="header" sx={{
             py: 2,
-            borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
+            borderBottom: 1,
+            borderColor: 'divider',
             bgcolor: 'rgba(23, 23, 23, 0.8)',
             backdropFilter: 'blur(8px)',
             position: 'sticky',
@@ -38,13 +41,13 @@ export default function Header() {
                                 width: 8,
                                 height: 8,
                                 borderRadius: '50%',
-                                bgcolor: '#E0F58F',
-                                boxShadow: '0 0 10px #E0F58F',
+                                bgcolor: 'primary.main',
+                                boxShadow: theme => `0 0 10px ${theme.palette.primary.main}`,
                                 animation: 'pulse 2s infinite'
                             }}
                         />
                         <Typography variant="h6" component={Link} href="/" sx={{
-                            color: '#E0F58F',
+                            color: 'primary.main',
                             textDecoration: 'none',
                             fontWeight: 700,
                             letterSpacing: '-0.02em'
@@ -63,11 +66,11 @@ export default function Header() {
                                     href={item.path}
                                     style={{
                                         textDecoration: 'none',
-                                        color: isActive ? '#E0F58F' : 'rgba(255, 255, 255, 0.5)',
+                                        color: isActive ? theme.palette.primary.main : theme.palette.text.secondary,
                                         fontWeight: isActive ? 700 : 400,
                                         fontSize: '0.85rem',
                                         transition: '0.2s',
-                                        borderBottom: isActive ? '1px solid #E0F58F' : '1px solid transparent'
+                                        borderBottom: isActive ? `1px solid ${theme.palette.primary.main}` : '1px solid transparent'
                                     }}
                                 >
                                     {isActive ? `> ${item.name.toLowerCase()}` : item.name.toLowerCase()}

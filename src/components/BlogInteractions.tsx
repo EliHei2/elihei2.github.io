@@ -19,14 +19,15 @@ export default function BlogInteractions({ slug }: BlogInteractionsProps) {
                 gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
                 gap: 0,
                 mb: 8,
-                border: '1px solid rgba(255, 255, 255, 0.1)',
+                border: 1,
+                borderColor: 'divider',
                 bgcolor: 'rgba(255, 255, 255, 0.02)'
             }}>
-                <Box sx={{ p: 4, borderRight: { md: '1px solid rgba(255, 255, 255, 0.1)' }, borderBottom: { xs: '1px solid rgba(255, 255, 255, 0.1)', md: 0 } }}>
-                    <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: '#E0F58F', fontSize: '0.9rem' }}>
+                <Box sx={{ p: 4, borderRight: { md: 1 }, borderBottom: { xs: 1, md: 0 }, borderColor: 'divider' }}>
+                    <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: 'primary.main', fontSize: '0.9rem' }}>
                         // rate_this_post
                     </Typography>
-                    <Typography variant="body2" sx={{ mb: 2, color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.8rem' }}>
+                    <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary', fontSize: '0.8rem' }}>
                         qualitative metric collection
                     </Typography>
                     <LyketProvider apiKey="pt-f6079c6ad8d6693c046e7f8e1290ed">
@@ -39,10 +40,10 @@ export default function BlogInteractions({ slug }: BlogInteractionsProps) {
                 </Box>
 
                 <Box sx={{ p: 4 }}>
-                    <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: '#E0F58F', fontSize: '0.9rem' }}>
+                    <Typography variant="h6" sx={{ fontWeight: 800, mb: 1, color: 'primary.main', fontSize: '0.9rem' }}>
                         // show_appreciation
                     </Typography>
-                    <Typography variant="body2" sx={{ mb: 2, color: 'rgba(255, 255, 255, 0.5)', fontSize: '0.8rem' }}>
+                    <Typography variant="body2" sx={{ mb: 2, color: 'text.secondary', fontSize: '0.8rem' }}>
                         signal peer support
                     </Typography>
                     <LyketProvider apiKey="pt-f6079c6ad8d6693c046e7f8e1290ed">
@@ -60,15 +61,16 @@ export default function BlogInteractions({ slug }: BlogInteractionsProps) {
                 <Typography variant="h4" sx={{
                     fontWeight: 800,
                     mb: 4,
-                    color: '#E0F58F',
-                    borderBottom: '2px solid #E0F58F',
+                    color: 'primary.main',
+                    borderBottom: 2,
+                    borderColor: 'primary.main',
                     pb: 0.5,
                     display: 'inline-block',
                     fontSize: '1.25rem'
                 }}>
                     discussions.log
                 </Typography>
-                <Box sx={{ p: 3, border: '1px solid rgba(255, 255, 255, 0.1)', bgcolor: '#1a1a1a' }}>
+                <Box sx={{ p: 3, border: 1, borderColor: 'divider', bgcolor: 'background.paper' }}>
                     <Giscus
                         id="comments"
                         repo="EliHei2/elihei2.github.io"

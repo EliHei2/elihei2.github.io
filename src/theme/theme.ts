@@ -123,7 +123,13 @@ const theme = createTheme({
                     backgroundColor: 'rgba(255, 255, 255, 0.05)',
                     color: '#FFFFFF',
                     border: '1px solid rgba(255, 255, 255, 0.1)',
+                    '&:hover': {
+                        backgroundColor: 'rgba(255, 255, 255, 0.1)',
+                    }
                 },
+                outlined: {
+                    borderColor: 'rgba(255, 255, 255, 0.2)',
+                }
             },
         },
         MuiLink: {
@@ -142,6 +148,13 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     borderColor: 'rgba(255, 255, 255, 0.1)',
+                }
+            }
+        },
+        MuiPaper: {
+            styleOverrides: {
+                root: {
+                    backgroundImage: 'none', // Prevent default MUI paper overlay in dark mode
                 }
             }
         }
