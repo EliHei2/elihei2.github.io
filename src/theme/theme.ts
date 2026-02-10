@@ -1,14 +1,9 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
-import { Red_Hat_Mono, Inter } from 'next/font/google';
+import { Red_Hat_Mono } from 'next/font/google';
 
 const redHatMono = Red_Hat_Mono({
     weight: ['400', '500', '700'],
-    subsets: ['latin'],
-    display: 'swap',
-});
-
-const inter = Inter({
     subsets: ['latin'],
     display: 'swap',
 });
@@ -37,9 +32,9 @@ const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: inter.style.fontFamily, // Default to Inter
+        fontFamily: redHatMono.style.fontFamily,
         allVariants: {
-            fontFamily: redHatMono.style.fontFamily, // Default fallback
+            fontFamily: redHatMono.style.fontFamily,
             textTransform: 'lowercase',
         },
         h1: {
@@ -72,13 +67,11 @@ const theme = createTheme({
             letterSpacing: '0.05em',
         },
         body1: {
-            fontFamily: inter.style.fontFamily,
             fontSize: '1rem',
             lineHeight: 1.8,
             textTransform: 'none', // Keep body text normal
         },
         body2: {
-            fontFamily: inter.style.fontFamily,
             fontSize: '0.9rem',
             lineHeight: 1.6,
             textTransform: 'none',
