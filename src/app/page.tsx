@@ -29,13 +29,7 @@ export default function Home() {
       }}>
         {/* Identity Box */}
         <Box sx={{ p: 4, borderRight: { md: '1px solid rgba(255, 255, 255, 0.1)' }, borderBottom: { xs: '1px solid rgba(255, 255, 255, 0.1)', md: 0 } }}>
-          <Box sx={{ mb: 3 }}>
-            <Avatar
-              src="/profile.jpg"
-              alt="Elyas Heidari"
-              sx={{ width: 100, height: 100, border: '2px solid #E0F58F' }}
-            />
-          </Box>
+
           <Typography variant="h1" sx={{ color: '#E0F58F', mb: 2, fontSize: { xs: '2rem', md: '2.5rem' } }}>
             scalable_learning.sys
           </Typography>
@@ -52,6 +46,13 @@ export default function Home() {
 
         {/* Status Box */}
         <Box sx={{ p: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center', bgcolor: 'rgba(255, 255, 255, 0.02)' }}>
+          <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
+            <Avatar
+              src="/profile.jpg"
+              alt="Elyas Heidari"
+              sx={{ width: 120, height: 120, border: '2px solid #E0F58F' }}
+            />
+          </Box>
           <Box sx={{ mb: 2 }}>
             <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.4)', display: 'block' }}>current_location</Typography>
             <Typography variant="body2">heidelberg, germany (49.4° n, 8.7° e)</Typography>
