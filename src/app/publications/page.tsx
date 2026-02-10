@@ -28,7 +28,7 @@ const publications = [
         role: 'Lead developer: introduced graph-attention-based spatial inference; outperformed Tangram and NovoSpaRc.'
     },
     {
-        title: 'An end-to-end workflow for high-throughput discovery... from large biomedical datasets',
+        title: 'An end-to-end workflow for high-throughput discovery of clinically relevant insights from large biomedical datasets',
         citation: 'Heidari, E., Sadeghi, M.A., et al. bioRxiv, 2020.',
         role: 'Lead developer: designed scalable analytics pipeline for population-scale biomedical data.'
     },
@@ -38,7 +38,7 @@ const publications = [
         role: 'Contributor: architected large-scale sc/snRNA-seq pipelines (1M cells).'
     },
     {
-        title: 'Meta-analysis of single-cell method benchmarks...',
+        title: 'Meta-analysis of single-cell method benchmarks reveals the need for extensibility and interoperability',
         citation: 'Sonrel, A., ..., Heidari, E., et al. Genome Biology 24:119, 2023.',
         role: 'Contributor: analysis and synthesis of benchmarking results.'
     }
@@ -58,15 +58,29 @@ export default function Publications() {
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
                 {publications.map((pub, i) => (
-                    <Box key={i} sx={{ p: 4, borderLeft: '4px solid #eee', '&:hover': { borderLeftColor: '#2BBC8A', bgcolor: '#fafafa' }, transition: '0.2s' }}>
-                        <Typography variant="h5" sx={{ fontWeight: 700, mb: 1.5, color: '#383838', lineHeight: 1.4 }}>
+                    <Box key={i} sx={{
+                        p: 4,
+                        borderLeft: '4px solid #333',
+                        '&:hover': {
+                            borderLeftColor: 'primary.main',
+                            bgcolor: 'rgba(255, 255, 255, 0.03)'
+                        },
+                        transition: '0.2s'
+                    }}>
+                        <Typography variant="h5" sx={{ fontWeight: 700, mb: 1.5, color: 'text.primary', lineHeight: 1.4 }}>
                             {pub.title}
                         </Typography>
-                        <Typography variant="body1" sx={{ color: '#666', fontStyle: 'italic', mb: 2 }}>
+                        <Typography variant="body1" sx={{ color: 'text.secondary', fontStyle: 'italic', mb: 2 }}>
                             {pub.citation}
                         </Typography>
-                        <Typography variant="body2" sx={{ color: '#555', fontSize: '1rem', bgcolor: '#f0f0f0', p: 2, borderRadius: 1 }}>
-                            <strong style={{ color: '#2BBC8A' }}>Contribution:</strong> {pub.role}
+                        <Typography variant="body2" sx={{
+                            color: 'text.secondary',
+                            fontSize: '1rem',
+                            bgcolor: 'rgba(255, 255, 255, 0.05)',
+                            p: 2,
+                            borderRadius: 0
+                        }}>
+                            <strong style={{ color: '#E0F58F' }}>Contribution:</strong> {pub.role}
                         </Typography>
                     </Box>
                 ))}

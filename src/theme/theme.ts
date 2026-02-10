@@ -24,7 +24,7 @@ const theme = createTheme({
         },
         text: {
             primary: '#FFFFFF',
-            secondary: 'rgba(255, 255, 255, 0.6)',
+            secondary: 'rgba(255, 255, 255, 0.8)',
         },
         divider: 'rgba(255, 255, 255, 0.1)',
         action: {

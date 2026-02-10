@@ -29,6 +29,13 @@ export default function Home() {
       }}>
         {/* Identity Box */}
         <Box sx={{ p: 4, borderRight: { md: '1px solid rgba(255, 255, 255, 0.1)' }, borderBottom: { xs: '1px solid rgba(255, 255, 255, 0.1)', md: 0 } }}>
+          <Box sx={{ mb: 3 }}>
+            <Avatar
+              src="/profile.jpg"
+              alt="Elyas Heidari"
+              sx={{ width: 100, height: 100, border: '2px solid #E0F58F' }}
+            />
+          </Box>
           <Typography variant="h1" sx={{ color: '#E0F58F', mb: 2, fontSize: { xs: '2rem', md: '2.5rem' } }}>
             scalable_learning.sys
           </Typography>

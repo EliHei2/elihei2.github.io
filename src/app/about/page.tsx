@@ -117,7 +117,7 @@ export default function About() {
                     biomedical domain insight through close collaboration with experimentalists and mathematicians.
                 </Typography>
                 <Typography variant="body1">
-                    <Link href="/CV_Elyas_Heidari.pdf" target="_blank" style={{ textDecoration: 'none', borderBottom: '2px solid #2BBC8A', color: '#383838', fontWeight: 600 }}>
+                    <Link href="/CV_Elyas_Heidari.pdf" target="_blank" style={{ textDecoration: 'none', borderBottom: '2px solid #E0F58F', color: 'white', fontWeight: 600 }}>
                         Download Full Curriculum Vitae (PDF)
                     </Link>
                 </Typography>
@@ -128,10 +128,10 @@ export default function About() {
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' }, gap: 4 }}>
                 {skills.map((group, i) => (
                     <Box key={i}>
-                        <Typography variant="h6" sx={{ color: '#383838', fontWeight: 700, mb: 1.5 }}>{group.category}</Typography>
+                        <Typography variant="h6" sx={{ color: 'text.primary', fontWeight: 700, mb: 1.5 }}>{group.category}</Typography>
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                             {group.items.map((skill, j) => (
-                                <Chip key={j} label={skill} variant="outlined" size="small" sx={{ borderRadius: 1, borderColor: '#eee' }} />
+                                <Chip key={j} label={skill} variant="outlined" size="small" sx={{ borderRadius: 1, borderColor: 'divider' }} />
                             ))}
                         </Box>
                     </Box>
@@ -141,17 +141,17 @@ export default function About() {
             {/* Experience Timeline */}
             <SectionHeader icon={<TerminalIcon fontSize="large" />} title="Research Experience" />
             <Box sx={{ position: 'relative', pl: 3 }}>
-                <Box sx={{ position: 'absolute', left: 7, top: 10, bottom: 20, width: 2, bgcolor: '#f0f0f0' }} />
+                <Box sx={{ position: 'absolute', left: 7, top: 10, bottom: 20, width: 2, bgcolor: 'divider' }} />
                 {experience.map((exp, i) => (
                     <Box key={i} sx={{ mb: 6, position: 'relative' }}>
-                        <Box sx={{ position: 'absolute', left: -29, top: 6, width: 14, height: 14, borderRadius: '50%', bgcolor: '#fff', border: '3px solid #2BBC8A', zIndex: 1 }} />
+                        <Box sx={{ position: 'absolute', left: -29, top: 6, width: 14, height: 14, borderRadius: '50%', bgcolor: 'background.default', border: '3px solid #E0F58F', zIndex: 1 }} />
                         <Box sx={{ mb: 1.5 }}>
-                            <Typography variant="h5" sx={{ color: '#383838', fontWeight: 700 }}>{exp.role}</Typography>
-                            <Typography variant="subtitle2" sx={{ color: '#666', fontFamily: 'monospace', mt: 0.5 }}>
-                                <strong style={{ color: '#2BBC8A' }}>{exp.org}</strong> • {exp.location} • {exp.date}
+                            <Typography variant="h5" sx={{ color: 'text.primary', fontWeight: 700 }}>{exp.role}</Typography>
+                            <Typography variant="subtitle2" sx={{ color: 'text.secondary', fontFamily: 'monospace', mt: 0.5 }}>
+                                <strong style={{ color: '#E0F58F' }}>{exp.org}</strong> • {exp.location} • {exp.date}
                             </Typography>
                         </Box>
-                        <ul style={{ paddingLeft: '1.2rem', marginTop: 0, color: '#555', listStyleType: 'disc' }}>
+                        <ul style={{ paddingLeft: '1.2rem', marginTop: 0, color: 'rgba(255,255,255,0.7)', listStyleType: 'disc' }}>
                             {exp.details.map((d, j) => <li key={j} style={{ marginBottom: '0.4rem', lineHeight: 1.6 }}>{d}</li>)}
                         </ul>
                     </Box>
@@ -174,7 +174,7 @@ export default function About() {
                 <Box>
                     <Typography variant="h6" sx={{ fontWeight: 700 }}>Sharif University of Technology</Typography>
                     <Typography variant="body2" color="text.secondary">BSc, Computer Engineering & Applied Mathematics (2014 – 2019)</Typography>
-                    <Typography variant="body2" sx={{ mt: 1, color: '#555' }}>
+                    <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
                         Founder of **Sharif DataDays**. Head Teaching Assistant for Advanced Programming and Probability & Statistics.
                     </Typography>
                 </Box>
@@ -184,10 +184,10 @@ export default function About() {
             <SectionHeader icon={<EmojiEventsIcon fontSize="large" />} title="Awards" />
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 3 }}>
                 {awards.map((award, i) => (
-                    <Box key={i} sx={{ border: '1px solid #eee', p: 3, borderRadius: 2 }}>
-                        <Typography variant="h6" sx={{ color: '#2BBC8A', mb: 1 }}>{award.title}</Typography>
+                    <Box key={i} sx={{ border: '1px solid rgba(255,255,255,0.1)', p: 3, borderRadius: 2 }}>
+                        <Typography variant="h6" sx={{ color: '#E0F58F', mb: 1 }}>{award.title}</Typography>
                         <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>{award.date}</Typography>
-                        <Typography variant="body2" sx={{ color: '#666' }}>{award.detail}</Typography>
+                        <Typography variant="body2" sx={{ color: 'text.secondary' }}>{award.detail}</Typography>
                     </Box>
                 ))}
             </Box>

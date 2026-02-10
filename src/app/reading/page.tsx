@@ -11,14 +11,14 @@ export default function Reading() {
     return (
         <Container maxWidth="md" sx={{ mb: 12 }}>
             <Typography variant="h2" gutterBottom>Reading List</Typography>
-            <Typography variant="body1" paragraph sx={{ mb: 6, color: '#666' }}>
+            <Typography variant="body1" paragraph sx={{ mb: 6, color: 'text.secondary' }}>
                 Books and papers that have shaped my thinking.
             </Typography>
 
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 {readingData.map((category: any, i: number) => (
                     <Box key={i}>
-                        <Typography variant="h4" gutterBottom sx={{ borderBottom: '1px solid #eee', pb: 1, mb: 3 }}>
+                        <Typography variant="h4" gutterBottom sx={{ borderBottom: 1, borderColor: 'divider', pb: 1, mb: 3 }}>
                             {category.category}
                         </Typography>
                         <Box component="ul" sx={{ pl: 0, listStyle: 'none', display: 'grid', gap: 2 }}>
@@ -31,20 +31,20 @@ export default function Reading() {
                                                 target="_blank"
                                                 style={{
                                                     textDecoration: 'none',
-                                                    color: '#2BBC8A',
+                                                    color: '#E0F58F',
                                                     fontWeight: 600,
                                                     borderBottom: '1px solid transparent'
                                                 }}
-                                                onMouseOver={(e) => (e.currentTarget.style.borderBottom = '1px solid #2BBC8A')}
+                                                onMouseOver={(e) => (e.currentTarget.style.borderBottom = '1px solid #E0F58F')}
                                                 onMouseOut={(e) => (e.currentTarget.style.borderBottom = '1px solid transparent')}
                                             >
                                                 {item.title}
                                             </Link>
                                         ) : (
-                                            <span style={{ color: '#383838', fontWeight: 600 }}>{item.title}</span>
+                                            <span style={{ color: 'text.primary', fontWeight: 600 }}>{item.title}</span>
                                         )}
                                     </Typography>
-                                    <Typography variant="body2" sx={{ color: '#777', fontStyle: 'italic', fontFamily: 'monospace' }}>
+                                    <Typography variant="body2" sx={{ color: 'text.secondary', fontStyle: 'italic', fontFamily: 'monospace' }}>
                                         {item.author} {item.year && `(${item.year})`}
                                     </Typography>
                                 </Box>

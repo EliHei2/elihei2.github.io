@@ -46,7 +46,7 @@ export default function Software() {
             <Typography variant="h2" gutterBottom>Software</Typography>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
                 {projects.map((project) => (
-                    <Card key={project.title} sx={{ display: 'flex', p: 3, alignItems: 'start', transition: '0.2s', '&:hover': { bgcolor: '#fafafa' } }}>
+                    <Card key={project.title} sx={{ display: 'flex', p: 3, alignItems: 'start', transition: '0.2s', '&:hover': { bgcolor: 'rgba(255,255,255,0.03)' } }}>
                         {/* Logo */}
                         <Box sx={{ mr: 3, flexShrink: 0, width: 64, height: 64, display: { xs: 'none', sm: 'block' } }}>
                             <img src={project.logo} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
@@ -55,17 +55,17 @@ export default function Software() {
                         <Box>
                             <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1 }}>
                                 <Link href={project.github} target="_blank" style={{ textDecoration: 'none' }}>
-                                    <Typography variant="h5" sx={{ color: '#383838', '&:hover': { color: '#2BBC8A', textDecoration: 'underline' } }}>
+                                    <Typography variant="h5" sx={{ color: 'text.primary', '&:hover': { color: 'primary.main', textDecoration: 'underline' } }}>
                                         {project.title}
                                     </Typography>
                                 </Link>
                             </Box>
-                            <Typography variant="body1" sx={{ color: '#555', mb: 2 }}>
+                            <Typography variant="body1" sx={{ color: 'text.secondary', mb: 2 }}>
                                 {project.description}
                             </Typography>
                             <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                                 {project.tags.map(tag => (
-                                    <Typography key={tag} variant="caption" sx={{ color: '#999', fontFamily: 'monospace', bgcolor: '#f5f5f5', px: 1, py: 0.5, borderRadius: 1 }}>
+                                    <Typography key={tag} variant="caption" sx={{ color: 'text.secondary', fontFamily: 'monospace', bgcolor: 'rgba(255,255,255,0.05)', px: 1, py: 0.5, borderRadius: 1 }}>
                                         {tag}
                                     </Typography>
                                 ))}
