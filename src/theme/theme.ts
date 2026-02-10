@@ -1,9 +1,14 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
-import { Red_Hat_Mono } from 'next/font/google';
+import { Red_Hat_Mono, Inter } from 'next/font/google';
 
 const redHatMono = Red_Hat_Mono({
     weight: ['400', '500', '700'],
+    subsets: ['latin'],
+    display: 'swap',
+});
+
+const inter = Inter({
     subsets: ['latin'],
     display: 'swap',
 });
@@ -32,12 +37,13 @@ const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: redHatMono.style.fontFamily,
+        fontFamily: inter.style.fontFamily, // Default to Inter
         allVariants: {
-            fontFamily: redHatMono.style.fontFamily,
+            fontFamily: redHatMono.style.fontFamily, // Default fallback
             textTransform: 'lowercase',
         },
         h1: {
+            fontFamily: redHatMono.style.fontFamily,
             fontSize: '2.5rem',
             fontWeight: 700,
             letterSpacing: '-0.03em',
@@ -66,16 +72,19 @@ const theme = createTheme({
             letterSpacing: '0.05em',
         },
         body1: {
+            fontFamily: inter.style.fontFamily,
             fontSize: '1rem',
             lineHeight: 1.8,
             textTransform: 'none', // Keep body text normal
         },
         body2: {
+            fontFamily: inter.style.fontFamily,
             fontSize: '0.9rem',
             lineHeight: 1.6,
             textTransform: 'none',
         },
         button: {
+            fontFamily: redHatMono.style.fontFamily,
             textTransform: 'lowercase',
             fontWeight: 700,
         },
@@ -111,7 +120,8 @@ const theme = createTheme({
                     border: '1px solid rgba(255, 255, 255, 0.1)',
                     boxShadow: 'none',
                     borderRadius: 0,
-                    backgroundColor: 'transparent',
+                    backgroundColor: 'rgba(23, 23, 23, 0.6)', // Semi-transparent
+                    backdropFilter: 'blur(10px)', // Glassmorphism
                 },
             },
         },

@@ -7,6 +7,10 @@ import Container from '@mui/material/Container';
 import Link from 'next/link';
 import Avatar from '@mui/material/Avatar';
 import Chip from '@mui/material/Chip';
+import IconButton from '@mui/material/IconButton';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import EmailIcon from '@mui/icons-material/Email';
+import SchoolIcon from '@mui/icons-material/School';
 
 const researchInterests = [
   "Scalable Graph Learning",
@@ -61,11 +65,22 @@ export default function Home() {
             <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.4)', display: 'block' }}>specialization</Typography>
             <Typography variant="body2">ai for science / geometric dl</Typography>
           </Box>
+          <Box sx={{ mt: 3, display: 'flex', gap: 1, justifyContent: 'center' }}>
+            <IconButton href="https://github.com/EliHei2" target="_blank" size="small" sx={{ color: '#E0F58F', border: '1px solid rgba(224, 245, 143, 0.3)', borderRadius: 0 }}>
+              <GitHubIcon fontSize="small" />
+            </IconButton>
+            <IconButton href="mailto:elyas.heidari@dkfz-heidelberg.de" target="_blank" size="small" sx={{ color: '#E0F58F', border: '1px solid rgba(224, 245, 143, 0.3)', borderRadius: 0 }}>
+              <EmailIcon fontSize="small" />
+            </IconButton>
+            <IconButton href="https://scholar.google.com/citations?user=ExampleID" target="_blank" size="small" sx={{ color: '#E0F58F', border: '1px solid rgba(224, 245, 143, 0.3)', borderRadius: 0 }}>
+              <SchoolIcon fontSize="small" />
+            </IconButton>
+          </Box>
         </Box>
       </Box>
 
       {/* Main Content Grid */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 4, mb: 12 }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 8, mb: 12 }}>
         {/* Philosophy & Approach */}
         <Box sx={{ p: 4, border: '1px solid rgba(255, 255, 255, 0.1)' }}>
           <Typography variant="h4" sx={{ color: '#E0F58F', mb: 3 }}>research_philosophy</Typography>

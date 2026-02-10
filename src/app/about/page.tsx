@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
 import Chip from '@mui/material/Chip';
+import Button from '@mui/material/Button';
+import DownloadIcon from '@mui/icons-material/Download';
 
 // Icons using Material UI for consistency/minimalism
 import TerminalIcon from '@mui/icons-material/Terminal';
@@ -117,9 +119,16 @@ export default function About() {
                     biomedical domain insight through close collaboration with experimentalists and mathematicians.
                 </Typography>
                 <Typography variant="body1">
-                    <Link href="/CV_Elyas_Heidari.pdf" target="_blank" style={{ textDecoration: 'none', borderBottom: '2px solid #E0F58F', color: 'white', fontWeight: 600 }}>
+                    <Button
+                        component="a"
+                        href="/CV_Elyas_Heidari.pdf"
+                        target="_blank"
+                        variant="outlined"
+                        startIcon={<DownloadIcon />}
+                        sx={{ mt: 2, color: 'text.primary', borderColor: 'rgba(255,255,255,0.3)', '&:hover': { borderColor: '#E0F58F', color: '#E0F58F' } }}
+                    >
                         Download Full Curriculum Vitae (PDF)
-                    </Link>
+                    </Button>
                 </Typography>
             </Box>
 
