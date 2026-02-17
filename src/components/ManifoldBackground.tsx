@@ -10,19 +10,20 @@ interface Spark {
     duration: number;
 }
 
-function LocalGraphs({ pointsArr }: { pointsArr: Float32Array }) {
+function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | null> }) {
     const lineRef = useRef<THREE.LineSegments>(null);
     const sparks = useRef<Spark[]>([]);
     const count = 3000;
 
     useFrame((state) => {
-        if (!lineRef.current) return;
+        if (!lineRef.current || !pointsRef.current) return;
         const time = state.clock.getElapsedTime();
+        const livePositions = pointsRef.current.geometry.attributes.position.array as Float32Array;
 
         // 1. Cleanup old sparks
         sparks.current = sparks.current.filter(s => time < s.startTime + s.duration);
 
-        // 2. Spawn new connected subgraph
+        // 2. Spawn new connected subgraph (using live positions for proximity)
         if (sparks.current.length < 4 && Math.random() < 0.03) {
             const startNode = Math.floor(Math.random() * count);
             const targetSize = 4 + Math.floor(Math.random() * 7); // 4 to 10 nodes
@@ -34,18 +35,18 @@ function LocalGraphs({ pointsArr }: { pointsArr: Float32Array }) {
             let searchIdx = 0;
             while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
                 const source = connectedNodes[searchIdx++];
-                const sourceX = pointsArr[source * 3];
-                const sourceY = pointsArr[source * 3 + 1];
-                const sourceZ = pointsArr[source * 3 + 2];
+                const sourceX = livePositions[source * 3];
+                const sourceY = livePositions[source * 3 + 1];
+                const sourceZ = livePositions[source * 3 + 2];
 
                 // Find a few random close neighbors
                 for (let attempt = 0; attempt < 15 && connectedNodes.length < targetSize; attempt++) {
                     const target = Math.floor(Math.random() * count);
                     if (connectedNodes.includes(target)) continue;
 
-                    const dx = sourceX - pointsArr[target * 3];
-                    const dy = sourceY - pointsArr[target * 3 + 1];
-                    const dz = sourceZ - pointsArr[target * 3 + 2];
+                    const dx = sourceX - livePositions[target * 3];
+                    const dy = sourceY - livePositions[target * 3 + 1];
+                    const dz = sourceZ - livePositions[target * 3 + 2];
                     const distSq = dx * dx + dy * dy + dz * dz;
 
                     if (distSq < maxRadius * maxRadius) {
@@ -64,22 +65,18 @@ function LocalGraphs({ pointsArr }: { pointsArr: Float32Array }) {
             }
         }
 
-        // 3. Update Geometry
+        // 3. Update Geometry with live positions
         const linePositions = new Float32Array(sparks.current.length * 20 * 3); // Over-allocate
         let idx = 0;
         sparks.current.forEach(spark => {
-            const age = time - spark.startTime;
-            const life = age / spark.duration;
-            const opacity = Math.sin(life * Math.PI); // Not used directly on attribute, but logic helper
-
             spark.edges.forEach(([a, b]) => {
-                linePositions[idx++] = pointsArr[a * 3];
-                linePositions[idx++] = pointsArr[a * 3 + 1];
-                linePositions[idx++] = pointsArr[a * 3 + 2];
+                linePositions[idx++] = livePositions[a * 3];
+                linePositions[idx++] = livePositions[a * 3 + 1];
+                linePositions[idx++] = livePositions[a * 3 + 2];
 
-                linePositions[idx++] = pointsArr[b * 3];
-                linePositions[idx++] = pointsArr[b * 3 + 1];
-                linePositions[idx++] = pointsArr[b * 3 + 2];
+                linePositions[idx++] = livePositions[b * 3];
+                linePositions[idx++] = livePositions[b * 3 + 1];
+                linePositions[idx++] = livePositions[b * 3 + 2];
             });
         });
 
@@ -97,6 +94,7 @@ function LocalGraphs({ pointsArr }: { pointsArr: Float32Array }) {
 
 function ManifoldPoints() {
     const pointsRef = useRef<THREE.Points>(null);
+    const groupRef = useRef<THREE.Group>(null);
 
     // Generate points for a simple surface (e.g., a wave or saddle)
     const points = useMemo(() => {
@@ -127,9 +125,9 @@ function ManifoldPoints() {
     }, []);
 
     useFrame((state) => {
-        if (!pointsRef.current) return;
-        // Slowly rotate the entire manifold
-        pointsRef.current.rotation.y += 0.001;
+        if (!pointsRef.current || !groupRef.current) return;
+        // Rotate the entire group so points and lines stay synced
+        groupRef.current.rotation.y += 0.001;
 
         // Gentle undulating wave effect
         const time = state.clock.getElapsedTime();
@@ -146,7 +144,7 @@ function ManifoldPoints() {
     });
 
     return (
-        <group>
+        <group ref={groupRef}>
             <points ref={pointsRef}>
                 <bufferGeometry>
                     <bufferAttribute
@@ -172,7 +170,7 @@ function ManifoldPoints() {
                     sizeAttenuation={true}
                 />
             </points>
-            <LocalGraphs pointsArr={points.positions} />
+            <LocalGraphs pointsRef={pointsRef} />
         </group>
     );
 }
