@@ -25,56 +25,50 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         // 1. Cleanup old sparks
         sparks.current = sparks.current.filter(s => time < s.startTime + s.duration);
 
-        // 2. Spawn new connected subgraphs (kNN-style local clustering)
-        const targetDensity = 150;
-        if (sparks.current.length < targetDensity) {
-            // Spawn up to 8 subgraphs per frame for constant activity
-            const burstCount = Math.floor(Math.random() * 8) + 1;
-            for (let b = 0; b < burstCount; b++) {
-                if (sparks.current.length >= targetDensity) break;
+        // 2. Spawn new connected subgraphs (Minimalist reduction per user request)
+        const targetDensity = 3;
+        if (sparks.current.length < targetDensity && Math.random() < 0.05) {
+            const startNode = Math.floor(Math.random() * count);
+            const targetSize = 10 + Math.floor(Math.random() * 6); // 10 to 15 nodes
+            const connectedNodes: number[] = [startNode];
+            const edges: [number, number][] = [];
+            const maxRadius = 1.8;
 
-                const startNode = Math.floor(Math.random() * count);
-                const targetSize = 10 + Math.floor(Math.random() * 6); // 10 to 15 nodes
-                const connectedNodes: number[] = [startNode];
-                const edges: [number, number][] = [];
-                const maxRadius = 1.8; // More forgiving for connectivity survival
+            let searchIdx = 0;
+            while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
+                const source = connectedNodes[searchIdx++];
+                const sourceX = livePositions[source * 3];
+                const sourceY = livePositions[source * 3 + 1];
+                const sourceZ = livePositions[source * 3 + 2];
 
-                let searchIdx = 0;
-                while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
-                    const source = connectedNodes[searchIdx++];
-                    const sourceX = livePositions[source * 3];
-                    const sourceY = livePositions[source * 3 + 1];
-                    const sourceZ = livePositions[source * 3 + 2];
+                for (let attempt = 0; attempt < 50 && connectedNodes.length < targetSize; attempt++) {
+                    const target = Math.floor(Math.random() * count);
+                    if (connectedNodes.includes(target)) continue;
 
-                    for (let attempt = 0; attempt < 50 && connectedNodes.length < targetSize; attempt++) {
-                        const target = Math.floor(Math.random() * count);
-                        if (connectedNodes.includes(target)) continue;
+                    const dx = sourceX - livePositions[target * 3];
+                    const dy = sourceY - livePositions[target * 3 + 1];
+                    const dz = sourceZ - livePositions[target * 3 + 2];
+                    const distSq = dx * dx + dy * dy + dz * dz;
 
-                        const dx = sourceX - livePositions[target * 3];
-                        const dy = sourceY - livePositions[target * 3 + 1];
-                        const dz = sourceZ - livePositions[target * 3 + 2];
-                        const distSq = dx * dx + dy * dy + dz * dz;
-
-                        if (distSq < maxRadius * maxRadius) {
-                            connectedNodes.push(target);
-                            edges.push([source, target]);
-                        }
+                    if (distSq < maxRadius * maxRadius) {
+                        connectedNodes.push(target);
+                        edges.push([source, target]);
                     }
                 }
+            }
 
-                if (connectedNodes.length >= 6) { // Ensure substantial but reliable firings
-                    sparks.current.push({
-                        edges,
-                        nodeIndices: connectedNodes,
-                        startTime: time,
-                        duration: 0.3 + Math.random() * 0.8,
-                    });
-                }
+            if (connectedNodes.length >= 8) {
+                sparks.current.push({
+                    edges,
+                    nodeIndices: connectedNodes,
+                    startTime: time,
+                    duration: 0.8 + Math.random() * 1.7, // Longer presence for minimal activity
+                });
             }
         }
 
         // 3. Update Edge Geometry
-        const linePositions = new Float32Array(sparks.current.length * 40 * 3); // Sufficient for 15-node subgraphs
+        const linePositions = new Float32Array(sparks.current.length * 40 * 3);
         let lIdx = 0;
         sparks.current.forEach(spark => {
             spark.edges.forEach(([a, b]) => {
