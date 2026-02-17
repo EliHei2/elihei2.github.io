@@ -25,44 +25,50 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         // 1. Cleanup old sparks
         sparks.current = sparks.current.filter(s => time < s.startTime + s.duration);
 
-        // 2. Spawn new connected subgraphs (Target ~10 parallel firings)
-        if (sparks.current.length < 10 && Math.random() < 0.15) {
-            const startNode = Math.floor(Math.random() * count);
-            const targetSize = 4 + Math.floor(Math.random() * 7); // 4 to 10 nodes
-            const connectedNodes: number[] = [startNode];
-            const edges: [number, number][] = [];
-            const maxRadius = 1.5; // Tighter locality
+        // 2. Spawn new connected subgraphs (Increasing intensity per user request)
+        if (sparks.current.length < 30 && Math.random() < 0.4) {
+            // Spawn multiple sparks per "event" to saturate the screen faster
+            const burstCount = Math.floor(Math.random() * 3) + 1;
+            for (let b = 0; b < burstCount; b++) {
+                if (sparks.current.length >= 30) break;
 
-            let searchIdx = 0;
-            while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
-                const source = connectedNodes[searchIdx++];
-                const sourceX = livePositions[source * 3];
-                const sourceY = livePositions[source * 3 + 1];
-                const sourceZ = livePositions[source * 3 + 2];
+                const startNode = Math.floor(Math.random() * count);
+                const targetSize = 4 + Math.floor(Math.random() * 7); // 4 to 10 nodes
+                const connectedNodes: number[] = [startNode];
+                const edges: [number, number][] = [];
+                const maxRadius = 1.6; // Slightly more forgiving locality for better connectivity
 
-                for (let attempt = 0; attempt < 10 && connectedNodes.length < targetSize; attempt++) {
-                    const target = Math.floor(Math.random() * count);
-                    if (connectedNodes.includes(target)) continue;
+                let searchIdx = 0;
+                while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
+                    const source = connectedNodes[searchIdx++];
+                    const sourceX = livePositions[source * 3];
+                    const sourceY = livePositions[source * 3 + 1];
+                    const sourceZ = livePositions[source * 3 + 2];
 
-                    const dx = sourceX - livePositions[target * 3];
-                    const dy = sourceY - livePositions[target * 3 + 1];
-                    const dz = sourceZ - livePositions[target * 3 + 2];
-                    const distSq = dx * dx + dy * dy + dz * dz;
+                    for (let attempt = 0; attempt < 8 && connectedNodes.length < targetSize; attempt++) {
+                        const target = Math.floor(Math.random() * count);
+                        if (connectedNodes.includes(target)) continue;
 
-                    if (distSq < maxRadius * maxRadius) {
-                        connectedNodes.push(target);
-                        edges.push([source, target]);
+                        const dx = sourceX - livePositions[target * 3];
+                        const dy = sourceY - livePositions[target * 3 + 1];
+                        const dz = sourceZ - livePositions[target * 3 + 2];
+                        const distSq = dx * dx + dy * dy + dz * dz;
+
+                        if (distSq < maxRadius * maxRadius) {
+                            connectedNodes.push(target);
+                            edges.push([source, target]);
+                        }
                     }
                 }
-            }
 
-            if (connectedNodes.length >= 4) {
-                sparks.current.push({
-                    edges,
-                    nodeIndices: connectedNodes,
-                    startTime: time,
-                    duration: 0.4 + Math.random() * 0.8, // Faster presence
-                });
+                if (connectedNodes.length >= 4) {
+                    sparks.current.push({
+                        edges,
+                        nodeIndices: connectedNodes,
+                        startTime: time,
+                        duration: 0.3 + Math.random() * 0.7, // Short, snappy firings
+                    });
+                }
             }
         }
 
