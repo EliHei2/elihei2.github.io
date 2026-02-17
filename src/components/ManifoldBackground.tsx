@@ -25,18 +25,19 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         // 1. Cleanup old sparks
         sparks.current = sparks.current.filter(s => time < s.startTime + s.duration);
 
-        // 2. Spawn new connected subgraphs (Increasing intensity per user request)
-        if (sparks.current.length < 30 && Math.random() < 0.4) {
-            // Spawn multiple sparks per "event" to saturate the screen faster
-            const burstCount = Math.floor(Math.random() * 3) + 1;
+        // 2. Spawn new connected subgraphs (Massive Neural-Density Increase)
+        const targetDensity = 150;
+        if (sparks.current.length < targetDensity) {
+            // Spawn up to 5 subgraphs per frame for "constant" social network activity feel
+            const burstCount = Math.floor(Math.random() * 5) + 1;
             for (let b = 0; b < burstCount; b++) {
-                if (sparks.current.length >= 30) break;
+                if (sparks.current.length >= targetDensity) break;
 
                 const startNode = Math.floor(Math.random() * count);
                 const targetSize = 4 + Math.floor(Math.random() * 7); // 4 to 10 nodes
                 const connectedNodes: number[] = [startNode];
                 const edges: [number, number][] = [];
-                const maxRadius = 1.6; // Slightly more forgiving locality for better connectivity
+                const maxRadius = 1.4; // Slightly tighter for "nerve-like" feel
 
                 let searchIdx = 0;
                 while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
@@ -61,19 +62,19 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
                     }
                 }
 
-                if (connectedNodes.length >= 4) {
+                if (connectedNodes.length >= 3) {
                     sparks.current.push({
                         edges,
                         nodeIndices: connectedNodes,
                         startTime: time,
-                        duration: 0.3 + Math.random() * 0.7, // Short, snappy firings
+                        duration: 0.2 + Math.random() * 0.6, // Rapid synaptic firings
                     });
                 }
             }
         }
 
         // 3. Update Edge Geometry
-        const linePositions = new Float32Array(sparks.current.length * 20 * 3);
+        const linePositions = new Float32Array(sparks.current.length * 20 * 3); // Sufficient for avg 10 edges per spark
         let lIdx = 0;
         sparks.current.forEach(spark => {
             spark.edges.forEach(([a, b]) => {
@@ -89,7 +90,7 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         lineRef.current.geometry.attributes.position.needsUpdate = true;
 
         // 4. Update Node Highlighting Geometry
-        const nodePositions = new Float32Array(sparks.current.length * 10 * 3);
+        const nodePositions = new Float32Array(sparks.current.length * 15 * 3);
         let nIdx = 0;
         sparks.current.forEach(spark => {
             spark.nodeIndices.forEach(idx => {
