@@ -1,0 +1,106 @@
+'use client';
+
+import { Canvas, useFrame } from '@react-three/fiber';
+import { useMemo, useRef } from 'react';
+import * as THREE from 'three';
+
+function ManifoldPoints() {
+    const pointsRef = useRef<THREE.Points>(null);
+
+    // Generate points for a simple surface (e.g., a wave or saddle)
+    const points = useMemo(() => {
+        const count = 3000;
+        const positions = new Float32Array(count * 3);
+        const colors = new Float32Array(count * 3);
+        const color1 = new THREE.Color('#748454'); // Olive
+        const color2 = new THREE.Color('#F4F4E4'); // Cream
+
+        for (let i = 0; i < count; i++) {
+            const x = (Math.random() - 0.5) * 20;
+            const z = (Math.random() - 0.5) * 20;
+            // A simple wave function: y = sin(x) + cos(z)
+            const y = Math.sin(x / 2) + Math.cos(z / 2);
+
+            positions[i * 3] = x;
+            positions[i * 3 + 1] = y;
+            positions[i * 3 + 2] = z;
+
+            // Color gradient based on height
+            const mixedColor = color1.clone().lerp(color2, (y + 2) / 4);
+            colors[i * 3] = mixedColor.r;
+            colors[i * 3 + 1] = mixedColor.g;
+            colors[i * 3 + 2] = mixedColor.b;
+        }
+
+        return { positions, colors };
+    }, []);
+
+    useFrame((state) => {
+        if (!pointsRef.current) return;
+        // Slowly rotate the entire manifold
+        pointsRef.current.rotation.y += 0.001;
+
+        // Gentle undulating wave effect
+        const time = state.clock.getElapsedTime();
+        const positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
+
+        for (let i = 0; i < 3000; i++) {
+            const x = positions[i * 3];
+            const z = positions[i * 3 + 2];
+            // Initial Y plus a time-based wave
+            // reconstructing y from x/z isn't perfect here since we overwrote positions,
+            // ideally we'd store original Y, but for a subtle effect this is fine.
+            const BaseY = Math.sin(x / 2) + Math.cos(z / 2);
+            positions[i * 3 + 1] = BaseY + Math.sin(time * 0.5 + x) * 0.2;
+        }
+        pointsRef.current.geometry.attributes.position.needsUpdate = true;
+    });
+
+    return (
+        <points ref={pointsRef}>
+            <bufferGeometry>
+                <bufferAttribute
+                    attach="attributes-position"
+                    count={points.positions.length / 3}
+                    array={points.positions}
+                    itemSize={3}
+                    args={[points.positions, 3]}
+                />
+                <bufferAttribute
+                    attach="attributes-color"
+                    count={points.colors.length / 3}
+                    array={points.colors}
+                    itemSize={3}
+                    args={[points.colors, 3]}
+                />
+            </bufferGeometry>
+            <pointsMaterial
+                size={0.05}
+                vertexColors
+                transparent
+                opacity={0.6}
+                sizeAttenuation={true}
+            />
+        </points>
+    );
+}
+
+export default function ManifoldBackground() {
+    return (
+        <div style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
+            zIndex: -1,
+            pointerEvents: 'none', // Allow clicks to pass through
+            background: 'linear-gradient(to bottom, #080808 0%, #0a0a0a 100%)'
+        }}>
+            <Canvas camera={{ position: [0, 5, 10], fov: 45 }}>
+                <ManifoldPoints />
+                <fog attach="fog" args={['#080808', 5, 20]} />
+            </Canvas>
+        </div>
+    );
+}

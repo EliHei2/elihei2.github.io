@@ -49,89 +49,159 @@ export default async function BlogPost({ params }: Props) {
     const readingTime = post.readingTime;
 
     return (
-        <Container maxWidth="md" sx={{ py: 8 }}>
-            <Box sx={{ mb: 6, pl: 2, borderLeft: '4px solid #E0F58F' }}>
-                <Typography variant="h2" component="h1" sx={{ fontWeight: 800, mb: 2, color: '#E0F58F' }}>
+        <Container maxWidth="md" sx={{
+            mt: 16,
+            mb: 16,
+            position: 'relative',
+            zIndex: 10
+        }}>
+            {/* Header Section */}
+            <Box sx={{ mb: 8, borderBottom: '1px solid rgba(116, 132, 84, 0.2)', pb: 6 }}>
+                <Typography variant="h1" component="h1" sx={{
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    fontWeight: 700,
+                    mb: 4,
+                    color: '#F4F4E4',
+                    fontSize: { xs: '2.5rem', md: '3.5rem' },
+                    lineHeight: 1.1,
+                    letterSpacing: '-0.02em'
+                }}>
                     {post.title}
                 </Typography>
 
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 1, flexWrap: 'wrap' }}>
-                    <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.5)', fontFamily: 'monospace' }}>
-                        [{post.date}]
-                    </Typography>
-                    <Typography variant="body2" sx={{ color: '#E0F58F', fontFamily: 'monospace', fontWeight: 600 }}>
-                        {readingTime} min read
-                    </Typography>
-                    <Box component="span" sx={{ display: 'flex', alignItems: 'center' }}>
-                        <img
-                            src={`https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Felihei2.github.io%2Fblog%2F${slug}&count_bg=%23E0F58F&title_bg=%23171717&icon=&icon_color=%23171717&title=Readers&edge_flat=true`}
-                            alt="Readers"
-                            style={{ height: '20px' }}
-                        />
+                <Box sx={{
+                    display: 'flex',
+                    gap: 4,
+                    flexWrap: 'wrap',
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    color: '#748454',
+                    fontSize: '0.85rem',
+                    letterSpacing: '0.05em',
+                    textTransform: 'uppercase'
+                }}>
+                    <Box>
+                        <Box component="span" sx={{ color: 'rgba(244, 244, 228, 0.4)', mr: 1 }}>PUBLISHED</Box>
+                        {post.date}
+                    </Box>
+                    <Box>
+                        <Box component="span" sx={{ color: 'rgba(244, 244, 228, 0.4)', mr: 1 }}>READING TIME</Box>
+                        {readingTime} MIN
+                    </Box>
+                    <Box>
+                        {/* Optional Badge integrated more subtly if needed, or removed for purity */}
                     </Box>
                 </Box>
 
-                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mt: 3 }}>
                     {post.tags?.map((tag) => (
                         <Chip
                             key={tag}
                             label={tag}
                             size="small"
+                            sx={{
+                                borderRadius: 0,
+                                bgcolor: 'rgba(116, 132, 84, 0.1)',
+                                border: 'none',
+                                color: '#F4F4E4',
+                                fontFamily: 'Space Grotesk, sans-serif',
+                                fontSize: '0.7rem',
+                                letterSpacing: '0.05em'
+                            }}
                         />
                     ))}
                 </Box>
             </Box>
 
+            {/* Content Section */}
             <Box sx={{
-                '& h1': { typography: 'h3', mt: 5, mb: 2, fontWeight: 800, color: '#E0F58F' },
-                '& h2': { typography: 'h4', mt: 4, mb: 2, fontWeight: 700, color: '#FFFFFF', borderBottom: '1px solid rgba(255, 255, 255, 0.1)', pb: 1 },
-                '& h3': { typography: 'h5', mt: 3, mb: 1, fontWeight: 700, color: 'rgba(255, 255, 255, 0.8)' },
-                '& p': { typography: 'body1', mb: 3, lineHeight: 1.8, color: 'rgba(255, 255, 255, 0.8)' },
-                '& li': { typography: 'body1', mb: 1, lineHeight: 1.7, color: 'rgba(255, 255, 255, 0.8)' },
-                '& strong': { color: '#E0F58F', fontWeight: 700 },
-                '& em': { color: 'rgba(255, 255, 255, 0.5)', fontStyle: 'italic' },
-                '& code': { bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#E0F58F', p: 0.5, borderRadius: 0, border: '1px solid rgba(255, 255, 255, 0.1)', fontFamily: 'monospace', fontSize: '0.9em' },
-                '& pre': { bgcolor: '#000000', color: '#f8f8f2', p: 3, borderRadius: 0, border: '1px solid rgba(255, 255, 255, 0.1)', overflowX: 'auto', mb: 3 },
-                '& pre code': { bgcolor: 'transparent', p: 0, color: 'inherit', border: 'none' },
-                '& blockquote': { borderLeft: '4px solid #E0F58F', bgcolor: 'rgba(255, 255, 255, 0.02)', pl: 3, pr: 2, py: 2, fontStyle: 'italic', my: 4, borderRadius: 0 },
-                '& blockquote p': { mb: 0, color: 'rgba(255, 255, 255, 0.6)' },
-                '& a': { color: '#E0F58F', textDecoration: 'none', fontWeight: 600, borderBottom: '1px dotted #E0F58F', '&:hover': { borderBottom: '1px solid #E0F58F' } },
-                '& table': { width: '100%', borderCollapse: 'collapse', my: 3, border: '1px solid rgba(255, 255, 255, 0.1)' },
-                '& th': { bgcolor: 'rgba(255, 255, 255, 0.05)', color: '#E0F58F', p: 1.5, textAlign: 'left', fontWeight: 700, border: '1px solid rgba(255, 255, 255, 0.1)' },
-                '& td': { p: 1.5, border: '1px solid rgba(255, 255, 255, 0.1)', color: 'rgba(255, 255, 255, 0.8)' },
-                '& tr:hover td': { bgcolor: 'rgba(255, 255, 255, 0.02)' },
-                '& hr': { border: 'none', borderTop: '1px solid rgba(255, 255, 255, 0.1)', my: 6 },
-                '& ol': { pl: 3, color: 'rgba(255, 255, 255, 0.8)' },
-                '& ul': { pl: 3, color: 'rgba(255, 255, 255, 0.8)' },
-                // Center images and captions
+                // Typography Override for Markdown Content
+                '& h1, & h2, & h3, & h4, & h5, & h6': {
+                    fontFamily: 'Space Grotesk, sans-serif',
+                    color: '#F4F4E4',
+                    fontWeight: 600,
+                    mt: 6,
+                    mb: 3
+                },
+                '& h1': { fontSize: '2.5rem' },
+                '& h2': { fontSize: '2rem', borderBottom: '1px solid rgba(116, 132, 84, 0.2)', pb: 1 },
+                '& h3': { fontSize: '1.5rem', color: '#748454' },
+
+                '& p': {
+                    fontFamily: 'Cormorant Garamond, serif',
+                    fontSize: '1.25rem',
+                    lineHeight: 1.8,
+                    mb: 3,
+                    color: 'rgba(244, 244, 228, 0.9)'
+                },
+                '& ul, & ol': {
+                    fontFamily: 'Cormorant Garamond, serif',
+                    fontSize: '1.15rem',
+                    lineHeight: 1.8,
+                    mb: 3,
+                    pl: 3,
+                    color: 'rgba(244, 244, 228, 0.9)'
+                },
+                '& li': { mb: 1 },
+
+                '& strong': { color: '#F4F4E4', fontWeight: 700 },
+                '& em': { fontStyle: 'italic', color: 'rgba(244, 244, 228, 0.7)' },
+
+                '& blockquote': {
+                    borderLeft: '2px solid #748454',
+                    pl: 4,
+                    my: 4,
+                    py: 1,
+                    fontStyle: 'italic',
+                    color: 'rgba(244, 244, 228, 0.8)'
+                },
+
+                '& code': {
+                    fontFamily: 'Space Grotesk, monospace', // Or a real mono font if available
+                    bgcolor: 'rgba(116, 132, 84, 0.15)',
+                    color: '#F4F4E4',
+                    px: 0.8,
+                    py: 0.2,
+                    fontSize: '0.85em',
+                    borderRadius: '2px'
+                },
+                '& pre': {
+                    bgcolor: '#050505',
+                    p: 3,
+                    overflowX: 'auto',
+                    mb: 4,
+                    border: '1px solid rgba(116, 132, 84, 0.2)'
+                },
+                '& pre code': {
+                    bgcolor: 'transparent',
+                    p: 0,
+                    color: 'inherit',
+                    fontFamily: 'monospace'
+                },
+
+                '& a': {
+                    color: '#748454',
+                    textDecoration: 'underline',
+                    textDecorationColor: 'rgba(116, 132, 84, 0.4)',
+                    textUnderlineOffset: '4px',
+                    transition: '0.2s',
+                    '&:hover': {
+                        color: '#F4F4E4',
+                        textDecorationColor: '#748454'
+                    }
+                },
+
                 '& img': {
-                    display: 'block',
-                    mx: 'auto',
                     maxWidth: '100%',
                     height: 'auto',
-                    borderRadius: 0,
-                    border: '1px solid rgba(255, 255, 255, 0.1)',
-                    my: 4
-                },
-                '& p:has(img)': {
-                    textAlign: 'center',
-                    mb: 1
-                },
-                '& p:has(img) + p > em, & p:has(img) + em, & img + em': {
                     display: 'block',
-                    textAlign: 'center',
-                    color: 'rgba(255, 255, 255, 0.4)',
-                    fontSize: '0.8rem',
-                    fontFamily: 'monospace',
-                    mt: -1,
-                    mb: 4,
-                    fontStyle: 'italic'
-                },
+                    margin: '2rem auto',
+                    border: '1px solid rgba(116, 132, 84, 0.2)'
+                }
             }}>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
             </Box>
 
-            <Box sx={{ mt: 8, pt: 4, borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+            <Box sx={{ mt: 12, pt: 8, borderTop: '1px solid rgba(116, 132, 84, 0.2)' }}>
                 <BlogInteractions slug={slug} />
             </Box>
         </Container>

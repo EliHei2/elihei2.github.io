@@ -21,116 +21,109 @@ const researchInterests = [
 
 export default function Home() {
   return (
-    <Container maxWidth="md">
-      {/* Dashboard Top Row: Identity & Status */}
+    <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 10 }}>
+      {/* Hero / Identity Section */}
       <Box sx={{
         display: 'grid',
-        gridTemplateColumns: { xs: '1fr', md: '1.5fr 1fr' },
-        gap: 0,
-        mt: 4,
-        mb: 8,
-        border: '1px solid rgba(255, 255, 255, 0.1)'
+        gridTemplateColumns: { xs: '1fr', md: '1fr 1fr' },
+        gap: 8,
+        mt: 12,
+        mb: 16
       }}>
-        {/* Identity Box */}
-        <Box sx={{ p: 4, borderRight: { md: '1px solid rgba(255, 255, 255, 0.1)' }, borderBottom: { xs: '1px solid rgba(255, 255, 255, 0.1)', md: 0 } }}>
+        {/* Left: Introduction */}
+        <Box sx={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+          <Typography variant="h1" sx={{
+            fontFamily: 'Space Grotesk, sans-serif',
+            fontWeight: 700,
+            fontSize: { xs: '3rem', md: '4.5rem' },
+            lineHeight: 0.9,
+            mb: 4,
+            color: '#F4F4E4'
+          }}>
+            SCALABLE<br />LEARNING<br />SYSTEMS
+          </Typography>
+          <Box sx={{ borderTop: '1px solid rgba(116, 132, 84, 0.3)', pt: 4 }}>
+            <Typography variant="h6" sx={{ color: '#748454', mb: 2 }}>ABSTRACT</Typography>
+            <Typography variant="body1" sx={{ color: 'rgba(244, 244, 228, 0.9)', fontSize: '1.25rem', lineHeight: 1.6 }}>
+              I am a Research Engineer in AI for Science at DKFZ & EMBL Heidelberg. My work bridges the gap between expressive geometric modeling and production-scale systems, translating high-dimensional biological signals into robust infrastructure for discovery.
+            </Typography>
+          </Box>
+        </Box>
 
-          <Typography variant="h1" sx={{ color: '#E0F58F', mb: 2, fontSize: { xs: '2rem', md: '2.5rem' } }}>
-            scalable_learning.sys
-          </Typography>
-          <Typography variant="body1" sx={{ color: 'rgba(255, 255, 255, 0.7)', mb: 3 }}>
-            phd researcher & research engineer <br />
-            [dkfz & embl heidelberg]
-          </Typography>
-          <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-            {researchInterests.map(tag => (
-              <Chip key={tag} label={tag} size="small" />
+        {/* Right: Metadata Grid */}
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          gap: 2
+        }}>
+          <Box sx={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(2, 1fr)',
+            gap: '1px',
+            bgcolor: 'rgba(116, 132, 84, 0.2)',
+            border: '1px solid rgba(116, 132, 84, 0.2)',
+            p: '1px'
+          }}>
+            {[
+              { label: 'LOCATION', value: 'HEIDELBERG, DE' },
+              { label: 'INSTITUTE', value: 'DKFZ / EMBL' },
+              { label: 'FOCUS', value: 'AI FOR SCIENCE' },
+              { label: 'SPECIALIZATION', value: 'GEOMETRIC DL' }
+            ].map((item, i) => (
+              <Box key={i} sx={{ bgcolor: 'rgba(8, 8, 8, 0.8)', p: 3, backdropFilter: 'blur(4px)' }}>
+                <Typography variant="caption" sx={{ color: '#748454', display: 'block', mb: 1 }}>{item.label}</Typography>
+                <Typography variant="body2" sx={{ color: '#F4F4E4' }}>{item.value}</Typography>
+              </Box>
+            ))}
+          </Box>
+
+          <Box sx={{ display: 'flex', gap: 2 }}>
+            {[
+              { icon: <GitHubIcon />, href: "https://github.com/EliHei2" },
+              { icon: <EmailIcon />, href: "mailto:elyas.heidari@dkfz-heidelberg.de" },
+              { icon: <SchoolIcon />, href: "https://scholar.google.com/" }
+            ].map((social, i) => (
+              <IconButton
+                key={i}
+                href={social.href}
+                target="_blank"
+                sx={{
+                  borderRadius: 0,
+                  border: '1px solid rgba(116, 132, 84, 0.3)',
+                  color: '#748454',
+                  '&:hover': { bgcolor: '#748454', color: '#080808' }
+                }}
+              >
+                {social.icon}
+              </IconButton>
             ))}
           </Box>
         </Box>
-
-        {/* Status Box */}
-        <Box sx={{ p: 4, display: 'flex', flexDirection: 'column', justifyContent: 'center', bgcolor: 'rgba(255, 255, 255, 0.02)' }}>
-          <Box sx={{ mb: 4, display: 'flex', justifyContent: 'center', width: '100%' }}>
-            <Avatar
-              src="/profile.jpg"
-              alt="Elyas Heidari"
-              sx={{ width: 120, height: 120, border: '2px solid #E0F58F' }}
-            />
-          </Box>
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.4)', display: 'block' }}>current_location</Typography>
-            <Typography variant="body2">heidelberg, germany (49.4° n, 8.7° e)</Typography>
-          </Box>
-          <Box>
-            <Typography variant="caption" sx={{ color: 'rgba(255, 255, 255, 0.4)', display: 'block' }}>specialization</Typography>
-            <Typography variant="body2">ai for science / geometric dl</Typography>
-          </Box>
-          <Box sx={{ mt: 3, display: 'flex', gap: 1, justifyContent: 'center' }}>
-            <IconButton href="https://github.com/EliHei2" target="_blank" size="small" sx={{ color: '#E0F58F', border: '1px solid rgba(224, 245, 143, 0.3)', borderRadius: 0 }}>
-              <GitHubIcon fontSize="small" />
-            </IconButton>
-            <IconButton href="mailto:elyas.heidari@dkfz-heidelberg.de" target="_blank" size="small" sx={{ color: '#E0F58F', border: '1px solid rgba(224, 245, 143, 0.3)', borderRadius: 0 }}>
-              <EmailIcon fontSize="small" />
-            </IconButton>
-            <IconButton href="https://scholar.google.com/citations?user=ExampleID" target="_blank" size="small" sx={{ color: '#E0F58F', border: '1px solid rgba(224, 245, 143, 0.3)', borderRadius: 0 }}>
-              <SchoolIcon fontSize="small" />
-            </IconButton>
-          </Box>
-        </Box>
       </Box>
 
-      {/* Main Content Grid */}
-      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '2fr 1fr' }, gap: 8, mb: 12 }}>
-        {/* Philosophy & Approach */}
-        <Box sx={{ p: 4, border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-          <Typography variant="h4" sx={{ color: '#E0F58F', mb: 3 }}>research_philosophy</Typography>
-          <Typography variant="body1" paragraph>
-            i build learning systems that transform messy, large-scale biological data into reliable infrastructure.
-          </Typography>
-          <Typography variant="body1" paragraph>
-            my focus is designing gnn and transformer pipelines that scale to 10m+ nodes while preserving mechanistic interpretability.
-          </Typography>
-          <Link href="/about" style={{ color: '#E0F58F', fontWeight: 700 }}>
-            [view_detailed_bio]
-          </Link>
-        </Box>
-
-        {/* Quick Links / Metadata */}
-        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
-          <Box sx={{ p: 3, border: '1px solid rgba(255, 255, 255, 0.1)', bgcolor: 'rgba(224, 245, 143, 0.05)' }}>
-            <Typography variant="h6" sx={{ color: '#E0F58F', mb: 2 }}>latest_updates</Typography>
-            <Box component="ul" sx={{ pl: 2, m: 0, color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.85rem' }}>
-              <li>segger_framework v1.0 released</li>
-              <li>spatial_data_standardization update</li>
+      {/* Research Dimensions */}
+      <Box sx={{ mb: 16 }}>
+        <Typography variant="h2" sx={{ mb: 6, borderBottom: '1px solid rgba(116, 132, 84, 0.3)', pb: 2 }}>SCIENTIFIC DIMENSIONS</Typography>
+        <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' }, gap: 4 }}>
+          {[
+            { title: 'SPATIAL OMICS', desc: 'End-to-end pipelines for spatial transcriptomics and multimodal integration.' },
+            { title: 'SCALABLE GNNs', desc: 'Multi-GPU training for heterogeneous GNNs on graphs with 100M+ edges.' },
+            { title: 'OPEN SOURCE', desc: 'Architecting production-grade frameworks (Segger, SageNet) for biological discovery.' }
+          ].map((area, i) => (
+            <Box key={i} sx={{
+              borderTop: '1px solid rgba(116, 132, 84, 0.3)',
+              pt: 2,
+              transition: '0.3s',
+              '&:hover': { transform: 'translateY(-10px)' }
+            }}>
+              <Typography variant="h6" sx={{ color: '#748454', mb: 2 }}>0{i + 1} // {area.title}</Typography>
+              <Typography variant="body1" sx={{ color: 'rgba(244, 244, 228, 0.8)' }}>{area.desc}</Typography>
             </Box>
-          </Box>
+          ))}
         </Box>
       </Box>
 
-      {/* Scientific Dimensions Section */}
-      <Box sx={{ mb: 8 }}>
-        <Typography variant="h2" sx={{ mb: 4, display: 'inline-block', borderBottom: '2px solid #E0F58F', pb: 0.5 }}>scientific_dimensions</Typography>
-        <Box sx={{ border: '1px solid rgba(255, 255, 255, 0.1)' }}>
-          <Box sx={{ p: 4, borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-            <Typography variant="h6" sx={{ color: '#E0F58F', mb: 1 }}>spatial & single-cell omics</Typography>
-            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-              end-to-end pipelines for spatial transcriptomics and multimodal integration.
-            </Typography>
-          </Box>
-          <Box sx={{ p: 4, borderBottom: '1px solid rgba(255, 255, 255, 0.1)' }}>
-            <Typography variant="h6" sx={{ color: '#E0F58F', mb: 1 }}>scalable graph neural networks</Typography>
-            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-              multi-gpu training for heterogeneous gnns on graphs with 100m+ edges.
-            </Typography>
-          </Box>
-          <Box sx={{ p: 4 }}>
-            <Typography variant="h6" sx={{ color: '#E0F58F', mb: 1 }}>open-source tooling</Typography>
-            <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.7)' }}>
-              architecting frameworks (segger, sagenet, scgcn) for biological discovery.
-            </Typography>
-          </Box>
-        </Box>
-      </Box>
     </Container>
   );
 }

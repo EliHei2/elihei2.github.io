@@ -19,45 +19,43 @@ const navItems = [
 
 export default function Header() {
     const pathname = usePathname();
-    const theme = useTheme();
 
     return (
         <Box component="header" sx={{
-            py: 2,
-            borderBottom: 1,
-            borderColor: 'divider',
-            bgcolor: 'rgba(23, 23, 23, 0.8)',
-            backdropFilter: 'blur(8px)',
-            position: 'sticky',
+            py: 3,
+            position: 'fixed',
             top: 0,
-            zIndex: 1100
+            left: 0,
+            right: 0,
+            zIndex: 1100,
+            background: 'linear-gradient(to bottom, rgba(8,8,8,0.8) 0%, rgba(8,8,8,0) 100%)',
+            backdropFilter: 'blur(2px)',
         }}>
-            <Container maxWidth="md">
+            <Container maxWidth="lg">
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-                    {/* Logo / Name with Status Indicator */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
-                        <Box
+                    {/* Signature / Logo */}
+                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+                        <Typography
+                            variant="h6"
+                            component={Link}
+                            href="/"
                             sx={{
-                                width: 8,
-                                height: 8,
-                                borderRadius: '50%',
-                                bgcolor: 'primary.main',
-                                boxShadow: theme => `0 0 10px ${theme.palette.primary.main}`,
-                                animation: 'pulse 2s infinite'
+                                fontFamily: 'Cormorant Garamond, serif',
+                                fontStyle: 'italic',
+                                fontWeight: 700,
+                                fontSize: '1.5rem',
+                                color: '#F4F4E4',
+                                textDecoration: 'none',
+                                letterSpacing: '0.02em',
+                                '&:hover': { color: '#748454' }
                             }}
-                        />
-                        <Typography variant="h6" component={Link} href="/" sx={{
-                            color: 'primary.main',
-                            textDecoration: 'none',
-                            fontWeight: 700,
-                            letterSpacing: '-0.02em'
-                        }}>
-                            elyas_heidari.sys
+                        >
+                            Elyas Heidari
                         </Typography>
                     </Box>
 
                     {/* Navigation */}
-                    <Box component="nav" sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', justifyContent: 'center' }}>
+                    <Box component="nav" sx={{ display: 'flex', gap: 4, flexWrap: 'wrap', justifyContent: 'center' }}>
                         {navItems.map((item) => {
                             const isActive = pathname === item.path;
                             return (
@@ -66,27 +64,23 @@ export default function Header() {
                                     href={item.path}
                                     style={{
                                         textDecoration: 'none',
-                                        color: isActive ? theme.palette.primary.main : theme.palette.text.secondary,
-                                        fontWeight: isActive ? 700 : 400,
-                                        fontSize: '0.85rem',
+                                        color: isActive ? '#748454' : '#F4F4E4',
+                                        fontFamily: 'Space Grotesk, sans-serif',
+                                        fontWeight: 500,
+                                        fontSize: '0.75rem',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.1em',
                                         transition: '0.2s',
-                                        borderBottom: isActive ? `1px solid ${theme.palette.primary.main}` : '1px solid transparent'
+                                        borderBottom: isActive ? '1px solid #748454' : '1px solid transparent'
                                     }}
                                 >
-                                    {isActive ? `> ${item.name.toLowerCase()}` : item.name.toLowerCase()}
+                                    {item.name}
                                 </Link>
                             );
                         })}
                     </Box>
                 </Box>
             </Container>
-            <style jsx global>{`
-                @keyframes pulse {
-                    0% { opacity: 1; }
-                    50% { opacity: 0.4; }
-                    100% { opacity: 1; }
-                }
-            `}</style>
         </Box>
     );
 }
