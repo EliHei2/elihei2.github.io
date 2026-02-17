@@ -45,7 +45,7 @@ export default function Home() {
           <Box sx={{ borderTop: '1px solid rgba(116, 132, 84, 0.3)', pt: 4 }}>
             <Typography variant="h6" sx={{ color: '#748454', mb: 2 }}>ABSTRACT</Typography>
             <Typography variant="body1" sx={{ color: 'rgba(244, 244, 228, 0.9)', fontSize: '1.25rem', lineHeight: 1.6 }}>
-              I am a Research Engineer in AI for Science at DKFZ & EMBL Heidelberg. My work bridges the gap between expressive geometric modeling and production-scale systems, translating high-dimensional biological signals into robust infrastructure for discovery.
+              I am a <strong style={{ color: '#F4F4E4' }}>Research Engineer</strong> in AI for Science at DKFZ & EMBL Heidelberg. My work bridges the gap between expressive geometric modeling and production-scale systems, translating high-dimensional biological signals into robust infrastructure for discovery.
             </Typography>
           </Box>
         </Box>

@@ -149,56 +149,55 @@ export default function About() {
 
             {/* Experience Timeline */}
             <SectionHeader icon={<TerminalIcon fontSize="large" />} title="Research Experience" />
+            {/* Experience Timeline */}
+            <SectionHeader icon={<TerminalIcon fontSize="large" />} title="Research Experience" />
             <Box sx={{
                 position: 'relative',
                 overflowX: 'auto',
-                pb: 4,
+                pb: 8,
                 mb: 8,
-                '::-webkit-scrollbar': { height: '6px' },
-                '::-webkit-scrollbar-track': { background: 'rgba(255,255,255,0.02)' },
-                '::-webkit-scrollbar-thumb': { background: 'rgba(116, 132, 84, 0.4)', borderRadius: '3px' }
+                '::-webkit-scrollbar': { height: '2px' },
+                '::-webkit-scrollbar-track': { background: 'transparent' },
+                '::-webkit-scrollbar-thumb': { background: '#748454' }
             }}>
                 <Box sx={{
                     display: 'flex',
                     minWidth: 'max-content',
                     gap: 0,
-                    pt: 4,
-                    px: 2
+                    pt: 6,
+                    px: 4
                 }}>
                     {experience.map((exp, i) => (
                         <Box key={i} sx={{
                             position: 'relative',
-                            width: 250,
+                            width: 350, // Increased width for better spacing
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                             group: 'true',
                             transition: '0.3s',
                             '&:hover': {
-                                flexGrow: 0, // Or nice expansion if we want accordion style, but specific width is safer for scrolling
+                                flexGrow: 0,
                             }
                         }}>
-                            {/* Line connecting points */}
+                            {/* Connector Line (Data Flow style) */}
                             <Box sx={{
                                 position: 'absolute',
                                 top: 20,
                                 left: 0,
                                 right: 0,
-                                height: 2,
-                                bgcolor: 'rgba(116, 132, 84, 0.3)',
+                                height: 1,
+                                borderTop: '1px dashed rgba(116, 132, 84, 0.5)', // Dashed line
                                 zIndex: 0,
-                                display: i === experience.length - 1 ? 'none' : 'block' // Hide for last segment? or connect all?
-                                // Better logic: Line goes from center to right. Last one has no line to right.
-                                // Actually better: Line across full width of container, items sit on top.
+                                display: i === experience.length - 1 ? 'none' : 'block'
                             }} />
-                            {/* Line segment for this item */}
                             <Box sx={{
                                 position: 'absolute',
                                 top: 20,
                                 left: '50%',
                                 width: '100%',
-                                height: 2,
-                                bgcolor: 'rgba(116, 132, 84, 0.3)',
+                                height: 1,
+                                borderTop: '1px dashed rgba(116, 132, 84, 0.5)',
                                 display: i === experience.length - 1 ? 'none' : 'block'
                             }} />
                             <Box sx={{
@@ -206,88 +205,100 @@ export default function About() {
                                 top: 20,
                                 right: '50%',
                                 width: '100%',
-                                height: 2,
-                                bgcolor: 'rgba(116, 132, 84, 0.3)',
+                                height: 1,
+                                borderTop: '1px dashed rgba(116, 132, 84, 0.5)',
                                 display: i === 0 ? 'none' : 'block'
                             }} />
 
-                            {/* The Point */}
+                            {/* Data Point Node */}
                             <Box sx={{
-                                width: 16,
-                                height: 16,
+                                width: 12,
+                                height: 12,
                                 borderRadius: '50%',
                                 bgcolor: '#080808',
-                                border: '3px solid #748454',
+                                border: '2px solid #748454',
                                 zIndex: 2,
-                                mb: 3,
+                                mb: 4,
+                                position: 'relative',
                                 transition: '0.3s',
+                                '&::after': { // Inner dot
+                                    content: '""',
+                                    position: 'absolute',
+                                    top: '50%',
+                                    left: '50%',
+                                    transform: 'translate(-50%, -50%)',
+                                    width: 4,
+                                    height: 4,
+                                    bgcolor: '#748454',
+                                    borderRadius: '50%',
+                                    opacity: 0,
+                                    transition: '0.3s'
+                                },
                                 '.group:hover &': {
-                                    bgcolor: '#E0F58F',
                                     borderColor: '#E0F58F',
-                                    transform: 'scale(1.2)'
+                                    boxShadow: '0 0 10px rgba(224, 245, 143, 0.3)',
+                                    '&::after': { opacity: 1, bgcolor: '#E0F58F' }
                                 }
                             }} />
 
-                            {/* Content Card */}
+                            {/* Info Block */}
                             <Box sx={{
-                                textAlign: 'center',
+                                textAlign: 'left', // Align text left for readibility
                                 width: '90%',
-                                p: 2,
-                                borderRadius: 2,
-                                border: '1px solid transparent',
+                                p: 3,
+                                borderLeft: '1px solid rgba(116, 132, 84, 0.2)', // Data-line style
                                 transition: '0.3s',
                                 display: 'flex',
                                 flexDirection: 'column',
-                                alignItems: 'center',
+                                alignItems: 'flex-start',
                                 '&:hover': {
-                                    bgcolor: 'rgba(116, 132, 84, 0.1)',
-                                    border: '1px solid rgba(116, 132, 84, 0.3)',
-                                    transform: 'translateY(-5px)'
+                                    borderLeft: '1px solid #E0F58F',
+                                    bgcolor: 'rgba(116, 132, 84, 0.05)'
                                 }
                             }}>
                                 <Typography variant="caption" sx={{
-                                    color: 'text.secondary',
-                                    fontFamily: 'monospace',
+                                    color: 'rgba(244, 244, 228, 0.5)',
+                                    fontFamily: 'Space Grotesk, monospace',
                                     mb: 1,
-                                    display: 'block',
-                                    bgcolor: 'rgba(255,255,255,0.05)',
-                                    px: 1,
-                                    py: 0.5,
-                                    borderRadius: 1
+                                    textTransform: 'uppercase',
+                                    letterSpacing: '0.1em',
+                                    fontSize: '0.7rem'
                                 }}>
-                                    {exp.date}
+                                    [{exp.date}]
                                 </Typography>
 
                                 <Typography variant="h6" sx={{
-                                    color: '#E0F58F',
-                                    fontSize: '1rem',
+                                    color: '#F4F4E4',
+                                    fontSize: '1.1rem',
                                     fontWeight: 700,
                                     lineHeight: 1.2,
-                                    mb: 1
+                                    mb: 0.5,
+                                    fontFamily: 'Space Grotesk, sans-serif'
                                 }}>
                                     {exp.org}
                                 </Typography>
 
-                                <Typography variant="body2" sx={{ color: 'text.primary', mb: 1, fontSize: '0.9rem' }}>
-                                    {exp.role}
+                                <Typography variant="body2" sx={{ color: '#748454', mb: 2, fontSize: '0.9rem', fontWeight: 500 }}>
+                                    {exp.role.toUpperCase()}
                                 </Typography>
 
-                                {/* Hidden details that appear on hover/focus - utilizing opacity for smooth transition */}
+                                {/* Interactive Details */}
                                 <Box sx={{
                                     maxHeight: 0,
                                     opacity: 0,
                                     overflow: 'hidden',
-                                    transition: '0.4s ease',
-                                    textAlign: 'left',
+                                    transition: 'max-height 0.4s ease, opacity 0.4s ease',
                                     width: '100%',
-                                    '.group:hover &, &:focus-within': {
-                                        maxHeight: '300px', // approximate max height
+                                    '.group:hover &': {
+                                        maxHeight: '400px', // Approximate max height
                                         opacity: 1,
-                                        mt: 2
                                     }
                                 }}>
-                                    <ul style={{ paddingLeft: '1.2rem', margin: 0, color: 'rgba(255,255,255,0.7)', fontSize: '0.85rem' }}>
-                                        {exp.details.map((d, j) => <li key={j} style={{ marginBottom: '0.4rem' }}>{d}</li>)}
+                                    <Typography variant="body2" sx={{ color: 'rgba(244, 244, 228, 0.4)', fontSize: '0.75rem', mb: 1, fontFamily: 'monospace' }}>
+                                        Location: {exp.location}
+                                    </Typography>
+                                    <ul style={{ paddingLeft: '1rem', margin: 0, color: 'rgba(244, 244, 228, 0.8)', fontSize: '0.85rem', lineHeight: 1.6 }}>
+                                        {exp.details.map((d, j) => <li key={j} style={{ marginBottom: '0.5rem' }}>{d}</li>)}
                                     </ul>
                                 </Box>
                             </Box>
