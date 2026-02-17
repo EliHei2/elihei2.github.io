@@ -4,6 +4,83 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
+function LocalGraphs({ pointsArr }: { pointsArr: Float32Array }) {
+    const lineRef = useRef<THREE.LineSegments>(null);
+    const sparks = useRef<any[]>([]);
+
+    // We'll manage transient graph connections
+    useFrame((state) => {
+        if (!lineRef.current) return;
+        const time = state.clock.getElapsedTime();
+        const count = 3000;
+
+        // Cleanup old sparks and spawn new ones
+        sparks.current = sparks.current.filter(s => time < s.startTime + s.duration);
+
+        if (sparks.current.length < 5 && Math.random() < 0.05) {
+            // Spawn a new local graph
+            const centerIdx = Math.floor(Math.random() * count);
+            const duration = 1 + Math.random() * 3;
+            // Find nearby points
+            const cluster: number[] = [centerIdx];
+            const maxDist = 3;
+            for (let i = 0; i < 20; i++) {
+                const target = Math.floor(Math.random() * count);
+                const dx = pointsArr[centerIdx * 3] - pointsArr[target * 3];
+                const dy = pointsArr[centerIdx * 3 + 1] - pointsArr[target * 3 + 1];
+                const dz = pointsArr[centerIdx * 3 + 2] - pointsArr[target * 3 + 2];
+                if (Math.sqrt(dx * dx + dy * dy + dz * dz) < maxDist) {
+                    cluster.push(target);
+                }
+            }
+
+            if (cluster.length > 2) {
+                sparks.current.push({
+                    indices: cluster,
+                    startTime: time,
+                    duration: duration,
+                    opacity: 0
+                });
+            }
+        }
+
+        // Update geometry
+        const linePositions = new Float32Array(sparks.current.length * 40 * 3); // Approx space
+        let idx = 0;
+        sparks.current.forEach(spark => {
+            const age = time - spark.startTime;
+            const life = age / spark.duration;
+            const opacity = Math.sin(life * Math.PI) * 0.4; // Fade in and out
+
+            // Connect points in cluster
+            for (let i = 0; i < spark.indices.length - 1; i++) {
+                const a = spark.indices[i];
+                const b = spark.indices[i + 1];
+
+                linePositions[idx++] = pointsArr[a * 3];
+                linePositions[idx++] = pointsArr[a * 3 + 1];
+                linePositions[idx++] = pointsArr[a * 3 + 2];
+
+                linePositions[idx++] = pointsArr[b * 3];
+                linePositions[idx++] = pointsArr[b * 3 + 1];
+                linePositions[idx++] = pointsArr[b * 3 + 2];
+            }
+        });
+
+        lineRef.current.geometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
+        if (lineRef.current.material instanceof THREE.LineBasicMaterial) {
+            lineRef.current.material.opacity = 0.3;
+        }
+    });
+
+    return (
+        <lineSegments ref={lineRef}>
+            <bufferGeometry />
+            <lineBasicMaterial color="#E0F58F" transparent opacity={0.3} />
+        </lineSegments>
+    );
+}
+
 function ManifoldPoints() {
     const pointsRef = useRef<THREE.Points>(null);
 
@@ -55,31 +132,34 @@ function ManifoldPoints() {
     });
 
     return (
-        <points ref={pointsRef}>
-            <bufferGeometry>
-                <bufferAttribute
-                    attach="attributes-position"
-                    count={points.positions.length / 3}
-                    array={points.positions}
-                    itemSize={3}
-                    args={[points.positions, 3]}
+        <group>
+            <points ref={pointsRef}>
+                <bufferGeometry>
+                    <bufferAttribute
+                        attach="attributes-position"
+                        count={points.positions.length / 3}
+                        array={points.positions}
+                        itemSize={3}
+                        args={[points.positions, 3]}
+                    />
+                    <bufferAttribute
+                        attach="attributes-color"
+                        count={points.colors.length / 3}
+                        array={points.colors}
+                        itemSize={3}
+                        args={[points.colors, 3]}
+                    />
+                </bufferGeometry>
+                <pointsMaterial
+                    size={0.05}
+                    vertexColors
+                    transparent
+                    opacity={0.6}
+                    sizeAttenuation={true}
                 />
-                <bufferAttribute
-                    attach="attributes-color"
-                    count={points.colors.length / 3}
-                    array={points.colors}
-                    itemSize={3}
-                    args={[points.colors, 3]}
-                />
-            </bufferGeometry>
-            <pointsMaterial
-                size={0.05}
-                vertexColors
-                transparent
-                opacity={0.6}
-                sizeAttenuation={true}
-            />
-        </points>
+            </points>
+            <LocalGraphs pointsArr={points.positions} />
+        </group>
     );
 }
 
