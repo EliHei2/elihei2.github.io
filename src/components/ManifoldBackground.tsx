@@ -25,7 +25,7 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         // 1. Cleanup old sparks
         sparks.current = sparks.current.filter(s => time < s.startTime + s.duration);
 
-        // 2. Spawn new connected subgraphs (Massive Neural-Density Increase)
+        // 2. Spawn new connected subgraphs (kNN-style local clustering)
         const targetDensity = 150;
         if (sparks.current.length < targetDensity) {
             // Spawn up to 5 subgraphs per frame for "constant" social network activity feel
@@ -34,10 +34,10 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
                 if (sparks.current.length >= targetDensity) break;
 
                 const startNode = Math.floor(Math.random() * count);
-                const targetSize = 4 + Math.floor(Math.random() * 7); // 4 to 10 nodes
+                const targetSize = 10 + Math.floor(Math.random() * 6); // 10 to 15 nodes
                 const connectedNodes: number[] = [startNode];
                 const edges: [number, number][] = [];
-                const maxRadius = 1.4; // Slightly tighter for "nerve-like" feel
+                const maxRadius = 1.2; // Very tight for proximity focus (kNN feel)
 
                 let searchIdx = 0;
                 while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
@@ -46,7 +46,7 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
                     const sourceY = livePositions[source * 3 + 1];
                     const sourceZ = livePositions[source * 3 + 2];
 
-                    for (let attempt = 0; attempt < 8 && connectedNodes.length < targetSize; attempt++) {
+                    for (let attempt = 0; attempt < 15 && connectedNodes.length < targetSize; attempt++) {
                         const target = Math.floor(Math.random() * count);
                         if (connectedNodes.includes(target)) continue;
 
@@ -62,19 +62,19 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
                     }
                 }
 
-                if (connectedNodes.length >= 3) {
+                if (connectedNodes.length >= 8) {
                     sparks.current.push({
                         edges,
                         nodeIndices: connectedNodes,
                         startTime: time,
-                        duration: 0.2 + Math.random() * 0.6, // Rapid synaptic firings
+                        duration: 0.25 + Math.random() * 0.7, // Rapid pulse
                     });
                 }
             }
         }
 
         // 3. Update Edge Geometry
-        const linePositions = new Float32Array(sparks.current.length * 20 * 3); // Sufficient for avg 10 edges per spark
+        const linePositions = new Float32Array(sparks.current.length * 40 * 3); // Sufficient for 15-node subgraphs
         let lIdx = 0;
         sparks.current.forEach(spark => {
             spark.edges.forEach(([a, b]) => {
