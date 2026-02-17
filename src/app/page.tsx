@@ -82,7 +82,7 @@ export default function Home() {
             {[
               { icon: <GitHubIcon />, href: "https://github.com/EliHei2" },
               { icon: <EmailIcon />, href: "mailto:elyas.heidari@dkfz-heidelberg.de" },
-              { icon: <SchoolIcon />, href: "https://scholar.google.com/citations?user=oP-WrgkAAAAJ&hl=en" }
+              { icon: <SchoolIcon />, href: "https://scholar.google.com/citations?user=1tjJjf8AAAAJ" }
             ].map((social, i) => (
               <IconButton
                 key={i}

@@ -149,161 +149,167 @@ export default function About() {
 
             {/* Experience Timeline */}
             <SectionHeader icon={<TerminalIcon fontSize="large" />} title="Research Experience" />
-            {/* Experience Timeline */}
-            <SectionHeader icon={<TerminalIcon fontSize="large" />} title="Research Experience" />
             <Box sx={{
                 position: 'relative',
                 overflowX: 'auto',
-                pb: 8,
+                pb: 12,
                 mb: 8,
                 '::-webkit-scrollbar': { height: '2px' },
                 '::-webkit-scrollbar-track': { background: 'transparent' },
                 '::-webkit-scrollbar-thumb': { background: '#748454' }
             }}>
                 <Box sx={{
-                    display: 'flex',
-                    minWidth: 'max-content',
-                    gap: 0,
-                    pt: 6,
+                    position: 'relative',
+                    minWidth: '1200px', // Ensure enough room for proportional spacing
+                    height: '450px', // Room for expanded hover details
+                    pt: 8,
                     px: 4
                 }}>
-                    {experience.map((exp, i) => (
-                        <Box key={i} sx={{
-                            position: 'relative',
-                            width: 350, // Increased width for better spacing
-                            display: 'flex',
-                            flexDirection: 'column',
-                            alignItems: 'center',
-                            group: 'true',
-                            transition: '0.3s',
-                            '&:hover': {
-                                flexGrow: 0,
-                            }
-                        }}>
-                            {/* Connector Line (Data Flow style) */}
-                            <Box sx={{
-                                position: 'absolute',
-                                top: 20,
-                                left: 0,
-                                right: 0,
-                                height: 1,
-                                borderTop: '1px dashed rgba(116, 132, 84, 0.5)', // Dashed line
-                                zIndex: 0,
-                                display: i === experience.length - 1 ? 'none' : 'block'
-                            }} />
-                            <Box sx={{
-                                position: 'absolute',
-                                top: 20,
-                                left: '50%',
-                                width: '100%',
-                                height: 1,
-                                borderTop: '1px dashed rgba(116, 132, 84, 0.5)',
-                                display: i === experience.length - 1 ? 'none' : 'block'
-                            }} />
-                            <Box sx={{
-                                position: 'absolute',
-                                top: 20,
-                                right: '50%',
-                                width: '100%',
-                                height: 1,
-                                borderTop: '1px dashed rgba(116, 132, 84, 0.5)',
-                                display: i === 0 ? 'none' : 'block'
-                            }} />
+                    {/* The Continuous Axis Line */}
+                    <Box sx={{
+                        position: 'absolute',
+                        top: '40px',
+                        left: '40px',
+                        right: '40px',
+                        height: '1px',
+                        borderTop: '1px dashed rgba(116, 132, 84, 0.3)',
+                        zIndex: 0
+                    }} />
 
-                            {/* Data Point Node */}
-                            <Box sx={{
-                                width: 12,
-                                height: 12,
-                                borderRadius: '50%',
-                                bgcolor: '#080808',
-                                border: '2px solid #748454',
-                                zIndex: 2,
-                                mb: 4,
-                                position: 'relative',
-                                transition: '0.3s',
-                                '&::after': { // Inner dot
-                                    content: '""',
+                    {experience.map((exp, i) => {
+                        // Temporal calculation (2017 to 2026 span)
+                        const startYears = {
+                            'PhD Researcher': 2022.6,
+                            'Research Trainee': 2021.3, // Cambridge one
+                            'Research Assistant': 2019.7, // Zurich one
+                        };
+
+                        // Mapping names to more specific IDs for unique temporal placement
+                        let year = 2017;
+                        if (exp.role === 'PhD Researcher') year = 2022.6;
+                        else if (exp.role === 'Research Trainee' && exp.org.includes('UK')) year = 2021.3;
+                        else if (exp.role === 'Research Assistant' && exp.org.includes('Zurich')) year = 2019.7;
+                        else if (exp.role === 'Research Trainee' && exp.org.includes('EMBL Heidelberg')) year = 2018.5;
+                        else if (exp.role === 'Research Assistant' && exp.org.includes('Sharif')) year = 2017.0;
+
+                        const leftPos = ((year - 2017) / 9) * 100;
+
+                        return (
+                            <Box
+                                key={i}
+                                className="group"
+                                sx={{
                                     position: 'absolute',
-                                    top: '50%',
-                                    left: '50%',
-                                    transform: 'translate(-50%, -50%)',
-                                    width: 4,
-                                    height: 4,
-                                    bgcolor: '#748454',
-                                    borderRadius: '50%',
-                                    opacity: 0,
-                                    transition: '0.3s'
-                                },
-                                '.group:hover &': {
-                                    borderColor: '#E0F58F',
-                                    boxShadow: '0 0 10px rgba(224, 245, 143, 0.3)',
-                                    '&::after': { opacity: 1, bgcolor: '#E0F58F' }
-                                }
-                            }} />
-
-                            {/* Info Block */}
-                            <Box sx={{
-                                textAlign: 'left', // Align text left for readibility
-                                width: '90%',
-                                p: 3,
-                                borderLeft: '1px solid rgba(116, 132, 84, 0.2)', // Data-line style
-                                transition: '0.3s',
-                                display: 'flex',
-                                flexDirection: 'column',
-                                alignItems: 'flex-start',
-                                '&:hover': {
-                                    borderLeft: '1px solid #E0F58F',
-                                    bgcolor: 'rgba(116, 132, 84, 0.05)'
-                                }
-                            }}>
-                                <Typography variant="caption" sx={{
-                                    color: 'rgba(244, 244, 228, 0.5)',
-                                    fontFamily: 'Space Grotesk, monospace',
-                                    mb: 1,
-                                    textTransform: 'uppercase',
-                                    letterSpacing: '0.1em',
-                                    fontSize: '0.7rem'
-                                }}>
-                                    [{exp.date}]
-                                </Typography>
-
-                                <Typography variant="h6" sx={{
-                                    color: '#F4F4E4',
-                                    fontSize: '1.1rem',
-                                    fontWeight: 700,
-                                    lineHeight: 1.2,
-                                    mb: 0.5,
-                                    fontFamily: 'Space Grotesk, sans-serif'
-                                }}>
-                                    {exp.org}
-                                </Typography>
-
-                                <Typography variant="body2" sx={{ color: '#748454', mb: 2, fontSize: '0.9rem', fontWeight: 500 }}>
-                                    {exp.role.toUpperCase()}
-                                </Typography>
-
-                                {/* Interactive Details */}
+                                    left: `${leftPos}%`,
+                                    top: 0,
+                                    width: '320px',
+                                    transform: 'translateX(-15px)', // Center dot adjustment
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    alignItems: 'flex-start',
+                                    transition: '0.3s',
+                                    zIndex: 2,
+                                    '&:hover': { zIndex: 10 }
+                                }}
+                            >
+                                {/* Data Point Node */}
                                 <Box sx={{
-                                    maxHeight: 0,
-                                    opacity: 0,
-                                    overflow: 'hidden',
-                                    transition: 'max-height 0.4s ease, opacity 0.4s ease',
-                                    width: '100%',
+                                    width: 10,
+                                    height: 10,
+                                    borderRadius: '50%',
+                                    bgcolor: '#080808',
+                                    border: '1px solid #748454',
+                                    mb: 4,
+                                    mt: '35px', // Sit on the dashed line
+                                    position: 'relative',
+                                    transition: '0.3s',
+                                    '&::after': {
+                                        content: '""',
+                                        position: 'absolute',
+                                        top: '50%',
+                                        left: '50%',
+                                        transform: 'translate(-50%, -50%)',
+                                        width: 0,
+                                        height: 0,
+                                        bgcolor: '#E0F58F',
+                                        borderRadius: '50%',
+                                        transition: '0.2s cubic-bezier(0.4, 0, 0.2, 1)'
+                                    },
                                     '.group:hover &': {
-                                        maxHeight: '400px', // Approximate max height
-                                        opacity: 1,
+                                        borderColor: '#E0F58F',
+                                        boxShadow: '0 0 15px rgba(224, 245, 143, 0.4)',
+                                        '&::after': { width: 4, height: 4 }
+                                    }
+                                }} />
+
+                                {/* Info Block */}
+                                <Box sx={{
+                                    textAlign: 'left',
+                                    width: '100%',
+                                    pl: 2,
+                                    borderLeft: '1px solid rgba(116, 132, 84, 0.1)',
+                                    transition: '0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                    '&:hover': {
+                                        borderLeft: '1px solid #E0F58F',
+                                        bgcolor: 'rgba(116, 132, 84, 0.03)'
                                     }
                                 }}>
-                                    <Typography variant="body2" sx={{ color: 'rgba(244, 244, 228, 0.4)', fontSize: '0.75rem', mb: 1, fontFamily: 'monospace' }}>
-                                        Location: {exp.location}
+                                    <Typography variant="caption" sx={{
+                                        color: 'rgba(244, 244, 228, 0.4)',
+                                        fontFamily: 'Space Grotesk, monospace',
+                                        mb: 0.5,
+                                        display: 'block',
+                                        fontSize: '0.65rem',
+                                        letterSpacing: '0.1em'
+                                    }}>
+                                        // {exp.date}
                                     </Typography>
-                                    <ul style={{ paddingLeft: '1rem', margin: 0, color: 'rgba(244, 244, 228, 0.8)', fontSize: '0.85rem', lineHeight: 1.6 }}>
-                                        {exp.details.map((d, j) => <li key={j} style={{ marginBottom: '0.5rem' }}>{d}</li>)}
-                                    </ul>
+
+                                    <Typography variant="h6" sx={{
+                                        color: '#F4F4E4',
+                                        fontSize: '0.95rem',
+                                        fontWeight: 600,
+                                        lineHeight: 1.2,
+                                        mb: 0.5,
+                                        fontFamily: 'Space Grotesk, sans-serif'
+                                    }}>
+                                        {exp.org}
+                                    </Typography>
+
+                                    <Typography variant="body2" sx={{
+                                        color: '#748454',
+                                        fontSize: '0.8rem',
+                                        fontWeight: 500,
+                                        mb: 1
+                                    }}>
+                                        {exp.role.toUpperCase()}
+                                    </Typography>
+
+                                    {/* Expandable Details */}
+                                    <Box sx={{
+                                        maxHeight: 0,
+                                        opacity: 0,
+                                        visibility: 'hidden',
+                                        overflow: 'hidden',
+                                        transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+                                        '.group:hover &': {
+                                            maxHeight: '350px',
+                                            opacity: 1,
+                                            visibility: 'visible',
+                                            mt: 2
+                                        }
+                                    }}>
+                                        <Typography variant="body2" sx={{ color: 'rgba(244, 244, 228, 0.3)', fontSize: '0.7rem', mb: 1.5, fontFamily: 'monospace' }}>
+                                            DATASET_SHARD: {exp.location.replace(', ', '_').toUpperCase()}
+                                        </Typography>
+                                        <ul style={{ paddingLeft: '1rem', margin: 0, color: 'rgba(244, 244, 228, 0.7)', fontSize: '0.8rem', lineHeight: 1.5 }}>
+                                            {exp.details.map((d, j) => <li key={j} style={{ marginBottom: '0.4rem' }}>{d}</li>)}
+                                        </ul>
+                                    </Box>
                                 </Box>
                             </Box>
-                        </Box>
-                    ))}
+                        );
+                    })}
                 </Box>
             </Box>
 
