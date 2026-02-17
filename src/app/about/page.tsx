@@ -160,15 +160,15 @@ export default function About() {
             }}>
                 <Box sx={{
                     position: 'relative',
-                    minWidth: '1200px', // Ensure enough room for proportional spacing
-                    height: '450px', // Room for expanded hover details
+                    minWidth: '1800px', // Increased width for better temporal resolution
+                    height: '520px', // Room for staggered items
                     pt: 8,
                     px: 4
                 }}>
                     {/* The Continuous Axis Line */}
                     <Box sx={{
                         position: 'absolute',
-                        top: '40px',
+                        top: '220px',
                         left: '40px',
                         right: '40px',
                         height: '1px',
@@ -193,6 +193,7 @@ export default function About() {
                         else if (exp.role === 'Research Assistant' && exp.org.includes('Sharif')) year = 2017.0;
 
                         const leftPos = ((year - 2017) / 9) * 100;
+                        const isEven = i % 2 === 0;
 
                         return (
                             <Box
@@ -201,28 +202,29 @@ export default function About() {
                                 sx={{
                                     position: 'absolute',
                                     left: `${leftPos}%`,
-                                    top: 0,
-                                    width: '320px',
-                                    transform: 'translateX(-15px)', // Center dot adjustment
+                                    top: isEven ? 'auto' : '220px', // Staggered vertical placement
+                                    bottom: isEven ? '300px' : 'auto', // Adjusted to sit dot on line
+                                    width: '350px',
+                                    transform: 'translateX(-5px)', // Center dot alignment
                                     display: 'flex',
-                                    flexDirection: 'column',
+                                    flexDirection: isEven ? 'column-reverse' : 'column',
                                     alignItems: 'flex-start',
                                     transition: '0.3s',
                                     zIndex: 2,
                                     '&:hover': { zIndex: 10 }
                                 }}
                             >
-                                {/* Data Point Node */}
                                 <Box sx={{
                                     width: 10,
                                     height: 10,
                                     borderRadius: '50%',
                                     bgcolor: '#080808',
                                     border: '1px solid #748454',
-                                    mb: 4,
-                                    mt: '35px', // Sit on the dashed line
+                                    mb: isEven ? 0 : 4,
+                                    mt: isEven ? 4 : 0,
                                     position: 'relative',
                                     transition: '0.3s',
+                                    transform: isEven ? 'translateY(5px)' : 'translateY(-5px)', // Fine tune to sit on dash
                                     '&::after': {
                                         content: '""',
                                         position: 'absolute',
@@ -293,10 +295,11 @@ export default function About() {
                                         overflow: 'hidden',
                                         transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                                         '.group:hover &': {
-                                            maxHeight: '350px',
+                                            maxHeight: '400px',
                                             opacity: 1,
                                             visibility: 'visible',
-                                            mt: 2
+                                            mt: 2,
+                                            mb: isEven ? 2 : 0
                                         }
                                     }}>
                                         <Typography variant="body2" sx={{ color: 'rgba(244, 244, 228, 0.3)', fontSize: '0.7rem', mb: 1.5, fontFamily: 'monospace' }}>
