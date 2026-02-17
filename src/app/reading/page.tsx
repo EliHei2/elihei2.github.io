@@ -10,42 +10,73 @@ import readingData from '@/data/reading.json';
 export default function Reading() {
     return (
         <Container maxWidth="md" sx={{ mb: 12 }}>
-            <Typography variant="h2" gutterBottom>Reading List</Typography>
-            <Typography variant="body1" paragraph sx={{ mb: 6, color: 'text.secondary' }}>
-                Books and papers that have shaped my thinking.
-            </Typography>
+            <Box sx={{ mb: 8, mt: 4 }}>
+                <Typography variant="h1" sx={{ mb: 2 }}>Reading List</Typography>
+                <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                    A curated collection of literature, manuscripts, and philosophical foundations.
+                </Typography>
+            </Box>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {readingData.map((category: any, i: number) => (
                     <Box key={i}>
-                        <Typography variant="h4" gutterBottom sx={{ borderBottom: 1, borderColor: 'divider', pb: 1, mb: 3 }}>
+                        <Typography variant="h6" sx={{
+                            fontFamily: 'Space Grotesk, sans-serif',
+                            textTransform: 'uppercase',
+                            letterSpacing: '0.2em',
+                            color: '#748454',
+                            mb: 4,
+                            borderBottom: '1px solid rgba(116, 132, 84, 0.2)',
+                            pb: 1,
+                            display: 'inline-block'
+                        }}>
                             {category.category}
                         </Typography>
-                        <Box component="ul" sx={{ pl: 0, listStyle: 'none', display: 'grid', gap: 2 }}>
+
+                        <Box component="ul" sx={{ pl: 0, listStyle: 'none', display: 'grid', gap: 4 }}>
                             {category.items.map((item: any, j: number) => (
-                                <Box component="li" key={j} sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, gap: { xs: 0, sm: 2 }, alignItems: { sm: 'baseline' } }}>
-                                    <Typography variant="body1" sx={{ minWidth: '350px' }}>
+                                <Box
+                                    component="li"
+                                    key={j}
+                                    sx={{
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        gap: 0.5,
+                                        pb: 2,
+                                        borderBottom: '1px solid rgba(255,255,255,0.03)',
+                                        '&:hover': {
+                                            '& a': { color: '#E0F58F' },
+                                            borderColor: 'rgba(116, 132, 84, 0.2)'
+                                        },
+                                        transition: '0.2s'
+                                    }}
+                                >
+                                    <Typography variant="body1" sx={{ fontSize: '1.2rem', fontFamily: 'Cormorant Garamond, serif' }}>
                                         {item.url ? (
                                             <Link
                                                 href={item.url}
                                                 target="_blank"
                                                 style={{
                                                     textDecoration: 'none',
-                                                    color: '#E0F58F',
-                                                    fontWeight: 600,
-                                                    borderBottom: '1px solid transparent'
+                                                    color: '#F4F4E4',
+                                                    fontWeight: 500,
+                                                    transition: '0.2s'
                                                 }}
-                                                onMouseOver={(e) => (e.currentTarget.style.borderBottom = '1px solid #E0F58F')}
-                                                onMouseOut={(e) => (e.currentTarget.style.borderBottom = '1px solid transparent')}
                                             >
                                                 {item.title}
                                             </Link>
                                         ) : (
-                                            <span style={{ color: 'text.primary', fontWeight: 600 }}>{item.title}</span>
+                                            <span style={{ color: '#F4F4E4', fontWeight: 500 }}>{item.title}</span>
                                         )}
                                     </Typography>
-                                    <Typography variant="body2" sx={{ color: 'text.secondary', fontStyle: 'italic', fontFamily: 'monospace' }}>
-                                        {item.author} {item.year && `(${item.year})`}
+
+                                    <Typography variant="caption" sx={{
+                                        color: 'rgba(244, 244, 228, 0.4)',
+                                        fontFamily: 'monospace',
+                                        textTransform: 'uppercase',
+                                        letterSpacing: '0.05em'
+                                    }}>
+                                        {item.author} {item.year && ` / ${item.year}`}
                                     </Typography>
                                 </Box>
                             ))}

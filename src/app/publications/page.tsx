@@ -47,43 +47,70 @@ const publications = [
 export default function Publications() {
     return (
         <Container maxWidth="md" sx={{ mb: 12 }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 2, mb: 4, mt: 4 }}>
-                <ArticleIcon sx={{ color: 'primary.main', fontSize: '2.5rem' }} />
-                <Typography variant="h2" sx={{ mb: 0 }}>Publications</Typography>
+            <Box sx={{ mb: 8, mt: 4 }}>
+                <Typography variant="h1" sx={{ mb: 2 }}>Publications</Typography>
+                <Typography variant="body1" sx={{ color: 'text.secondary' }}>
+                    Peer-reviewed articles, preprints, and collaborative research frameworks.
+                </Typography>
             </Box>
 
-            <Typography variant="body1" sx={{ mb: 8, color: '#666' }}>
-                Full list of peer-reviewed articles and preprints.
-            </Typography>
-
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0 }}>
                 {publications.map((pub, i) => (
                     <Box key={i} sx={{
-                        p: 4,
-                        borderLeft: '4px solid #333',
+                        py: 6,
+                        borderTop: '1px solid rgba(116, 132, 84, 0.2)',
+                        transition: '0.3s',
                         '&:hover': {
-                            borderLeftColor: 'primary.main',
-                            bgcolor: 'rgba(255, 255, 255, 0.03)'
-                        },
-                        transition: '0.2s'
+                            bgcolor: 'rgba(116, 132, 84, 0.03)'
+                        }
                     }}>
-                        <Typography variant="h5" sx={{ fontWeight: 700, mb: 1.5, color: 'text.primary', lineHeight: 1.4 }}>
+                        <Typography variant="h5" sx={{
+                            fontWeight: 700,
+                            mb: 2,
+                            color: '#F4F4E4',
+                            lineHeight: 1.3,
+                            fontFamily: 'Space Grotesk, sans-serif'
+                        }}>
                             {pub.title}
                         </Typography>
-                        <Typography variant="body1" sx={{ color: 'text.secondary', fontStyle: 'italic', mb: 2 }}>
+
+                        <Typography variant="body1" sx={{
+                            color: 'rgba(244, 244, 228, 0.7)',
+                            fontStyle: 'italic',
+                            mb: 3,
+                            fontSize: '1.1rem',
+                            fontFamily: 'Cormorant Garamond, serif'
+                        }}>
                             {pub.citation}
                         </Typography>
-                        <Typography variant="body2" sx={{
-                            color: 'text.secondary',
-                            fontSize: '1rem',
-                            bgcolor: 'rgba(255, 255, 255, 0.05)',
-                            p: 2,
-                            borderRadius: 0
+
+                        <Box sx={{
+                            borderLeft: '1px solid #748454',
+                            pl: 3,
+                            py: 1,
+                            mt: 2
                         }}>
-                            <strong style={{ color: '#E0F58F' }}>Contribution:</strong> {pub.role}
-                        </Typography>
+                            <Typography variant="caption" sx={{
+                                color: '#748454',
+                                fontFamily: 'monospace',
+                                display: 'block',
+                                mb: 1,
+                                letterSpacing: '0.1em'
+                            }}>
+                                [CONTRIBUTION_LOG]
+                            </Typography>
+                            <Typography variant="body2" sx={{
+                                color: 'rgba(244, 244, 228, 0.5)',
+                                fontSize: '0.9rem',
+                                lineHeight: 1.6
+                            }}>
+                                {pub.role}
+                            </Typography>
+                        </Box>
                     </Box>
                 ))}
+                {/* Final Border */}
+                <Box sx={{ borderTop: '1px solid rgba(116, 132, 84, 0.2)' }} />
             </Box>
         </Container>
     );
