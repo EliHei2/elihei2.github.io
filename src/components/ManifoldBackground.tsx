@@ -4,59 +4,75 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 
+interface Spark {
+    edges: [number, number][];
+    startTime: number;
+    duration: number;
+}
+
 function LocalGraphs({ pointsArr }: { pointsArr: Float32Array }) {
     const lineRef = useRef<THREE.LineSegments>(null);
-    const sparks = useRef<any[]>([]);
+    const sparks = useRef<Spark[]>([]);
+    const count = 3000;
 
-    // We'll manage transient graph connections
     useFrame((state) => {
         if (!lineRef.current) return;
         const time = state.clock.getElapsedTime();
-        const count = 3000;
 
-        // Cleanup old sparks and spawn new ones
+        // 1. Cleanup old sparks
         sparks.current = sparks.current.filter(s => time < s.startTime + s.duration);
 
-        if (sparks.current.length < 5 && Math.random() < 0.05) {
-            // Spawn a new local graph
-            const centerIdx = Math.floor(Math.random() * count);
-            const duration = 1 + Math.random() * 3;
-            // Find nearby points
-            const cluster: number[] = [centerIdx];
-            const maxDist = 3;
-            for (let i = 0; i < 20; i++) {
-                const target = Math.floor(Math.random() * count);
-                const dx = pointsArr[centerIdx * 3] - pointsArr[target * 3];
-                const dy = pointsArr[centerIdx * 3 + 1] - pointsArr[target * 3 + 1];
-                const dz = pointsArr[centerIdx * 3 + 2] - pointsArr[target * 3 + 2];
-                if (Math.sqrt(dx * dx + dy * dy + dz * dz) < maxDist) {
-                    cluster.push(target);
+        // 2. Spawn new connected subgraph
+        if (sparks.current.length < 4 && Math.random() < 0.03) {
+            const startNode = Math.floor(Math.random() * count);
+            const targetSize = 4 + Math.floor(Math.random() * 7); // 4 to 10 nodes
+            const connectedNodes: number[] = [startNode];
+            const edges: [number, number][] = [];
+            const maxRadius = 2.5;
+
+            // Simple BFS-style crawl to find neighbors
+            let searchIdx = 0;
+            while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
+                const source = connectedNodes[searchIdx++];
+                const sourceX = pointsArr[source * 3];
+                const sourceY = pointsArr[source * 3 + 1];
+                const sourceZ = pointsArr[source * 3 + 2];
+
+                // Find a few random close neighbors
+                for (let attempt = 0; attempt < 15 && connectedNodes.length < targetSize; attempt++) {
+                    const target = Math.floor(Math.random() * count);
+                    if (connectedNodes.includes(target)) continue;
+
+                    const dx = sourceX - pointsArr[target * 3];
+                    const dy = sourceY - pointsArr[target * 3 + 1];
+                    const dz = sourceZ - pointsArr[target * 3 + 2];
+                    const distSq = dx * dx + dy * dy + dz * dz;
+
+                    if (distSq < maxRadius * maxRadius) {
+                        connectedNodes.push(target);
+                        edges.push([source, target]);
+                    }
                 }
             }
 
-            if (cluster.length > 2) {
+            if (connectedNodes.length >= 4) {
                 sparks.current.push({
-                    indices: cluster,
+                    edges,
                     startTime: time,
-                    duration: duration,
-                    opacity: 0
+                    duration: 2 + Math.random() * 4,
                 });
             }
         }
 
-        // Update geometry
-        const linePositions = new Float32Array(sparks.current.length * 40 * 3); // Approx space
+        // 3. Update Geometry
+        const linePositions = new Float32Array(sparks.current.length * 20 * 3); // Over-allocate
         let idx = 0;
         sparks.current.forEach(spark => {
             const age = time - spark.startTime;
             const life = age / spark.duration;
-            const opacity = Math.sin(life * Math.PI) * 0.4; // Fade in and out
+            const opacity = Math.sin(life * Math.PI); // Not used directly on attribute, but logic helper
 
-            // Connect points in cluster
-            for (let i = 0; i < spark.indices.length - 1; i++) {
-                const a = spark.indices[i];
-                const b = spark.indices[i + 1];
-
+            spark.edges.forEach(([a, b]) => {
                 linePositions[idx++] = pointsArr[a * 3];
                 linePositions[idx++] = pointsArr[a * 3 + 1];
                 linePositions[idx++] = pointsArr[a * 3 + 2];
@@ -64,19 +80,17 @@ function LocalGraphs({ pointsArr }: { pointsArr: Float32Array }) {
                 linePositions[idx++] = pointsArr[b * 3];
                 linePositions[idx++] = pointsArr[b * 3 + 1];
                 linePositions[idx++] = pointsArr[b * 3 + 2];
-            }
+            });
         });
 
         lineRef.current.geometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
-        if (lineRef.current.material instanceof THREE.LineBasicMaterial) {
-            lineRef.current.material.opacity = 0.3;
-        }
+        lineRef.current.geometry.attributes.position.needsUpdate = true;
     });
 
     return (
         <lineSegments ref={lineRef}>
             <bufferGeometry />
-            <lineBasicMaterial color="#E0F58F" transparent opacity={0.3} />
+            <lineBasicMaterial color="#E0F58F" transparent opacity={0.25} linewidth={1} />
         </lineSegments>
     );
 }

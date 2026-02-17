@@ -161,14 +161,14 @@ export default function About() {
                 <Box sx={{
                     position: 'relative',
                     minWidth: '1800px', // Increased width for better temporal resolution
-                    height: '520px', // Room for staggered items
+                    height: '600px', // Increased height to prevent vertical overflow
                     pt: 8,
                     px: 4
                 }}>
-                    {/* The Continuous Axis Line */}
+                    {/* The Continuous Axis Line (Centered vertically) */}
                     <Box sx={{
                         position: 'absolute',
-                        top: '220px',
+                        top: '300px',
                         left: '40px',
                         right: '40px',
                         height: '1px',
@@ -202,7 +202,7 @@ export default function About() {
                                 sx={{
                                     position: 'absolute',
                                     left: `${leftPos}%`,
-                                    top: isEven ? 'auto' : '220px', // Staggered vertical placement
+                                    top: isEven ? 'auto' : '300px', // Staggered vertical placement
                                     bottom: isEven ? '300px' : 'auto', // Adjusted to sit dot on line
                                     width: '350px',
                                     transform: 'translateX(-5px)', // Center dot alignment
