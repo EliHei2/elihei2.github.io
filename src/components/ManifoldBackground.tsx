@@ -6,32 +6,33 @@ import * as THREE from 'three';
 
 interface Spark {
     edges: [number, number][];
+    nodeIndices: number[];
     startTime: number;
     duration: number;
 }
 
 function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | null> }) {
     const lineRef = useRef<THREE.LineSegments>(null);
+    const sparkPointsRef = useRef<THREE.Points>(null);
     const sparks = useRef<Spark[]>([]);
     const count = 3000;
 
     useFrame((state) => {
-        if (!lineRef.current || !pointsRef.current) return;
+        if (!lineRef.current || !sparkPointsRef.current || !pointsRef.current) return;
         const time = state.clock.getElapsedTime();
         const livePositions = pointsRef.current.geometry.attributes.position.array as Float32Array;
 
         // 1. Cleanup old sparks
         sparks.current = sparks.current.filter(s => time < s.startTime + s.duration);
 
-        // 2. Spawn new connected subgraph (using live positions for proximity)
-        if (sparks.current.length < 4 && Math.random() < 0.03) {
+        // 2. Spawn new connected subgraphs (Target ~10 parallel firings)
+        if (sparks.current.length < 10 && Math.random() < 0.15) {
             const startNode = Math.floor(Math.random() * count);
             const targetSize = 4 + Math.floor(Math.random() * 7); // 4 to 10 nodes
             const connectedNodes: number[] = [startNode];
             const edges: [number, number][] = [];
-            const maxRadius = 2.5;
+            const maxRadius = 1.5; // Tighter locality
 
-            // Simple BFS-style crawl to find neighbors
             let searchIdx = 0;
             while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
                 const source = connectedNodes[searchIdx++];
@@ -39,8 +40,7 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
                 const sourceY = livePositions[source * 3 + 1];
                 const sourceZ = livePositions[source * 3 + 2];
 
-                // Find a few random close neighbors
-                for (let attempt = 0; attempt < 15 && connectedNodes.length < targetSize; attempt++) {
+                for (let attempt = 0; attempt < 10 && connectedNodes.length < targetSize; attempt++) {
                     const target = Math.floor(Math.random() * count);
                     if (connectedNodes.includes(target)) continue;
 
@@ -59,36 +59,54 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
             if (connectedNodes.length >= 4) {
                 sparks.current.push({
                     edges,
+                    nodeIndices: connectedNodes,
                     startTime: time,
-                    duration: 2 + Math.random() * 4,
+                    duration: 0.4 + Math.random() * 0.8, // Faster presence
                 });
             }
         }
 
-        // 3. Update Geometry with live positions
-        const linePositions = new Float32Array(sparks.current.length * 20 * 3); // Over-allocate
-        let idx = 0;
+        // 3. Update Edge Geometry
+        const linePositions = new Float32Array(sparks.current.length * 20 * 3);
+        let lIdx = 0;
         sparks.current.forEach(spark => {
             spark.edges.forEach(([a, b]) => {
-                linePositions[idx++] = livePositions[a * 3];
-                linePositions[idx++] = livePositions[a * 3 + 1];
-                linePositions[idx++] = livePositions[a * 3 + 2];
-
-                linePositions[idx++] = livePositions[b * 3];
-                linePositions[idx++] = livePositions[b * 3 + 1];
-                linePositions[idx++] = livePositions[b * 3 + 2];
+                linePositions[lIdx++] = livePositions[a * 3];
+                linePositions[lIdx++] = livePositions[a * 3 + 1];
+                linePositions[lIdx++] = livePositions[a * 3 + 2];
+                linePositions[lIdx++] = livePositions[b * 3];
+                linePositions[lIdx++] = livePositions[b * 3 + 1];
+                linePositions[lIdx++] = livePositions[b * 3 + 2];
             });
         });
-
         lineRef.current.geometry.setAttribute('position', new THREE.BufferAttribute(linePositions, 3));
         lineRef.current.geometry.attributes.position.needsUpdate = true;
+
+        // 4. Update Node Highlighting Geometry
+        const nodePositions = new Float32Array(sparks.current.length * 10 * 3);
+        let nIdx = 0;
+        sparks.current.forEach(spark => {
+            spark.nodeIndices.forEach(idx => {
+                nodePositions[nIdx++] = livePositions[idx * 3];
+                nodePositions[nIdx++] = livePositions[idx * 3 + 1];
+                nodePositions[nIdx++] = livePositions[idx * 3 + 2];
+            });
+        });
+        sparkPointsRef.current.geometry.setAttribute('position', new THREE.BufferAttribute(nodePositions, 3));
+        sparkPointsRef.current.geometry.attributes.position.needsUpdate = true;
     });
 
     return (
-        <lineSegments ref={lineRef}>
-            <bufferGeometry />
-            <lineBasicMaterial color="#E0F58F" transparent opacity={0.25} linewidth={1} />
-        </lineSegments>
+        <group>
+            <lineSegments ref={lineRef}>
+                <bufferGeometry />
+                <lineBasicMaterial color="#E0F58F" transparent opacity={0.6} linewidth={2} />
+            </lineSegments>
+            <points ref={sparkPointsRef}>
+                <bufferGeometry />
+                <pointsMaterial size={0.12} color="#E0F58F" transparent opacity={0.8} sizeAttenuation />
+            </points>
+        </group>
     );
 }
 
