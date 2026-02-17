@@ -28,8 +28,8 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         // 2. Spawn new connected subgraphs (kNN-style local clustering)
         const targetDensity = 150;
         if (sparks.current.length < targetDensity) {
-            // Spawn up to 5 subgraphs per frame for "constant" social network activity feel
-            const burstCount = Math.floor(Math.random() * 5) + 1;
+            // Spawn up to 8 subgraphs per frame for constant activity
+            const burstCount = Math.floor(Math.random() * 8) + 1;
             for (let b = 0; b < burstCount; b++) {
                 if (sparks.current.length >= targetDensity) break;
 
@@ -37,7 +37,7 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
                 const targetSize = 10 + Math.floor(Math.random() * 6); // 10 to 15 nodes
                 const connectedNodes: number[] = [startNode];
                 const edges: [number, number][] = [];
-                const maxRadius = 1.2; // Very tight for proximity focus (kNN feel)
+                const maxRadius = 1.8; // More forgiving for connectivity survival
 
                 let searchIdx = 0;
                 while (connectedNodes.length < targetSize && searchIdx < connectedNodes.length) {
@@ -46,7 +46,7 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
                     const sourceY = livePositions[source * 3 + 1];
                     const sourceZ = livePositions[source * 3 + 2];
 
-                    for (let attempt = 0; attempt < 15 && connectedNodes.length < targetSize; attempt++) {
+                    for (let attempt = 0; attempt < 50 && connectedNodes.length < targetSize; attempt++) {
                         const target = Math.floor(Math.random() * count);
                         if (connectedNodes.includes(target)) continue;
 
@@ -62,12 +62,12 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
                     }
                 }
 
-                if (connectedNodes.length >= 8) {
+                if (connectedNodes.length >= 6) { // Ensure substantial but reliable firings
                     sparks.current.push({
                         edges,
                         nodeIndices: connectedNodes,
                         startTime: time,
-                        duration: 0.25 + Math.random() * 0.7, // Rapid pulse
+                        duration: 0.3 + Math.random() * 0.8,
                     });
                 }
             }
