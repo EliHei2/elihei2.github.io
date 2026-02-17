@@ -69,7 +69,7 @@ export default function Home() {
               { label: 'LOCATION', value: 'HEIDELBERG, DE' },
               { label: 'INSTITUTE', value: 'DKFZ / EMBL' },
               { label: 'FOCUS', value: 'AI FOR SCIENCE' },
-              { label: 'SPECIALIZATION', value: 'GEOMETRIC DL' }
+              { label: 'SPECIALIZATION', value: 'SCALABLE MODELS FOR BIO' }
             ].map((item, i) => (
               <Box key={i} sx={{ bgcolor: 'rgba(8, 8, 8, 0.8)', p: 3, backdropFilter: 'blur(4px)' }}>
                 <Typography variant="caption" sx={{ color: '#748454', display: 'block', mb: 1 }}>{item.label}</Typography>
@@ -82,7 +82,7 @@ export default function Home() {
             {[
               { icon: <GitHubIcon />, href: "https://github.com/EliHei2" },
               { icon: <EmailIcon />, href: "mailto:elyas.heidari@dkfz-heidelberg.de" },
-              { icon: <SchoolIcon />, href: "https://scholar.google.com/" }
+              { icon: <SchoolIcon />, href: "https://scholar.google.com/citations?user=oP-WrgkAAAAJ&hl=en" }
             ].map((social, i) => (
               <IconButton
                 key={i}
@@ -107,9 +107,9 @@ export default function Home() {
         <Typography variant="h2" sx={{ mb: 6, borderBottom: '1px solid rgba(116, 132, 84, 0.3)', pb: 2 }}>SCIENTIFIC DIMENSIONS</Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' }, gap: 4 }}>
           {[
-            { title: 'SPATIAL OMICS', desc: 'End-to-end pipelines for spatial transcriptomics and multimodal integration.' },
-            { title: 'SCALABLE GNNs', desc: 'Multi-GPU training for heterogeneous GNNs on graphs with 100M+ edges.' },
-            { title: 'OPEN SOURCE', desc: 'Architecting production-grade frameworks (Segger, SageNet) for biological discovery.' }
+            { title: 'SCALABLE AI', desc: 'Engineering foundation models and distributed training systems for high-dimensional biological data.' },
+            { title: 'BIOLOGY / BIOTECH', desc: 'Deciphering the language of life through spatial omics and mechanistic learning.' },
+            { title: 'OPEN SOURCE SOFTWARE', desc: 'Building robust, community-driven tools to accelerate scientific discovery.' }
           ].map((area, i) => (
             <Box key={i} sx={{
               borderTop: '1px solid rgba(116, 132, 84, 0.3)',
