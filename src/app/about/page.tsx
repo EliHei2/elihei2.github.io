@@ -109,9 +109,9 @@ export default function About() {
             <Box sx={{ mb: 8 }}>
                 <Typography variant="h1" sx={{ mb: 3 }}>About</Typography>
                 <Typography variant="body1" paragraph sx={{ fontSize: '1.1rem', lineHeight: 1.8 }}>
-                    I am a <strong style={{ color: '#F4F4E4' }}>Research Engineer</strong> operating at the gap between elegant modeling and production-grade systems.
+                    I am a <strong style={{ color: '#343434' }}>Research Engineer</strong> operating at the gap between elegant modeling and production-grade systems.
                     I build scalable, multi-scale learning architectures that turn complex biological signals into reliable discovery infrastructure.
-                    My work emphasizes <strong style={{ color: '#F4F4E4' }}>evaluation realism</strong>, stress-testing models under real-world heterogeneity—including cohort shifts and site effects—to ensure
+                    My work emphasizes <strong style={{ color: '#343434' }}>evaluation realism</strong>, stress-testing models under real-world heterogeneity—including cohort shifts and site effects—to ensure
                     biological representations earn their value through predictive utility and scientific interrogation.
                 </Typography>
                 <Typography variant="body1" sx={{ mb: 3 }}>
@@ -125,7 +125,7 @@ export default function About() {
                         target="_blank"
                         variant="outlined"
                         startIcon={<DownloadIcon />}
-                        sx={{ mt: 2, color: 'text.primary', borderColor: 'rgba(255,255,255,0.3)', '&:hover': { borderColor: '#E0F58F', color: '#E0F58F' } }}
+                        sx={{ mt: 2, color: 'text.primary', borderColor: 'rgba(52,52,52,0.3)', '&:hover': { borderColor: '#296b9f', color: '#296b9f' } }}
                     >
                         Download Full Curriculum Vitae (PDF)
                     </Button>
@@ -156,7 +156,7 @@ export default function About() {
                 mb: 8,
                 '::-webkit-scrollbar': { height: '2px' },
                 '::-webkit-scrollbar-track': { background: 'transparent' },
-                '::-webkit-scrollbar-thumb': { background: '#748454' }
+                '::-webkit-scrollbar-thumb': { background: '#296b9f' }
             }}>
                 <Box sx={{
                     position: 'relative',
@@ -172,7 +172,7 @@ export default function About() {
                         left: '40px',
                         right: '40px',
                         height: '1px',
-                        borderTop: '1px dashed rgba(116, 132, 84, 0.3)',
+                        borderTop: '1px dashed rgba(52, 52, 52, 0.2)',
                         zIndex: 0
                     }} />
 
@@ -219,7 +219,7 @@ export default function About() {
                                     height: 10,
                                     borderRadius: '50%',
                                     bgcolor: '#080808',
-                                    border: '1px solid #748454',
+                                    border: '1px solid #296b9f',
                                     mb: isEven ? 0 : 4,
                                     mt: isEven ? 4 : 0,
                                     position: 'relative',
@@ -233,13 +233,13 @@ export default function About() {
                                         transform: 'translate(-50%, -50%)',
                                         width: 0,
                                         height: 0,
-                                        bgcolor: '#E0F58F',
+                                        bgcolor: '#296b9f',
                                         borderRadius: '50%',
                                         transition: '0.2s cubic-bezier(0.4, 0, 0.2, 1)'
                                     },
                                     '.group:hover &': {
-                                        borderColor: '#E0F58F',
-                                        boxShadow: '0 0 15px rgba(224, 245, 143, 0.4)',
+                                        borderColor: '#296b9f',
+                                        boxShadow: '0 0 15px rgba(41, 107, 159, 0.3)',
                                         '&::after': { width: 4, height: 4 }
                                     }
                                 }} />
@@ -257,7 +257,7 @@ export default function About() {
                                     }
                                 }}>
                                     <Typography variant="caption" sx={{
-                                        color: 'rgba(244, 244, 228, 0.4)',
+                                        color: 'rgba(52, 52, 52, 0.4)',
                                         fontFamily: 'Space Grotesk, monospace',
                                         mb: 0.5,
                                         display: 'block',
@@ -268,7 +268,7 @@ export default function About() {
                                     </Typography>
 
                                     <Typography variant="h6" sx={{
-                                        color: '#F4F4E4',
+                                        color: '#343434',
                                         fontSize: '0.95rem',
                                         fontWeight: 600,
                                         lineHeight: 1.2,
@@ -279,7 +279,7 @@ export default function About() {
                                     </Typography>
 
                                     <Typography variant="body2" sx={{
-                                        color: '#748454',
+                                        color: '#296b9f',
                                         fontSize: '0.8rem',
                                         fontWeight: 500,
                                         mb: 1
@@ -302,10 +302,10 @@ export default function About() {
                                             mb: isEven ? 2 : 0
                                         }
                                     }}>
-                                        <Typography variant="body2" sx={{ color: 'rgba(244, 244, 228, 0.3)', fontSize: '0.7rem', mb: 1.5, fontFamily: 'monospace' }}>
+                                        <Typography variant="body2" sx={{ color: 'rgba(52, 52, 52, 0.4)', fontSize: '0.7rem', mb: 1.5, fontFamily: 'monospace' }}>
                                             DATASET_SHARD: {exp.location.replace(', ', '_').toUpperCase()}
                                         </Typography>
-                                        <ul style={{ paddingLeft: '1rem', margin: 0, color: 'rgba(244, 244, 228, 0.7)', fontSize: '0.8rem', lineHeight: 1.5 }}>
+                                        <ul style={{ paddingLeft: '1rem', margin: 0, color: 'rgba(52, 52, 52, 0.8)', fontSize: '0.8rem', lineHeight: 1.5 }}>
                                             {exp.details.map((d, j) => <li key={j} style={{ marginBottom: '0.4rem' }}>{d}</li>)}
                                         </ul>
                                     </Box>
@@ -333,7 +333,7 @@ export default function About() {
                     <Typography variant="h6" sx={{ fontWeight: 700 }}>Sharif University of Technology</Typography>
                     <Typography variant="body2" color="text.secondary">BSc, Computer Engineering & Applied Mathematics (2014 – 2019)</Typography>
                     <Typography variant="body2" sx={{ mt: 1, color: 'text.secondary' }}>
-                        Founder of <strong style={{ color: '#F4F4E4' }}>Sharif DataDays</strong>. Head Teaching Assistant for Advanced Programming and Probability & Statistics.
+                        Founder of <strong style={{ color: '#343434' }}>Sharif DataDays</strong>. Head Teaching Assistant for Advanced Programming and Probability & Statistics.
                     </Typography>
                 </Box>
             </Box>
@@ -342,8 +342,8 @@ export default function About() {
             <SectionHeader icon={<EmojiEventsIcon fontSize="large" />} title="Awards" />
             <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 3 }}>
                 {awards.map((award, i) => (
-                    <Box key={i} sx={{ border: '1px solid rgba(255,255,255,0.1)', p: 3, borderRadius: 2 }}>
-                        <Typography variant="h6" sx={{ color: '#E0F58F', mb: 1 }}>{award.title}</Typography>
+                    <Box key={i} sx={{ border: '1px solid rgba(52, 52, 52, 0.1)', p: 3, borderRadius: 2 }}>
+                        <Typography variant="h6" sx={{ color: '#296b9f', mb: 1 }}>{award.title}</Typography>
                         <Typography variant="body2" sx={{ fontWeight: 600, mb: 1 }}>{award.date}</Typography>
                         <Typography variant="body2" sx={{ color: 'text.secondary' }}>{award.detail}</Typography>
                     </Box>

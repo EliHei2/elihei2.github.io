@@ -24,9 +24,9 @@ export default function Reading() {
                             fontFamily: 'Space Grotesk, sans-serif',
                             textTransform: 'uppercase',
                             letterSpacing: '0.2em',
-                            color: '#748454',
+                            color: '#296b9f',
                             mb: 4,
-                            borderBottom: '1px solid rgba(116, 132, 84, 0.2)',
+                            borderBottom: '1px solid rgba(52, 52, 52, 0.1)',
                             pb: 1,
                             display: 'inline-block'
                         }}>
@@ -45,8 +45,8 @@ export default function Reading() {
                                         pb: 2,
                                         borderBottom: '1px solid rgba(255,255,255,0.03)',
                                         '&:hover': {
-                                            '& a': { color: '#E0F58F' },
-                                            borderColor: 'rgba(116, 132, 84, 0.2)'
+                                            '& a': { color: '#296b9f' },
+                                            borderColor: 'rgba(52, 52, 52, 0.2)'
                                         },
                                         transition: '0.2s'
                                     }}
@@ -58,7 +58,7 @@ export default function Reading() {
                                                 target="_blank"
                                                 style={{
                                                     textDecoration: 'none',
-                                                    color: '#F4F4E4',
+                                                    color: '#343434',
                                                     fontWeight: 500,
                                                     transition: '0.2s'
                                                 }}
@@ -66,12 +66,12 @@ export default function Reading() {
                                                 {item.title}
                                             </Link>
                                         ) : (
-                                            <span style={{ color: '#F4F4E4', fontWeight: 500 }}>{item.title}</span>
+                                            <span style={{ color: '#343434', fontWeight: 500 }}>{item.title}</span>
                                         )}
                                     </Typography>
 
                                     <Typography variant="caption" sx={{
-                                        color: 'rgba(244, 244, 228, 0.4)',
+                                        color: 'rgba(52, 52, 52, 0.4)',
                                         fontFamily: 'monospace',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.05em'

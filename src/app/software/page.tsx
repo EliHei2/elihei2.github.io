@@ -56,13 +56,13 @@ export default function Software() {
                         key={project.title}
                         sx={{
                             py: 6,
-                            borderTop: '1px solid rgba(116, 132, 84, 0.2)',
+                            borderTop: '1px solid rgba(52, 52, 52, 0.1)',
                             display: 'grid',
                             gridTemplateColumns: { xs: '1fr', sm: '120px 1fr' },
                             gap: 4,
                             transition: '0.3s',
                             '&:hover': {
-                                bgcolor: 'rgba(116, 132, 84, 0.03)',
+                                bgcolor: 'rgba(52, 52, 52, 0.03)',
                             }
                         }}
                     >
@@ -105,9 +105,9 @@ export default function Software() {
                                     style={{
                                         fontFamily: 'Space Grotesk, sans-serif',
                                         fontSize: '0.75rem',
-                                        color: '#748454',
+                                        color: '#296b9f',
                                         textDecoration: 'none',
-                                        borderBottom: '1px solid rgba(116, 132, 84, 0.3)'
+                                        borderBottom: '1px solid rgba(41, 107, 159, 0.3)'
                                     }}
                                 >
                                     SOURCE [GITHUB]
@@ -115,7 +115,7 @@ export default function Software() {
                             </Box>
 
                             <Typography variant="body1" sx={{
-                                color: 'rgba(244, 244, 228, 0.8)',
+                                color: '#5a5a5a',
                                 mb: 3,
                                 fontSize: '1.1rem',
                                 lineHeight: 1.6
@@ -129,7 +129,7 @@ export default function Software() {
                                         key={tag}
                                         variant="caption"
                                         sx={{
-                                            color: '#748454',
+                                            color: '#296b9f',
                                             fontFamily: 'monospace',
                                             fontSize: '0.7rem',
                                             textTransform: 'uppercase',
@@ -144,7 +144,7 @@ export default function Software() {
                     </Box>
                 ))}
                 {/* Final Border */}
-                <Box sx={{ borderTop: '1px solid rgba(116, 132, 84, 0.2)' }} />
+                <Box sx={{ borderTop: '1px solid rgba(52, 52, 52, 0.1)' }} />
             </Box>
         </Container>
     );

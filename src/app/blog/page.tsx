@@ -16,7 +16,7 @@ export default async function Blog() {
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontSize: '3rem',
                     fontWeight: 700,
-                    color: '#F4F4E4',
+                    color: '#343434',
                     letterSpacing: '-0.02em'
                 }}>
                     WRITINGS
@@ -40,7 +40,7 @@ export default async function Blog() {
                         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
                             <Typography variant="caption" sx={{
                                 fontFamily: 'Space Grotesk, sans-serif',
-                                color: '#748454',
+                                color: '#296b9f',
                                 fontSize: '0.8rem',
                                 letterSpacing: '0.05em'
                             }}>
@@ -61,12 +61,12 @@ export default async function Blog() {
                                 <Typography variant="h4" sx={{
                                     fontFamily: 'Cormorant Garamond, serif',
                                     fontWeight: 600,
-                                    color: '#F4F4E4',
+                                    color: '#343434',
                                     mb: 2,
                                     fontSize: '2rem',
                                     lineHeight: 1.1,
                                     transition: '0.2s',
-                                    '&:hover': { color: '#748454' }
+                                    '&:hover': { color: '#296b9f' }
                                 }}>
                                     {title}
                                 </Typography>
@@ -92,7 +92,7 @@ export default async function Blog() {
                                             borderRadius: 0,
                                             bgcolor: 'transparent',
                                             border: '1px solid rgba(116, 132, 84, 0.3)',
-                                            color: '#748454',
+                                            color: '#296b9f',
                                             fontFamily: 'Space Grotesk, sans-serif',
                                             fontSize: '0.7rem'
                                         }}

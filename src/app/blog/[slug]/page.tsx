@@ -61,7 +61,7 @@ export default async function BlogPost({ params }: Props) {
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontWeight: 700,
                     mb: 4,
-                    color: '#F4F4E4',
+                    color: '#343434',
                     fontSize: { xs: '2.5rem', md: '3.5rem' },
                     lineHeight: 1.1,
                     letterSpacing: '-0.02em'
@@ -74,7 +74,7 @@ export default async function BlogPost({ params }: Props) {
                     gap: 4,
                     flexWrap: 'wrap',
                     fontFamily: 'Space Grotesk, sans-serif',
-                    color: '#748454',
+                    color: '#296b9f',
                     fontSize: '0.85rem',
                     letterSpacing: '0.05em',
                     textTransform: 'uppercase'
@@ -102,7 +102,7 @@ export default async function BlogPost({ params }: Props) {
                                 borderRadius: 0,
                                 bgcolor: 'rgba(116, 132, 84, 0.1)',
                                 border: 'none',
-                                color: '#F4F4E4',
+                                color: '#343434',
                                 fontFamily: 'Space Grotesk, sans-serif',
                                 fontSize: '0.7rem',
                                 letterSpacing: '0.05em'
@@ -117,14 +117,14 @@ export default async function BlogPost({ params }: Props) {
                 // Typography Override for Markdown Content
                 '& h1, & h2, & h3, & h4, & h5, & h6': {
                     fontFamily: 'Space Grotesk, sans-serif',
-                    color: '#F4F4E4',
+                    color: '#343434',
                     fontWeight: 600,
                     mt: 6,
                     mb: 3
                 },
                 '& h1': { fontSize: '2.5rem' },
                 '& h2': { fontSize: '2rem', borderBottom: '1px solid rgba(116, 132, 84, 0.2)', pb: 1 },
-                '& h3': { fontSize: '1.5rem', color: '#748454' },
+                '& h3': { fontSize: '1.5rem', color: '#296b9f' },
 
                 '& p': {
                     fontFamily: 'Cormorant Garamond, serif',
@@ -143,11 +143,11 @@ export default async function BlogPost({ params }: Props) {
                 },
                 '& li': { mb: 1 },
 
-                '& strong': { color: '#F4F4E4', fontWeight: 700 },
+                '& strong': { color: '#343434', fontWeight: 700 },
                 '& em': { fontStyle: 'italic', color: 'rgba(244, 244, 228, 0.7)' },
 
                 '& blockquote': {
-                    borderLeft: '2px solid #748454',
+                    borderLeft: '2px solid #296b9f',
                     pl: 4,
                     my: 4,
                     py: 1,
@@ -158,7 +158,7 @@ export default async function BlogPost({ params }: Props) {
                 '& code': {
                     fontFamily: 'Space Grotesk, monospace', // Or a real mono font if available
                     bgcolor: 'rgba(116, 132, 84, 0.15)',
-                    color: '#F4F4E4',
+                    color: '#343434',
                     px: 0.8,
                     py: 0.2,
                     fontSize: '0.85em',
@@ -179,14 +179,14 @@ export default async function BlogPost({ params }: Props) {
                 },
 
                 '& a': {
-                    color: '#748454',
+                    color: '#296b9f',
                     textDecoration: 'underline',
                     textDecorationColor: 'rgba(116, 132, 84, 0.4)',
                     textUnderlineOffset: '4px',
                     transition: '0.2s',
                     '&:hover': {
-                        color: '#F4F4E4',
-                        textDecorationColor: '#748454'
+                        color: '#343434',
+                        textDecorationColor: '#296b9f'
                     }
                 },
 

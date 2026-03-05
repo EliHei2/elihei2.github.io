@@ -67,7 +67,7 @@ export default function Publications() {
                         <Typography variant="h5" sx={{
                             fontWeight: 700,
                             mb: 2,
-                            color: '#F4F4E4',
+                            color: '#343434',
                             lineHeight: 1.3,
                             fontFamily: 'Space Grotesk, sans-serif'
                         }}>
@@ -85,13 +85,13 @@ export default function Publications() {
                         </Typography>
 
                         <Box sx={{
-                            borderLeft: '1px solid #748454',
+                            borderLeft: '1px solid #296b9f',
                             pl: 3,
                             py: 1,
                             mt: 2
                         }}>
                             <Typography variant="caption" sx={{
-                                color: '#748454',
+                                color: '#296b9f',
                                 fontFamily: 'monospace',
                                 display: 'block',
                                 mb: 1,
