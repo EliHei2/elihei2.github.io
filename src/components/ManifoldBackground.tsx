@@ -101,11 +101,11 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         <group>
             <lineSegments ref={lineRef}>
                 <bufferGeometry />
-                <lineBasicMaterial color="#1a4b77" transparent opacity={0.85} linewidth={2} />
+                <lineBasicMaterial color="#296b9f" transparent opacity={0.15} linewidth={1.5} />
             </lineSegments>
             <points ref={sparkPointsRef}>
                 <bufferGeometry />
-                <pointsMaterial size={0.15} color="#1a4b77" transparent opacity={1.0} sizeAttenuation />
+                <pointsMaterial size={0.12} color="#296b9f" transparent opacity={0.25} sizeAttenuation />
             </points>
         </group>
     );
@@ -182,10 +182,10 @@ function ManifoldPoints() {
                     />
                 </bufferGeometry>
                 <pointsMaterial
-                    size={0.06}
+                    size={0.12}
                     vertexColors
                     transparent
-                    opacity={0.8}
+                    opacity={0.4}
                     sizeAttenuation={true}
                 />
             </points>
@@ -204,7 +204,7 @@ export default function ManifoldBackground() {
             height: '100vh',
             zIndex: -1,
             pointerEvents: 'none',
-            background: 'linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%)' // Clean white background
+            background: 'linear-gradient(to bottom, #ffffff 0%, #f0f7ff 100%)' // Very light blue wash backgound
         }}>
             <Canvas camera={{ position: [0, 5, 10], fov: 45 }}>
                 <ManifoldPoints />

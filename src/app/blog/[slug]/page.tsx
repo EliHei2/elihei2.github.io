@@ -56,7 +56,7 @@ export default async function BlogPost({ params }: Props) {
             zIndex: 10
         }}>
             {/* Header Section */}
-            <Box sx={{ mb: 8, borderBottom: '1px solid rgba(116, 132, 84, 0.2)', pb: 6 }}>
+            <Box sx={{ mb: 8, borderBottom: '1px solid rgba(52, 52, 52, 0.1)', pb: 6 }}>
                 <Typography variant="h1" component="h1" sx={{
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontWeight: 700,
@@ -80,11 +80,11 @@ export default async function BlogPost({ params }: Props) {
                     textTransform: 'uppercase'
                 }}>
                     <Box>
-                        <Box component="span" sx={{ color: 'rgba(244, 244, 228, 0.4)', mr: 1 }}>PUBLISHED</Box>
+                        <Box component="span" sx={{ color: 'rgba(52, 52, 52, 0.4)', mr: 1 }}>PUBLISHED</Box>
                         {post.date}
                     </Box>
                     <Box>
-                        <Box component="span" sx={{ color: 'rgba(244, 244, 228, 0.4)', mr: 1 }}>READING TIME</Box>
+                        <Box component="span" sx={{ color: 'rgba(52, 52, 52, 0.4)', mr: 1 }}>READING TIME</Box>
                         {readingTime} MIN
                     </Box>
                     <Box>
@@ -100,7 +100,7 @@ export default async function BlogPost({ params }: Props) {
                             size="small"
                             sx={{
                                 borderRadius: 0,
-                                bgcolor: 'rgba(116, 132, 84, 0.1)',
+                                bgcolor: 'rgba(52, 52, 52, 0.05)',
                                 border: 'none',
                                 color: '#343434',
                                 fontFamily: 'Space Grotesk, sans-serif',
@@ -123,7 +123,7 @@ export default async function BlogPost({ params }: Props) {
                     mb: 3
                 },
                 '& h1': { fontSize: '2.5rem' },
-                '& h2': { fontSize: '2rem', borderBottom: '1px solid rgba(116, 132, 84, 0.2)', pb: 1 },
+                '& h2': { fontSize: '2rem', borderBottom: '1px solid rgba(52, 52, 52, 0.1)', pb: 1 },
                 '& h3': { fontSize: '1.5rem', color: '#296b9f' },
 
                 '& p': {
@@ -131,7 +131,7 @@ export default async function BlogPost({ params }: Props) {
                     fontSize: '1.25rem',
                     lineHeight: 1.8,
                     mb: 3,
-                    color: 'rgba(244, 244, 228, 0.9)'
+                    color: '#5a5a5a'
                 },
                 '& ul, & ol': {
                     fontFamily: 'Cormorant Garamond, serif',
@@ -139,12 +139,12 @@ export default async function BlogPost({ params }: Props) {
                     lineHeight: 1.8,
                     mb: 3,
                     pl: 3,
-                    color: 'rgba(244, 244, 228, 0.9)'
+                    color: '#5a5a5a'
                 },
                 '& li': { mb: 1 },
 
                 '& strong': { color: '#343434', fontWeight: 700 },
-                '& em': { fontStyle: 'italic', color: 'rgba(244, 244, 228, 0.7)' },
+                '& em': { fontStyle: 'italic', color: 'rgba(52, 52, 52, 0.7)' },
 
                 '& blockquote': {
                     borderLeft: '2px solid #296b9f',
@@ -152,12 +152,12 @@ export default async function BlogPost({ params }: Props) {
                     my: 4,
                     py: 1,
                     fontStyle: 'italic',
-                    color: 'rgba(244, 244, 228, 0.8)'
+                    color: '#5a5a5a'
                 },
 
                 '& code': {
                     fontFamily: 'Space Grotesk, monospace', // Or a real mono font if available
-                    bgcolor: 'rgba(116, 132, 84, 0.15)',
+                    bgcolor: 'rgba(52, 52, 52, 0.05)',
                     color: '#343434',
                     px: 0.8,
                     py: 0.2,
@@ -169,7 +169,7 @@ export default async function BlogPost({ params }: Props) {
                     p: 3,
                     overflowX: 'auto',
                     mb: 4,
-                    border: '1px solid rgba(116, 132, 84, 0.2)'
+                    border: '1px solid rgba(52, 52, 52, 0.1)'
                 },
                 '& pre code': {
                     bgcolor: 'transparent',
@@ -181,7 +181,7 @@ export default async function BlogPost({ params }: Props) {
                 '& a': {
                     color: '#296b9f',
                     textDecoration: 'underline',
-                    textDecorationColor: 'rgba(116, 132, 84, 0.4)',
+                    textDecorationColor: 'rgba(41, 107, 159, 0.4)',
                     textUnderlineOffset: '4px',
                     transition: '0.2s',
                     '&:hover': {
@@ -195,13 +195,13 @@ export default async function BlogPost({ params }: Props) {
                     height: 'auto',
                     display: 'block',
                     margin: '2rem auto',
-                    border: '1px solid rgba(116, 132, 84, 0.2)'
+                    border: '1px solid rgba(52, 52, 52, 0.1)'
                 }
             }}>
                 <ReactMarkdown rehypePlugins={[rehypeRaw]}>{post.content}</ReactMarkdown>
             </Box>
 
-            <Box sx={{ mt: 12, pt: 8, borderTop: '1px solid rgba(116, 132, 84, 0.2)' }}>
+            <Box sx={{ mt: 12, pt: 8, borderTop: '1px solid rgba(52, 52, 52, 0.1)' }}>
                 <BlogInteractions slug={slug} />
             </Box>
         </Container>

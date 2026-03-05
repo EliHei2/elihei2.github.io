@@ -11,7 +11,7 @@ export default async function Blog() {
 
     return (
         <Container maxWidth="md" sx={{ mt: 16, mb: 16, position: 'relative', zIndex: 10 }}>
-            <Box sx={{ borderBottom: '1px solid rgba(116, 132, 84, 0.4)', mb: 8, pb: 2 }}>
+            <Box sx={{ borderBottom: '1px solid rgba(52, 52, 52, 0.2)', mb: 8, pb: 2 }}>
                 <Typography variant="h1" sx={{
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontSize: '3rem',
@@ -27,13 +27,13 @@ export default async function Blog() {
                 {allPostsData.map(({ slug, date, title, excerpt, tags, readingTime }) => (
                     <Box key={slug} sx={{
                         py: 6,
-                        borderBottom: '1px solid rgba(116, 132, 84, 0.2)',
+                        borderBottom: '1px solid rgba(52, 52, 52, 0.1)',
                         display: 'grid',
                         gridTemplateColumns: { xs: '1fr', md: '1fr 3fr' },
                         gap: 2,
                         transition: '0.2s',
                         '&:hover': {
-                            bgcolor: 'rgba(116, 132, 84, 0.05)',
+                            bgcolor: 'rgba(52, 52, 52, 0.03)',
                         }
                     }}>
                         {/* Metadata Column */}
@@ -48,7 +48,7 @@ export default async function Blog() {
                             </Typography>
                             <Typography variant="caption" sx={{
                                 fontFamily: 'Space Grotesk, sans-serif',
-                                color: 'rgba(244, 244, 228, 0.5)',
+                                color: 'rgba(52, 52, 52, 0.5)',
                                 fontSize: '0.75rem'
                             }}>
                                 {readingTime} MIN READ
@@ -74,7 +74,7 @@ export default async function Blog() {
 
                             <Typography variant="body1" sx={{
                                 fontFamily: 'Cormorant Garamond, serif',
-                                color: 'rgba(244, 244, 228, 0.8)',
+                                color: 'rgba(52, 52, 52, 0.7)',
                                 lineHeight: 1.6,
                                 mb: 3,
                                 maxWidth: '90%'
@@ -91,7 +91,7 @@ export default async function Blog() {
                                         sx={{
                                             borderRadius: 0,
                                             bgcolor: 'transparent',
-                                            border: '1px solid rgba(116, 132, 84, 0.3)',
+                                            border: '1px solid rgba(41, 107, 159, 0.2)',
                                             color: '#296b9f',
                                             fontFamily: 'Space Grotesk, sans-serif',
                                             fontSize: '0.7rem'

@@ -249,11 +249,11 @@ export default function About() {
                                     textAlign: 'left',
                                     width: '100%',
                                     pl: 2,
-                                    borderLeft: '1px solid rgba(116, 132, 84, 0.1)',
+                                    borderLeft: '1px solid rgba(52, 52, 52, 0.1)',
                                     transition: '0.4s cubic-bezier(0.4, 0, 0.2, 1)',
                                     '&:hover': {
-                                        borderLeft: '1px solid #E0F58F',
-                                        bgcolor: 'rgba(116, 132, 84, 0.03)'
+                                        borderLeft: '1px solid #296b9f',
+                                        bgcolor: 'rgba(52, 52, 52, 0.03)'
                                     }
                                 }}>
                                     <Typography variant="caption" sx={{
