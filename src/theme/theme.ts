@@ -1,45 +1,59 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
-import { Space_Grotesk, Cormorant_Garamond } from 'next/font/google';
+import { Space_Grotesk, Inter } from 'next/font/google';
 
 const spaceGrotesk = Space_Grotesk({
     subsets: ['latin'],
     display: 'swap',
 });
 
-const cormorantGaramond = Cormorant_Garamond({
-    weight: ['400', '600', '700'],
+const inter = Inter({
+    weight: ['300', '400', '500', '600', '700'],
     subsets: ['latin'],
     display: 'swap',
 });
 
 const theme = createTheme({
     palette: {
-        mode: 'dark',
+        mode: 'light',
         primary: {
-            main: '#748454', // Olive Green
-            contrastText: '#F4F4E4',
+            main: '#296b9f', // Blue dot
+            light: '#c1def0', // Blue fill
+            contrastText: '#ffffff',
         },
         secondary: {
-            main: '#F4F4E4', // Cream
+            main: '#ea9f37', // Orange nuc
+            light: '#fadbb2', // Orange fill
+            contrastText: '#ffffff',
+        },
+        success: {
+            main: '#138774', // Cyan dot
+            light: '#d1efe8', // Cyan fill
+        },
+        error: {
+            main: '#d32f2f', // Err stroke
         },
         background: {
-            default: '#080808', // Deep Black
-            paper: '#080808',
+            default: '#ffffff', // Clean white
+            paper: '#fafbfc', // Subtle off-white
         },
         text: {
-            primary: '#F4F4E4', // Cream
-            secondary: 'rgba(244, 244, 228, 0.7)',
+            primary: '#343434', // Bounds color
+            secondary: '#5a5a5a',
         },
-        divider: 'rgba(116, 132, 84, 0.2)', // Low opacity olive
+        divider: 'rgba(52, 52, 52, 0.1)',
         action: {
-            hover: 'rgba(116, 132, 84, 0.1)',
+            hover: 'rgba(52, 52, 52, 0.04)',
         },
     },
     typography: {
-        fontFamily: cormorantGaramond.style.fontFamily,
+        fontFamily: `'DejaVu Sans Light', ${inter.style.fontFamily}, 'Helvetica Neue', Arial, sans-serif`,
+        fontWeightLight: 300,
+        fontWeightRegular: 400,
+        fontWeightMedium: 500,
+        fontWeightBold: 600,
         allVariants: {
-            color: '#F4F4E4',
+            color: '#343434',
         },
         h1: {
             fontFamily: spaceGrotesk.style.fontFamily,
@@ -47,7 +61,7 @@ const theme = createTheme({
             fontWeight: 700,
             letterSpacing: '-0.02em',
             textTransform: 'uppercase',
-            color: '#F4F4E4',
+            color: '#343434',
         },
         h2: {
             fontFamily: spaceGrotesk.style.fontFamily,
@@ -55,13 +69,13 @@ const theme = createTheme({
             fontWeight: 600,
             letterSpacing: '-0.01em',
             marginBottom: '1rem',
-            color: '#F4F4E4',
+            color: '#343434',
         },
         h3: {
             fontFamily: spaceGrotesk.style.fontFamily,
             fontSize: '1.5rem',
             fontWeight: 500,
-            color: '#748454', // Olive accent
+            color: '#296b9f', // Blue accent
         },
         h4: {
             fontFamily: spaceGrotesk.style.fontFamily,
@@ -81,17 +95,17 @@ const theme = createTheme({
             fontWeight: 600,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: '#748454',
+            color: '#296b9f',
         },
         body1: {
-            fontFamily: cormorantGaramond.style.fontFamily,
-            fontSize: '1.25rem', // Larger academic text
+            fontSize: '1.15rem',
             lineHeight: 1.8,
+            fontWeight: 300,
         },
         body2: {
-            fontFamily: spaceGrotesk.style.fontFamily,
-            fontSize: '0.9rem',
+            fontSize: '0.95rem',
             lineHeight: 1.6,
+            fontWeight: 400,
         },
         button: {
             fontFamily: spaceGrotesk.style.fontFamily,
@@ -104,29 +118,32 @@ const theme = createTheme({
             fontSize: '0.75rem',
             letterSpacing: '0.05em',
             textTransform: 'uppercase',
+            fontWeight: 600,
         }
     },
     shape: {
-        borderRadius: 0,
+        borderRadius: 8, // Soft geometric roundness to match schematic shapes
     },
     components: {
         MuiButton: {
             styleOverrides: {
                 root: {
-                    borderRadius: 0,
+                    borderRadius: 20, // Pill shaped
                     padding: '8px 24px',
-                    border: '1px solid rgba(116, 132, 84, 0.3)',
-                    color: '#F4F4E4',
+                    border: '1px solid rgba(52, 52, 52, 0.2)',
+                    color: '#343434',
                     '&:hover': {
-                        backgroundColor: 'rgba(116, 132, 84, 0.1)',
-                        borderColor: '#748454',
+                        backgroundColor: 'rgba(52, 52, 52, 0.04)',
+                        borderColor: '#296b9f',
                     },
                 },
                 contained: {
-                    backgroundColor: '#748454',
-                    color: '#080808',
+                    backgroundColor: '#296b9f',
+                    color: '#ffffff',
+                    border: 'none',
                     '&:hover': {
-                        backgroundColor: '#8da166',
+                        backgroundColor: '#1d517a',
+                        borderColor: 'transparent',
                     },
                 },
             },
@@ -134,11 +151,12 @@ const theme = createTheme({
         MuiChip: {
             styleOverrides: {
                 root: {
-                    borderRadius: 0,
+                    borderRadius: 16,
                     fontFamily: spaceGrotesk.style.fontFamily,
-                    backgroundColor: 'rgba(116, 132, 84, 0.1)',
-                    border: '1px solid rgba(116, 132, 84, 0.2)',
-                    color: '#F4F4E4',
+                    backgroundColor: '#c1def0', // Blue light
+                    color: '#296b9f', // Blue main
+                    border: 'none',
+                    fontWeight: 600,
                 },
             },
         },
@@ -146,10 +164,11 @@ const theme = createTheme({
             styleOverrides: {
                 root: {
                     textDecoration: 'none',
-                    color: '#748454',
-                    transition: '0.2s',
+                    color: '#ea9f37', // Orange accent
+                    fontWeight: 500,
+                    transition: 'color 0.2s',
                     '&:hover': {
-                        color: '#F4F4E4',
+                        color: '#d66a2b',
                     },
                 }
             }
@@ -157,7 +176,7 @@ const theme = createTheme({
         MuiDivider: {
             styleOverrides: {
                 root: {
-                    borderColor: 'rgba(116, 132, 84, 0.2)',
+                    borderColor: 'rgba(52, 52, 52, 0.1)',
                 }
             }
         }

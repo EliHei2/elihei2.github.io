@@ -38,14 +38,14 @@ export default function Home() {
             fontSize: { xs: '3rem', md: '4.5rem' },
             lineHeight: 0.9,
             mb: 4,
-            color: '#F4F4E4'
+            color: '#343434'
           }}>
             SCALABLE<br />LEARNING<br />SYSTEMS
           </Typography>
-          <Box sx={{ borderTop: '1px solid rgba(116, 132, 84, 0.3)', pt: 4 }}>
-            <Typography variant="h6" sx={{ color: '#748454', mb: 2 }}>ABSTRACT</Typography>
-            <Typography variant="body1" sx={{ color: 'rgba(244, 244, 228, 0.9)', fontSize: '1.25rem', lineHeight: 1.6 }}>
-              I am a <strong style={{ color: '#F4F4E4' }}>Research Engineer</strong> in AI for Science at DKFZ & EMBL Heidelberg. My work bridges the gap between expressive geometric modeling and production-scale systems, translating high-dimensional biological signals into robust infrastructure for discovery.
+          <Box sx={{ borderTop: '1px solid rgba(52, 52, 52, 0.1)', pt: 4 }}>
+            <Typography variant="h6" sx={{ color: '#296b9f', mb: 2 }}>ABSTRACT</Typography>
+            <Typography variant="body1" sx={{ color: '#5a5a5a', fontSize: '1.25rem', lineHeight: 1.6 }}>
+              I am a <strong style={{ color: '#343434' }}>Research Engineer</strong> in AI for Science at DKFZ & EMBL Heidelberg. My work bridges the gap between expressive geometric modeling and production-scale systems, translating high-dimensional biological signals into robust infrastructure for discovery.
             </Typography>
           </Box>
         </Box>
@@ -61,9 +61,11 @@ export default function Home() {
             display: 'grid',
             gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '1px',
-            bgcolor: 'rgba(116, 132, 84, 0.2)',
-            border: '1px solid rgba(116, 132, 84, 0.2)',
-            p: '1px'
+            bgcolor: 'rgba(52, 52, 52, 0.05)',
+            border: '1px solid rgba(52, 52, 52, 0.1)',
+            p: '1px',
+            borderRadius: '8px',
+            overflow: 'hidden'
           }}>
             {[
               { label: 'LOCATION', value: 'HEIDELBERG, DE' },
@@ -71,9 +73,9 @@ export default function Home() {
               { label: 'FOCUS', value: 'AI FOR SCIENCE' },
               { label: 'SPECIALIZATION', value: 'SCALABLE MODELS FOR BIO' }
             ].map((item, i) => (
-              <Box key={i} sx={{ bgcolor: 'rgba(8, 8, 8, 0.8)', p: 3, backdropFilter: 'blur(4px)' }}>
-                <Typography variant="caption" sx={{ color: '#748454', display: 'block', mb: 1 }}>{item.label}</Typography>
-                <Typography variant="body2" sx={{ color: '#F4F4E4' }}>{item.value}</Typography>
+              <Box key={i} sx={{ bgcolor: 'rgba(255, 255, 255, 0.95)', p: 3, backdropFilter: 'blur(4px)' }}>
+                <Typography variant="caption" sx={{ color: '#296b9f', display: 'block', mb: 1 }}>{item.label}</Typography>
+                <Typography variant="body2" sx={{ color: '#343434', fontWeight: 500 }}>{item.value}</Typography>
               </Box>
             ))}
           </Box>
@@ -89,10 +91,11 @@ export default function Home() {
                 href={social.href}
                 target="_blank"
                 sx={{
-                  borderRadius: 0,
-                  border: '1px solid rgba(116, 132, 84, 0.3)',
-                  color: '#748454',
-                  '&:hover': { bgcolor: '#748454', color: '#080808' }
+                  borderRadius: '8px',
+                  border: '1px solid rgba(52, 52, 52, 0.2)',
+                  color: '#296b9f',
+                  bgcolor: '#ffffff',
+                  '&:hover': { bgcolor: '#296b9f', color: '#ffffff', borderColor: '#296b9f' }
                 }}
               >
                 {social.icon}
@@ -104,7 +107,7 @@ export default function Home() {
 
       {/* Research Dimensions */}
       <Box sx={{ mb: 16 }}>
-        <Typography variant="h2" sx={{ mb: 6, borderBottom: '1px solid rgba(116, 132, 84, 0.3)', pb: 2 }}>SCIENTIFIC DIMENSIONS</Typography>
+        <Typography variant="h2" sx={{ mb: 6, borderBottom: '1px solid rgba(52, 52, 52, 0.1)', pb: 2 }}>SCIENTIFIC DIMENSIONS</Typography>
         <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 1fr 1fr' }, gap: 4 }}>
           {[
             { title: 'SCALABLE AI', desc: 'Engineering foundation models and distributed training systems for high-dimensional biological data.' },
@@ -112,13 +115,16 @@ export default function Home() {
             { title: 'OPEN SOURCE SOFTWARE', desc: 'Building robust, community-driven tools to accelerate scientific discovery.' }
           ].map((area, i) => (
             <Box key={i} sx={{
-              borderTop: '1px solid rgba(116, 132, 84, 0.3)',
-              pt: 2,
-              transition: '0.3s',
-              '&:hover': { transform: 'translateY(-10px)' }
+              borderTop: '1px solid rgba(52, 52, 52, 0.1)',
+              pt: 3,
+              transition: 'transform 0.3s ease-out',
+              '&:hover': { transform: 'translateY(-5px)' },
+              bgcolor: 'rgba(255, 255, 255, 0.5)',
+              borderRadius: '0 0 8px 8px',
+              p: 2
             }}>
-              <Typography variant="h6" sx={{ color: '#748454', mb: 2 }}>0{i + 1} // {area.title}</Typography>
-              <Typography variant="body1" sx={{ color: 'rgba(244, 244, 228, 0.8)' }}>{area.desc}</Typography>
+              <Typography variant="h6" sx={{ color: '#296b9f', mb: 2 }}>0{i + 1} // {area.title}</Typography>
+              <Typography variant="body1" sx={{ color: '#5a5a5a' }}>{area.desc}</Typography>
             </Box>
           ))}
         </Box>
