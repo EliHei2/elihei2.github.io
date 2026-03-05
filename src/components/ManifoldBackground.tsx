@@ -101,11 +101,11 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         <group>
             <lineSegments ref={lineRef}>
                 <bufferGeometry />
-                <lineBasicMaterial color="#296b9f" transparent opacity={0.6} linewidth={2} />
+                <lineBasicMaterial color="#1a4b77" transparent opacity={0.85} linewidth={2} />
             </lineSegments>
             <points ref={sparkPointsRef}>
                 <bufferGeometry />
-                <pointsMaterial size={0.12} color="#ea9f37" transparent opacity={0.8} sizeAttenuation />
+                <pointsMaterial size={0.15} color="#1a4b77" transparent opacity={1.0} sizeAttenuation />
             </points>
         </group>
     );
@@ -120,8 +120,8 @@ function ManifoldPoints() {
         const count = 3000;
         const positions = new Float32Array(count * 3);
         const colors = new Float32Array(count * 3);
-        const color1 = new THREE.Color('#c1def0'); // Light blue
-        const color2 = new THREE.Color('#fadbb2'); // Light orange
+        const color1 = new THREE.Color('#eef6fc'); // Very light blue
+        const color2 = new THREE.Color('#d1ecfa'); // Slightly darker very light blue
 
         for (let i = 0; i < count; i++) {
             const x = (Math.random() - 0.5) * 20;
