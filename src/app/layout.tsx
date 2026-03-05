@@ -29,7 +29,7 @@ export default function RootLayout({
             <Box component="main" sx={{ flexGrow: 1, position: 'relative', zIndex: 1, pt: { xs: 12, md: 14 } }}>
               {children}
             </Box>
-            <Box component="footer" sx={{ py: 8, textAlign: 'center', color: 'rgba(52, 52, 52, 0.5)', fontFamily: 'Space Grotesk, sans-serif', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.75rem', fontWeight: 500 }}>
+            <Box component="footer" sx={{ py: 8, textAlign: 'center', color: 'rgba(244, 244, 228, 0.4)', fontFamily: 'Space Grotesk, sans-serif', textTransform: 'uppercase', letterSpacing: '0.05em', fontSize: '0.75rem' }}>
               <small>© {new Date().getFullYear()} Elyas Heidari</small>
             </Box>
           </Box>

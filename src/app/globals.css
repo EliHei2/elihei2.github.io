@@ -1,36 +1,35 @@
-/* Global styles inspired by SegBench lightweight clean schematic aesthetic */
+/* Global styles inspired by aubr.ai technical minimalist aesthetic */
 html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #ffffff;
-  color: #343434;
+  background-color: #171717;
+  color: #ffffff;
   /* Thin grid background */
   background-image:
-    linear-gradient(rgba(52, 52, 52, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(52, 52, 52, 0.04) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 40px 40px;
 }
 
 a {
-  color: #296b9f;
+  color: #E0F58F;
   text-decoration: none;
 }
 
-/* Custom scrollbar for clean schematic feel */
+/* Custom scrollbar for terminal feel */
 ::-webkit-scrollbar {
   width: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #171717;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(52, 52, 52, 0.15);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #296b9f;
+  background: #E0F58F;
 }
