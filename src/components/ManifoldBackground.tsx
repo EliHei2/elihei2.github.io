@@ -101,11 +101,11 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         <group>
             <lineSegments ref={lineRef}>
                 <bufferGeometry />
-                <lineBasicMaterial color="#296b9f" transparent opacity={0.15} linewidth={1.5} />
+                <lineBasicMaterial color="#296b9f" transparent opacity={0.3} linewidth={2} />
             </lineSegments>
             <points ref={sparkPointsRef}>
                 <bufferGeometry />
-                <pointsMaterial size={0.12} color="#296b9f" transparent opacity={0.25} sizeAttenuation />
+                <pointsMaterial size={0.12} color="#296b9f" transparent opacity={0.5} sizeAttenuation />
             </points>
         </group>
     );
@@ -185,7 +185,7 @@ function ManifoldPoints() {
                     size={0.12}
                     vertexColors
                     transparent
-                    opacity={0.4}
+                    opacity={0.6}
                     sizeAttenuation={true}
                 />
             </points>
