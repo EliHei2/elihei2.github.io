@@ -58,10 +58,10 @@ export default function Publications() {
                 {publications.map((pub, i) => (
                     <Box key={i} sx={{
                         py: 6,
-                        borderTop: '1px solid rgba(116, 132, 84, 0.2)',
+                        borderTop: '1px solid rgba(52, 52, 52, 0.1)',
                         transition: '0.3s',
                         '&:hover': {
-                            bgcolor: 'rgba(116, 132, 84, 0.03)'
+                            bgcolor: 'rgba(52, 52, 52, 0.03)'
                         }
                     }}>
                         <Typography variant="h5" sx={{
@@ -75,7 +75,7 @@ export default function Publications() {
                         </Typography>
 
                         <Typography variant="body1" sx={{
-                            color: 'rgba(244, 244, 228, 0.7)',
+                            color: '#5a5a5a',
                             fontStyle: 'italic',
                             mb: 3,
                             fontSize: '1.1rem',
@@ -100,7 +100,7 @@ export default function Publications() {
                                 [CONTRIBUTION_LOG]
                             </Typography>
                             <Typography variant="body2" sx={{
-                                color: 'rgba(244, 244, 228, 0.5)',
+                                color: '#5a5a5a',
                                 fontSize: '0.9rem',
                                 lineHeight: 1.6
                             }}>
@@ -110,7 +110,7 @@ export default function Publications() {
                     </Box>
                 ))}
                 {/* Final Border */}
-                <Box sx={{ borderTop: '1px solid rgba(116, 132, 84, 0.2)' }} />
+                <Box sx={{ borderTop: '1px solid rgba(52, 52, 52, 0.1)' }} />
             </Box>
         </Container>
     );
