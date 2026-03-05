@@ -28,8 +28,8 @@ export default function Header() {
             left: 0,
             right: 0,
             zIndex: 1100,
-            background: 'linear-gradient(to bottom, rgba(8,8,8,0.8) 0%, rgba(8,8,8,0) 100%)',
-            backdropFilter: 'blur(2px)',
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%)',
+            backdropFilter: 'blur(4px)',
         }}>
             <Container maxWidth="lg">
                 <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
@@ -44,10 +44,10 @@ export default function Header() {
                                 fontStyle: 'italic',
                                 fontWeight: 700,
                                 fontSize: '1.5rem',
-                                color: '#F4F4E4',
+                                color: '#343434',
                                 textDecoration: 'none',
                                 letterSpacing: '0.02em',
-                                '&:hover': { color: '#748454' }
+                                '&:hover': { color: '#296b9f' }
                             }}
                         >
                             Elyas Heidari
@@ -64,14 +64,14 @@ export default function Header() {
                                     href={item.path}
                                     style={{
                                         textDecoration: 'none',
-                                        color: isActive ? '#748454' : '#F4F4E4',
+                                        color: isActive ? '#296b9f' : '#5a5a5a',
                                         fontFamily: 'Space Grotesk, sans-serif',
-                                        fontWeight: 500,
+                                        fontWeight: 600,
                                         fontSize: '0.75rem',
                                         textTransform: 'uppercase',
                                         letterSpacing: '0.1em',
                                         transition: '0.2s',
-                                        borderBottom: isActive ? '1px solid #748454' : '1px solid transparent'
+                                        borderBottom: isActive ? '1px solid #296b9f' : '1px solid transparent'
                                     }}
                                 >
                                     {item.name}

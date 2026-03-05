@@ -101,11 +101,11 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         <group>
             <lineSegments ref={lineRef}>
                 <bufferGeometry />
-                <lineBasicMaterial color="#E0F58F" transparent opacity={0.6} linewidth={2} />
+                <lineBasicMaterial color="#296b9f" transparent opacity={0.6} linewidth={2} />
             </lineSegments>
             <points ref={sparkPointsRef}>
                 <bufferGeometry />
-                <pointsMaterial size={0.12} color="#E0F58F" transparent opacity={0.8} sizeAttenuation />
+                <pointsMaterial size={0.12} color="#ea9f37" transparent opacity={0.8} sizeAttenuation />
             </points>
         </group>
     );
@@ -120,8 +120,8 @@ function ManifoldPoints() {
         const count = 3000;
         const positions = new Float32Array(count * 3);
         const colors = new Float32Array(count * 3);
-        const color1 = new THREE.Color('#748454'); // Olive
-        const color2 = new THREE.Color('#F4F4E4'); // Cream
+        const color1 = new THREE.Color('#c1def0'); // Light blue
+        const color2 = new THREE.Color('#fadbb2'); // Light orange
 
         for (let i = 0; i < count; i++) {
             const x = (Math.random() - 0.5) * 20;
@@ -182,10 +182,10 @@ function ManifoldPoints() {
                     />
                 </bufferGeometry>
                 <pointsMaterial
-                    size={0.05}
+                    size={0.06}
                     vertexColors
                     transparent
-                    opacity={0.6}
+                    opacity={0.8}
                     sizeAttenuation={true}
                 />
             </points>
@@ -204,11 +204,11 @@ export default function ManifoldBackground() {
             height: '100vh',
             zIndex: -1,
             pointerEvents: 'none',
-            background: 'linear-gradient(to bottom, #050505 0%, #0a0a0a 100%)' // Even deeper black
+            background: 'linear-gradient(to bottom, #ffffff 0%, #fafbfc 100%)' // Clean white background
         }}>
             <Canvas camera={{ position: [0, 5, 10], fov: 45 }}>
                 <ManifoldPoints />
-                <fog attach="fog" args={['#080808', 5, 20]} />
+                <fog attach="fog" args={['#ffffff', 5, 20]} />
             </Canvas>
         </div>
     );
