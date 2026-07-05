@@ -27,6 +27,7 @@ const labs = {
     muvis: 'https://baio-lab.github.io/muvis',
     mashhad: 'https://www.google.com/maps/search/?api=1&query=Mashhad%2C+Iran',
     dastjerd: 'https://www.google.com/maps/search/?api=1&query=Dastjerd%2C+Iran',
+    iran: 'https://www.youtube.com/watch?v=rWj9UdYknlI',
 };
 
 const heroLinks = [
@@ -43,9 +44,9 @@ const projects = [
         name: 'Segger',
         logo: '/segger_logo.png',
         accent: apple.teal,
-        tagline: 'Cell segmentation as a graph problem.',
+        tagline: 'Cell segmentation as a graph problem — the tokenizer for spatial foundation models.',
         paragraph:
-            'Cell segmentation in spatial transcriptomics was slow and inaccurate, and every tool buckled on large data. Segger rebuilds it as one big heterogeneous graph, running 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it. Under revision at Nature Methods.',
+            'Cell segmentation is the rate-limiting step in spatial transcriptomics: which transcript belongs to which cell. Segger reframes it as link prediction on one big heterogeneous graph and runs 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it. Those cells become the tokens the foundation models above them are built on. Under revision at Nature Methods.',
         links: [
             { label: 'Paper', href: 'https://www.biorxiv.org/content/10.1101/2025.03.14.643160v1' },
             { label: 'Docs', href: 'https://elihei2.github.io/segger_dev/' },
@@ -207,14 +208,14 @@ export default function Home() {
                             PhD researcher · DKFZ &amp; EMBL, Heidelberg · finishing Sept. 2026
                         </Typography>
 
-                        <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.6, color: ink, mb: 2, ...justify }}>
-                            I work on AI for science, specifically the machine learning of spatial data. A tissue has structure everywhere you look (where a cell sits, which cells surround it, how the whole thing is arranged), and I think that structure is signal, not noise. Most methods flatten it into a table and lose it; I build graph models that keep it. The engineering matters to me as much as the idea: I care whether a method runs on a stranger’s data on a Monday morning, not only whether it’s clever.
+                        <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
+                            I work on AI for spatial data. Imaging platforms now put hundreds of millions of molecules on a single tissue slide, and the hard part is no longer measuring them; it is turning that point cloud into faithful cells, niches, and tumour ecosystems. I think spatial biology is really a multi-scale problem, and that the right move is to carry one hierarchical graph representation all the way up: from segmenting molecules into cells to pretraining a foundation model over a whole tumour.
                         </Typography>
-                        <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.6, color: ink, mb: 2, ...justify }}>
-                            My PhD, shared between <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs, is about making these models scale. <ExtLink href="#work" sx={{ color: ink, borderBottom: `1px solid ${accent}66` }}>Segger</ExtLink>, the project I’m known for, turns cell segmentation into a graph problem and runs 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it. Now I’m building <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>, a spatial foundation model for cancer at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>: an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues, one embedding that captures how a tumour is organised, trained on 50 billion transcripts and 500 million cells.
+                        <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
+                            <ExtLink href="#work" sx={{ color: ink, borderBottom: `1px solid ${accent}66` }}>Segger</ExtLink>, my PhD work with <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink> and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>, is the bottom of that stack: it turns cell segmentation into link prediction on a heterogeneous graph, deciding which transcript belongs to which cell, and runs 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it. Segmented cells are the tokens everything above them is built on. That upper layer is <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a scale-aware, self-supervised model in the DINOv2 and I-JEPA spirit that turns a tumour into a continuous, cross-scale <ExtLink href={labs.alphaearth}>embedding field</ExtLink> — an AlphaEarth for tissues rather than the planet — trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
                         </Typography>
-                        <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.6, color: ink, mb: 3, ...justify }}>
-                            I grew into this across a string of labs. I got into graphs as an undergrad at Sharif in Tehran, building <ExtLink href={labs.muvis}>MUVis</ExtLink>; did a master’s in computational biology at ETH Zürich, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>; met single-cell data with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink> at EMBL and <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich; and built SageNet with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> in Cambridge. Somewhere along the way I decided single-cell benchmarking is quietly broken, and I haven’t changed my mind.
+                        <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 3, ...justify }}>
+                            I got into graphs as an undergrad at Sharif in Tehran, building <ExtLink href={labs.muvis}>MUVis</ExtLink>; did a master’s in computational biology at ETH Zürich, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>; met single-cell data with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink> at EMBL and <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich; and built SageNet with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> in Cambridge. The thread through all of it is <ExtLink href="https://doi.org/10.1186/s13059-023-02962-5">realistic evaluation</ExtLink>: I care less about how clever a method looks than whether it survives contact with real biological data, and most AI doesn’t, out of the box. Closing that gap is the part I find most fun.
                         </Typography>
 
                         <Box sx={{ display: 'flex', gap: 2.5, flexWrap: 'wrap' }}>
@@ -324,8 +325,8 @@ export default function Home() {
                             <Typography sx={{ fontFamily: serifFont, fontSize: '1.08rem', lineHeight: 1.6, color: ink, mb: 2, ...justify }}>
                                 Want to talk, think together, or code together? I’m always up for it. Email is the surest way to reach me.
                             </Typography>
-                            <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap' }}>
-                                <ExtLink href={EMAIL} sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>elyas.heidari [at] dkfz-heidelberg.de</ExtLink>
+                            <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', alignItems: 'baseline' }}>
+                                <Box component="span" sx={{ fontFamily: interFont, fontSize: '0.9rem', color: ink }}>elyas.heidari [at] dkfz-heidelberg.de</Box>
                                 <ExtLink href={GITHUB} sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>GitHub</ExtLink>
                                 <ExtLink href={SCHOLAR} sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>Scholar</ExtLink>
                             </Box>
@@ -337,7 +338,7 @@ export default function Home() {
                                 <Pomegranate /><Pistachio /><Saffron />
                             </Box>
                             <Typography sx={{ fontFamily: serifFont, fontSize: '1.08rem', lineHeight: 1.65, color: ink, ...justify }}>
-                                I grew up in <ExtLink href={labs.mashhad}>Mashhad</ExtLink>, in northeastern Iran, the city of saffron, and my family comes from the small village of <ExtLink href={labs.dastjerd}>Dastjerd</ExtLink>. Iran is always in my heart, and I think it shows: in how much I care about science and education, and in my weakness for a colorful figure.
+                                I grew up in <ExtLink href={labs.mashhad}>Mashhad</ExtLink>, in northeastern Iran, the city of saffron, and my family comes from the small village of <ExtLink href={labs.dastjerd}>Dastjerd</ExtLink>. <ExtLink href={labs.iran}>Iran</ExtLink> is always in my heart, and I think it shows: in how much I care about science and education, and in my weakness for a colorful figure.
                             </Typography>
                         </Box>
                     </Box>
