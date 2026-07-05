@@ -11,7 +11,7 @@ import {
     hairline,
 } from './tokens';
 
-export { displayFont, serifFont, interFont, ink, inkSecondary, inkFaint, accent, accentHover, hairline, paper, apple, oldstyle, venueItalic } from './tokens';
+export { displayFont, serifFont, interFont, ink, inkSecondary, inkFaint, accent, accentHover, hairline, paper, apple, warm, oldstyle, venueItalic } from './tokens';
 
 const theme = createTheme({
     palette: {

@@ -37,16 +37,25 @@ export const accentHover = '#1d517a';
 export const hairline = 'rgba(36, 36, 36, 0.10)';
 export const paper = '#fcfdfe';
 
-// A restrained set of Apple-derived accents — used minimally, for figure
-// motifs and small category dots only. Never for body text.
+// A restrained, warm-leaning accent set — used lightly, for figure motifs,
+// the manifold, and small category dots. Never for body text.
 export const apple = {
-    blue: '#0071e3',
+    blue: '#2f7fc4',
     teal: '#22a1b3',
     indigo: '#5e5ce6',
-    orange: '#e8871e',
-    green: '#2fa34b',
+    orange: '#e8823a',
+    green: '#3f9e5a',
     purple: '#9a4fce',
     pink: '#e0457b',
+} as const;
+
+// Warm hues (pomegranate / saffron / pistachio country), used sparingly.
+export const warm = {
+    red: '#d1495b',
+    orange: '#e8823a',
+    yellow: '#e6b34a',
+    green: '#3f9e5a',
+    gold: '#d9a441',
 } as const;
 
 // Oldstyle (text) figures for the dated record only.

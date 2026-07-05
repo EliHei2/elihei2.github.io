@@ -5,6 +5,7 @@ import Container from '@mui/material/Container';
 import { getAllPosts } from '@/lib/blog';
 import HeroManifold from '@/components/HeroManifold';
 import Thumb, { ThumbVariant } from '@/components/Thumb';
+import { Pomegranate, Pistachio, Saffron } from '@/components/Motifs';
 import {
     displayFont, serifFont, interFont, ink, inkSecondary, accent, apple, oldstyle, venueItalic,
 } from '@/theme/tokens';
@@ -17,8 +18,10 @@ const labs = {
     stegle: 'https://www.embl.org/groups/stegle/',
     gerstung: 'https://www.dkfz.de/en/AI-in-Oncology/index.php',
     marioni: 'https://www.ebi.ac.uk/research/marioni/',
+    ghazanfar: 'https://shazanfar.github.io/',
     robinson: 'https://robinsonlabuzh.github.io/',
     huber: 'https://www.embl.org/groups/huber/',
+    ethMedal: 'https://ethz.ch/en/the-eth-zurich/education/awards/eth-medal.html',
 };
 
 const heroLinks = [
@@ -48,7 +51,7 @@ const projects = [
         accent: apple.indigo,
         tagline: 'Putting dissociated cells back where they came from.',
         paragraph:
-            'When you dissociate a tissue to sequence it, you lose where each cell sat. SageNet learns that lost position by building a graph over a gene-interaction network. We reconstructed the mouse embryo during gastrulation from seqFISH, beating Tangram and NovoSpaRc. My master’s thesis; it won the ETH Medal.',
+            'When you dissociate a tissue to sequence it, you lose where each cell sat. SageNet learns that lost position by building a graph over a gene-interaction network, then reconstructing the mouse embryo during gastrulation from seqFISH. It was my master’s thesis, and it won the ETH Medal.',
         links: [
             { label: 'Docs', href: 'https://sagenet.readthedocs.io' },
             { label: 'Code', href: 'https://github.com/MarioniLab/sagenet' },
@@ -89,7 +92,7 @@ const selectedPubs: {
         title: 'Supervised spatial inference of dissociated single-cell data with SageNet',
         titleHref: 'https://www.biorxiv.org/content/10.1101/2022.04.14.488419v1',
         authors: 'Heidari, E., Lohoff, T., …, Ghazanfar, S.', venue: 'bioRxiv', year: '2022',
-        note: 'Outperformed Tangram and NovoSpaRc.', variant: 'graph', accent: apple.blue,
+        variant: 'graph', accent: apple.blue,
     },
     {
         title: 'Meta-analysis of single-cell method benchmarks reveals the need for extensibility and interoperability',
@@ -99,17 +102,16 @@ const selectedPubs: {
     },
 ];
 
-// Timeline; each entry lists the institutes it touched (real logo or a text chip).
 const timeline = [
     {
         period: '2022 – now', place: 'DKFZ & EMBL Heidelberg', role: 'PhD, Stegle & Gerstung labs',
         insts: [{ chip: 'DKFZ' }, { img: '/logos/embl.svg', alt: 'EMBL' }],
-        text: 'Structured representation learning for large-scale spatial omics. Segger came out of this, along with most of what I know about keeping a multi-GPU system honest. I contribute to scverse, mainly SpatialData.',
+        text: 'Structured representation learning for large-scale spatial omics. Segger came out of this, and now Laminar. I contribute to scverse, mainly SpatialData.',
     },
     {
         period: '2019 – 2022', place: 'ETH Zürich · UZH · EMBL-EBI', role: 'MSc · RA (Robinson) · thesis (Marioni)',
         insts: [{ img: '/logos/eth.svg', alt: 'ETH Zürich' }, { img: '/logos/uzh.svg', alt: 'University of Zurich' }, { chip: 'EMBL-EBI' }],
-        text: 'A master’s at ETH (5.76/6.0, top three), single-cell pipelines in Mark Robinson’s lab in Zurich, and a fellowship year in John Marioni’s lab in Cambridge where SageNet came out.',
+        text: 'A master’s in computational biology at ETH (5.76/6.0, top three), single-cell pipelines in Mark Robinson’s lab in Zurich, and a fellowship year in John Marioni’s lab in Cambridge where SageNet came out.',
     },
     {
         period: '2018', place: 'EMBL Heidelberg', role: 'Research trainee, Huber group',
@@ -126,9 +128,9 @@ const timeline = [
 const PROSE = 700;
 
 function ExtLink({ href, children, sx }: { href: string; children: React.ReactNode; sx?: object }) {
-    const ext = href.startsWith('http') || href.startsWith('mailto');
+    const ext = href.startsWith('http');
     return (
-        <Box component="a" href={href} {...(ext && href.startsWith('http') ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        <Box component="a" href={href} {...(ext ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
             sx={{ color: accent, textDecoration: 'none', '&:hover': { textDecoration: 'underline' }, ...sx }}>
             {children}
         </Box>
@@ -160,8 +162,7 @@ function InstRow({ insts }: { insts: { img?: string; alt?: string; chip?: string
             {insts.map((it, i) => it.img ? (
                 <Box key={i} component="img" src={it.img} alt={it.alt || ''} sx={{
                     height: 20, width: 'auto', filter: 'grayscale(1)', opacity: 0.6,
-                    transition: 'opacity 0.2s, filter 0.2s',
-                    '&:hover': { opacity: 1, filter: 'grayscale(0)' },
+                    transition: 'opacity 0.2s, filter 0.2s', '&:hover': { opacity: 1, filter: 'grayscale(0)' },
                 }} />
             ) : <InstChip key={i} label={it.chip!} />)}
         </Box>
@@ -182,23 +183,33 @@ export default function Home() {
 
     return (
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-            {/* ---- Minimal, results-first top ---- */}
+            {/* ---- Top: photo + bio on the left, living density field on the right ---- */}
             <Box sx={{
-                maxWidth: 960, mx: 'auto', pt: { xs: 2, md: 5 }, pb: { xs: 6, md: 9 },
-                display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 300px' },
-                gap: { xs: 4, md: 6 }, alignItems: 'start',
+                maxWidth: 1000, mx: 'auto', pt: { xs: 2, md: 4 }, pb: { xs: 5, md: 8 },
+                display: 'grid', gridTemplateColumns: { xs: '1fr', md: '1fr 320px' },
+                gap: { xs: 3, md: 6 }, alignItems: 'stretch',
             }}>
                 <Box>
-                    <Typography variant="h1" component="h1" sx={{ mb: 1 }}>Elyas Heidari</Typography>
-                    <Typography sx={{ fontFamily: interFont, fontSize: '0.9rem', color: inkSecondary, mb: 3 }}>
-                        PhD researcher · DKFZ &amp; EMBL, Heidelberg · finishing 2026
-                    </Typography>
+                    <Box sx={{ display: 'flex', gap: 3, alignItems: 'flex-start', mb: 3 }}>
+                        <Box component="img" src="/portrait.jpg" alt="Elyas Heidari"
+                            sx={{
+                                width: { xs: 116, md: 168 }, height: { xs: 148, md: 214 },
+                                borderRadius: '14px', objectFit: 'cover', objectPosition: '54% 60%',
+                                border: '3px solid #fcfdfe', boxShadow: '0 6px 22px rgba(36,36,36,0.16)', flexShrink: 0,
+                            }} />
+                        <Box>
+                            <Typography variant="h1" component="h1" sx={{ mb: 1 }}>Elyas Heidari</Typography>
+                            <Typography sx={{ fontFamily: interFont, fontSize: '0.9rem', color: inkSecondary }}>
+                                PhD researcher · DKFZ &amp; EMBL, Heidelberg · finishing 2026
+                            </Typography>
+                        </Box>
+                    </Box>
 
-                    <Typography sx={{ fontFamily: serifFont, fontSize: '1.12rem', lineHeight: 1.6, color: ink, mb: 2 }}>
-                        I build machine-learning systems for spatial biology, mostly graph models that read a whole tissue at once. My main project, <ExtLink href="#work" sx={{ color: ink, borderBottom: `1px solid ${accent}66` }}>Segger</ExtLink>, reframes cell segmentation as a graph problem and runs thirty million transcripts in about ten minutes, roughly a thousand times faster than the tools before it. It is under revision at <Box component="span" sx={venueItalic}>Nature Methods</Box>. I was also co-first author on a tumour-genomics study in <Box component="span" sx={venueItalic}>Nature Biomedical Engineering</Box>.
+                    <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.6, color: ink, mb: 2 }}>
+                        I build machine-learning systems for spatial biology, mostly graph models that read a whole tissue at once. My main project, <ExtLink href="#work" sx={{ color: ink, borderBottom: `1px solid ${accent}66` }}>Segger</ExtLink>, reframes cell segmentation as a graph problem and runs thirty million transcripts in about ten minutes, roughly a thousand times faster than the tools before it. Right now I’m building <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>, a foundation model for cancer spatial embedding at the German Cancer Research Center, trained on fifty billion transcripts across five hundred million cells.
                     </Typography>
-                    <Typography sx={{ fontFamily: serifFont, fontSize: '1.12rem', lineHeight: 1.6, color: ink, mb: 3 }}>
-                        I work between <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. Before Heidelberg I built SageNet with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and Shila Ghazanfar in Cambridge, and single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich, after first getting hooked on graphs with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink> at EMBL. I care about a clean repository about as much as a loss curve that finally comes down, and I think single-cell benchmarking is quietly broken.
+                    <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.6, color: ink, mb: 3 }}>
+                        I did my bachelor’s at Sharif University of Technology in Tehran, then a master’s in computational biology at ETH Zürich, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. I now work between <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs, after building SageNet with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> in Cambridge, single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich, and first getting hooked on graphs with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink> at EMBL. I care about a clean repository about as much as a loss curve that finally comes down, and I think single-cell benchmarking is quietly broken.
                     </Typography>
 
                     <Box sx={{ display: 'flex', gap: 2.5, flexWrap: 'wrap' }}>
@@ -208,25 +219,13 @@ export default function Home() {
                     </Box>
                 </Box>
 
-                {/* photo + moving manifold, top-right */}
-                <Box sx={{ position: 'relative', width: { xs: 180, md: 300 }, height: { xs: 180, md: 300 }, mx: { xs: 'auto', md: 0 }, justifySelf: { md: 'end' } }}>
-                    <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'absolute', inset: 0 }}>
-                        <HeroManifold />
-                    </Box>
-                    <Box component="img" src="/profile.jpg" alt="Elyas Heidari"
-                        sx={{
-                            position: { xs: 'static', md: 'absolute' },
-                            bottom: { md: 14 }, left: { md: '50%' },
-                            transform: { md: 'translateX(-50%)' },
-                            width: { xs: 150, md: 152 }, height: { xs: 150, md: 152 },
-                            borderRadius: '18px', objectFit: 'cover',
-                            border: '3px solid #fcfdfe',
-                            boxShadow: '0 6px 22px rgba(36,36,36,0.14)',
-                        }} />
+                {/* right column: the living density field, moving with scroll */}
+                <Box sx={{ position: 'relative', minHeight: { xs: 240, md: 480 }, borderRadius: '12px', overflow: 'hidden' }}>
+                    <HeroManifold />
                 </Box>
             </Box>
 
-            {/* ---- Everything else, below the fold ---- */}
+            {/* ---- Below ---- */}
             <Box className="reading-substrate" sx={{ maxWidth: PROSE, mx: 'auto', px: { xs: 0, md: 1 } }}>
                 <Section id="work" title="Selected work">
                     {projects.map((p) => (
@@ -332,6 +331,16 @@ export default function Home() {
                         <ExtLink href={SCHOLAR} sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>Scholar</ExtLink>
                     </Box>
                 </Section>
+
+                {/* ---- From Iran (closing) ---- */}
+                <Box component="section" sx={{ mb: { xs: 6, md: 8 }, pt: 2, borderTop: '1px solid rgba(36,36,36,0.10)' }}>
+                    <Box sx={{ display: 'flex', gap: 1.5, mt: 4, mb: 2.5 }}>
+                        <Pomegranate /><Pistachio /><Saffron />
+                    </Box>
+                    <Typography sx={{ fontFamily: serifFont, fontSize: '1.08rem', lineHeight: 1.65, color: ink, maxWidth: 620 }}>
+                        I grew up in Mashhad, in northeastern Iran, the city of saffron, and my family comes from the small village of Dastjerd. Iran is always in my heart, and I think it shows: in how much I care about science and education, and in my weakness for a colorful figure.
+                    </Typography>
+                </Box>
             </Box>
         </Container>
     );

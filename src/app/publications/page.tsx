@@ -60,7 +60,7 @@ const publications: {
         authors: 'Heidari, E., Lohoff, T., Tyser, R. C. V., Marioni, J. C., Robinson, M. D., Ghazanfar, S.',
         venue: 'bioRxiv',
         year: '2022',
-        role: 'Lead developer. Graph-attention spatial inference over a learned gene-interaction network; outperformed Tangram and NovoSpaRc.',
+        role: 'Lead developer. Graph-attention spatial inference over a learned gene-interaction network. My master’s thesis; it won the ETH Medal.',
         variant: 'graph', accent: apple.blue,
     },
     {
