@@ -3,79 +3,96 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import { useTheme } from '@mui/material/styles';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { serifFont, interFont, inkSecondary, accent } from '@/theme/theme';
 
 const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Software', path: '/software' },
-    { name: 'Publications', path: '/publications' },
-    { name: 'Reading', path: '/reading' },
-    { name: 'Blog', path: '/blog' },
+    { name: 'About', href: '/#about' },
+    { name: 'Work', href: '/#work' },
+    { name: 'Publications', href: '/#publications' },
+    { name: 'Writing', href: '/blog' },
+    { name: 'CV', href: '/CV_Elyas_Heidari.pdf', external: true },
 ];
 
 export default function Header() {
     const pathname = usePathname();
 
     return (
-        <Box component="header" sx={{
-            py: 3,
-            position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            zIndex: 1100,
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 100%)',
-            backdropFilter: 'blur(4px)',
-        }}>
+        <Box
+            component="header"
+            sx={{
+                py: 2,
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                zIndex: 1100,
+                background: 'linear-gradient(to bottom, rgba(252,253,254,0.9) 0%, rgba(252,253,254,0) 100%)',
+                backdropFilter: 'blur(6px)',
+            }}
+        >
             <Container maxWidth="lg">
-                <Box sx={{ display: 'flex', flexDirection: { xs: 'column', sm: 'row' }, alignItems: 'center', justifyContent: 'space-between', gap: 2 }}>
-                    {/* Signature / Logo */}
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                        <Typography
-                            variant="h6"
-                            component={Link}
-                            href="/"
-                            sx={{
-                                fontFamily: 'Cormorant Garamond, serif',
-                                fontStyle: 'italic',
-                                fontWeight: 700,
-                                fontSize: '1.5rem',
-                                color: '#343434',
-                                textDecoration: 'none',
-                                letterSpacing: '0.02em',
-                                '&:hover': { color: '#296b9f' }
-                            }}
-                        >
-                            Elyas Heidari
-                        </Typography>
+                <Box
+                    sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', sm: 'row' },
+                        alignItems: 'center',
+                        justifyContent: 'space-between',
+                        gap: 1.5,
+                    }}
+                >
+                    <Box
+                        component={Link}
+                        href="/"
+                        sx={{
+                            fontFamily: serifFont,
+                            fontWeight: 600,
+                            fontSize: '1.15rem',
+                            color: '#2f2f2f',
+                            textDecoration: 'none',
+                            '&:hover': { color: accent },
+                        }}
+                    >
+                        Elyas Heidari
                     </Box>
 
-                    {/* Navigation */}
-                    <Box component="nav" sx={{ display: 'flex', gap: 4, flexWrap: 'wrap', justifyContent: 'center' }}>
+                    <Box component="nav" sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', justifyContent: 'center' }}>
                         {navItems.map((item) => {
-                            const isActive = pathname === item.path;
+                            const isActive = !item.external && pathname === item.href;
+                            const common = {
+                                fontFamily: interFont,
+                                fontWeight: 500,
+                                fontSize: '0.8125rem',
+                                color: isActive ? accent : inkSecondary,
+                                textDecoration: 'none',
+                                transition: 'color 0.2s',
+                                borderBottom: isActive ? `1px solid ${accent}` : '1px solid transparent',
+                                paddingBottom: '1px',
+                            } as const;
+                            if (item.external) {
+                                return (
+                                    <Box
+                                        key={item.name}
+                                        component="a"
+                                        href={item.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        sx={{ ...common, '&:hover': { color: accent } }}
+                                    >
+                                        {item.name}
+                                    </Box>
+                                );
+                            }
                             return (
-                                <Link
+                                <Box
                                     key={item.name}
-                                    href={item.path}
-                                    style={{
-                                        textDecoration: 'none',
-                                        color: isActive ? '#296b9f' : '#5a5a5a',
-                                        fontFamily: 'Space Grotesk, sans-serif',
-                                        fontWeight: 600,
-                                        fontSize: '0.75rem',
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.1em',
-                                        transition: '0.2s',
-                                        borderBottom: isActive ? '1px solid #296b9f' : '1px solid transparent'
-                                    }}
+                                    component={Link}
+                                    href={item.href}
+                                    sx={{ ...common, '&:hover': { color: accent } }}
                                 >
                                     {item.name}
-                                </Link>
+                                </Box>
                             );
                         })}
                     </Box>

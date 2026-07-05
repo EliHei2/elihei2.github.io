@@ -3,113 +3,63 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 import Link from 'next/link';
-import Chip from '@mui/material/Chip';
 import { getAllPosts as fetchPosts } from '../../lib/blog';
+import { serifFont, interFont, ink, inkSecondary, accent, oldstyle } from '@/theme/tokens';
 
 export default async function Blog() {
     const allPostsData = fetchPosts();
 
     return (
-        <Container maxWidth="md" sx={{ mt: 16, mb: 16, position: 'relative', zIndex: 10 }}>
-            <Box sx={{ borderBottom: '1px solid rgba(52, 52, 52, 0.2)', mb: 8, pb: 2 }}>
-                <Typography variant="h1" sx={{
-                    fontFamily: 'Space Grotesk, sans-serif',
-                    fontSize: '3rem',
-                    fontWeight: 700,
-                    color: '#343434',
-                    letterSpacing: '-0.02em'
-                }}>
-                    WRITINGS
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+            <Box className="reading-substrate" sx={{ maxWidth: 720, mx: 'auto', pt: { xs: 2, md: 4 }, pb: 8 }}>
+                <Typography variant="h1" component="h1" sx={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', mb: 6 }}>
+                    Writing
                 </Typography>
-            </Box>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column' }}>
-                {allPostsData.map(({ slug, date, title, excerpt, tags, readingTime }) => (
-                    <Box key={slug} sx={{
-                        py: 6,
-                        borderBottom: '1px solid rgba(52, 52, 52, 0.1)',
-                        display: 'grid',
-                        gridTemplateColumns: { xs: '1fr', md: '1fr 3fr' },
-                        gap: 2,
-                        transition: '0.2s',
-                        '&:hover': {
-                            bgcolor: 'rgba(52, 52, 52, 0.03)',
-                        }
-                    }}>
-                        {/* Metadata Column */}
-                        <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
-                            <Typography variant="caption" sx={{
-                                fontFamily: 'Space Grotesk, sans-serif',
-                                color: '#296b9f',
-                                fontSize: '0.8rem',
-                                letterSpacing: '0.05em'
-                            }}>
-                                {date}
-                            </Typography>
-                            <Typography variant="caption" sx={{
-                                fontFamily: 'Space Grotesk, sans-serif',
-                                color: 'rgba(52, 52, 52, 0.5)',
-                                fontSize: '0.75rem'
-                            }}>
-                                {readingTime} MIN READ
-                            </Typography>
-                        </Box>
-
-                        {/* Content Column */}
-                        <Box>
-                            <Link href={`/blog/${slug}`} style={{ textDecoration: 'none' }}>
-                                <Typography variant="h4" sx={{
-                                    fontFamily: 'Cormorant Garamond, serif',
-                                    fontWeight: 600,
-                                    color: '#343434',
-                                    mb: 2,
-                                    fontSize: '2rem',
-                                    lineHeight: 1.1,
-                                    transition: '0.2s',
-                                    '&:hover': { color: '#296b9f' }
-                                }}>
-                                    {title}
+                <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+                    {allPostsData.map(({ slug, date, title, excerpt, tags, readingTime }) => (
+                        <Box
+                            key={slug}
+                            sx={{
+                                py: 4.5,
+                                borderTop: '1px solid rgba(52, 52, 52, 0.10)',
+                                display: 'grid',
+                                gridTemplateColumns: { xs: '1fr', md: '150px 1fr' },
+                                gap: { xs: 1, md: 3 },
+                            }}
+                        >
+                            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}>
+                                <Typography sx={{ ...oldstyle, fontSize: '0.9rem', color: inkSecondary }}>{date}</Typography>
+                                <Typography sx={{ fontFamily: interFont, fontSize: '0.8rem', color: '#8a8a8a' }}>
+                                    {readingTime} min read
                                 </Typography>
-                            </Link>
+                            </Box>
 
-                            <Typography variant="body1" sx={{
-                                fontFamily: 'Cormorant Garamond, serif',
-                                color: 'rgba(52, 52, 52, 0.7)',
-                                lineHeight: 1.6,
-                                mb: 3,
-                                maxWidth: '90%'
-                            }}>
-                                {excerpt}
-                            </Typography>
-
-                            <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                                {tags?.map((tag) => (
-                                    <Chip
-                                        key={tag}
-                                        label={tag}
-                                        size="small"
-                                        sx={{
-                                            borderRadius: 0,
-                                            bgcolor: 'transparent',
-                                            border: '1px solid rgba(41, 107, 159, 0.2)',
-                                            color: '#296b9f',
-                                            fontFamily: 'Space Grotesk, sans-serif',
-                                            fontSize: '0.7rem'
-                                        }}
-                                    />
-                                ))}
+                            <Box>
+                                <Link href={`/blog/${slug}`} style={{ textDecoration: 'none' }}>
+                                    <Typography sx={{ fontFamily: serifFont, fontWeight: 600, color: ink, mb: 1.25, fontSize: '1.5rem', lineHeight: 1.2, '&:hover': { color: accent } }}>
+                                        {title}
+                                    </Typography>
+                                </Link>
+                                <Typography sx={{ fontFamily: serifFont, fontSize: '1.05rem', color: inkSecondary, lineHeight: 1.5, mb: 2, maxWidth: '95%' }}>
+                                    {excerpt}
+                                </Typography>
+                                <Box sx={{ display: 'flex', gap: 1.5, flexWrap: 'wrap' }}>
+                                    {tags?.map((tag) => (
+                                        <Typography key={tag} sx={{ fontFamily: interFont, fontSize: '0.75rem', color: accent }}>
+                                            {tag}
+                                        </Typography>
+                                    ))}
+                                </Box>
                             </Box>
                         </Box>
-                    </Box>
-                ))}
-
-                {allPostsData.length === 0 && (
-                    <Box sx={{ p: 4, textAlign: 'center' }}>
-                        <Typography variant="body2" sx={{ color: 'rgba(255, 255, 255, 0.4)', fontStyle: 'italic' }}>
-                            No entries found.
+                    ))}
+                    {allPostsData.length === 0 && (
+                        <Typography variant="body2" sx={{ color: inkSecondary, fontStyle: 'italic' }}>
+                            No entries yet.
                         </Typography>
-                    </Box>
-                )}
+                    )}
+                </Box>
             </Box>
         </Container>
     );

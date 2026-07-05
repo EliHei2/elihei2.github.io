@@ -4,85 +4,59 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Link from 'next/link';
 import readingData from '@/data/reading.json';
+import { serifFont, interFont, ink, inkSecondary, accent } from '@/theme/theme';
+
+interface ReadingItem {
+    title: string;
+    author: string;
+    year?: string | number;
+    url?: string;
+}
+interface ReadingCategory {
+    category: string;
+    items: ReadingItem[];
+}
 
 export default function Reading() {
+    const data = readingData as ReadingCategory[];
     return (
-        <Container maxWidth="md" sx={{ mb: 12 }}>
-            <Box sx={{ mb: 8, mt: 4 }}>
-                <Typography variant="h1" sx={{ mb: 2 }}>Reading List</Typography>
-                <Typography variant="body1" sx={{ color: 'text.secondary' }}>
-                    A curated collection of literature, manuscripts, and philosophical foundations.
+        <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
+            <Box className="reading-substrate" sx={{ maxWidth: 660, mx: 'auto', pt: { xs: 2, md: 4 }, pb: 8 }}>
+                <Typography variant="h1" component="h1" sx={{ fontSize: 'clamp(2rem, 4vw, 2.6rem)', mb: 2 }}>
+                    Reading
                 </Typography>
-            </Box>
+                <Typography variant="body1" sx={{ color: inkSecondary, fontSize: '1rem', mb: 6 }}>
+                    Books and pieces I keep coming back to. Loosely grouped, not ranked.
+                </Typography>
 
-            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-                {readingData.map((category: any, i: number) => (
-                    <Box key={i}>
-                        <Typography variant="h6" sx={{
-                            fontFamily: 'Space Grotesk, sans-serif',
-                            textTransform: 'uppercase',
-                            letterSpacing: '0.2em',
-                            color: '#296b9f',
-                            mb: 4,
-                            borderBottom: '1px solid rgba(52, 52, 52, 0.1)',
-                            pb: 1,
-                            display: 'inline-block'
-                        }}>
-                            {category.category}
-                        </Typography>
-
-                        <Box component="ul" sx={{ pl: 0, listStyle: 'none', display: 'grid', gap: 4 }}>
-                            {category.items.map((item: any, j: number) => (
-                                <Box
-                                    component="li"
-                                    key={j}
-                                    sx={{
-                                        display: 'flex',
-                                        flexDirection: 'column',
-                                        gap: 0.5,
-                                        pb: 2,
-                                        borderBottom: '1px solid rgba(255,255,255,0.03)',
-                                        '&:hover': {
-                                            '& a': { color: '#296b9f' },
-                                            borderColor: 'rgba(52, 52, 52, 0.2)'
-                                        },
-                                        transition: '0.2s'
-                                    }}
-                                >
-                                    <Typography variant="body1" sx={{ fontSize: '1.2rem', fontFamily: 'Cormorant Garamond, serif' }}>
-                                        {item.url ? (
-                                            <Link
-                                                href={item.url}
-                                                target="_blank"
-                                                style={{
-                                                    textDecoration: 'none',
-                                                    color: '#343434',
-                                                    fontWeight: 500,
-                                                    transition: '0.2s'
-                                                }}
-                                            >
-                                                {item.title}
-                                            </Link>
-                                        ) : (
-                                            <span style={{ color: '#343434', fontWeight: 500 }}>{item.title}</span>
-                                        )}
-                                    </Typography>
-
-                                    <Typography variant="caption" sx={{
-                                        color: 'rgba(52, 52, 52, 0.4)',
-                                        fontFamily: 'monospace',
-                                        textTransform: 'uppercase',
-                                        letterSpacing: '0.05em'
-                                    }}>
-                                        {item.author} {item.year && ` / ${item.year}`}
-                                    </Typography>
-                                </Box>
-                            ))}
+                <Box sx={{ display: 'flex', flexDirection: 'column', gap: 6 }}>
+                    {data.map((category, i) => (
+                        <Box key={i}>
+                            <Typography sx={{ fontFamily: interFont, fontSize: '0.8rem', fontWeight: 600, letterSpacing: '0.02em', color: inkSecondary, mb: 2.5 }}>
+                                {category.category}
+                            </Typography>
+                            <Box component="ul" sx={{ pl: 0, m: 0, listStyle: 'none', display: 'grid', gap: 2.5 }}>
+                                {category.items.map((item, j) => (
+                                    <Box component="li" key={j} sx={{ display: 'flex', flexDirection: 'column', gap: 0.25 }}>
+                                        <Typography sx={{ ...({ fontFamily: serifFont, fontStyle: 'italic' }), fontSize: '1.1rem', lineHeight: 1.4 }}>
+                                            {item.url ? (
+                                                <Box component="a" href={item.url} target="_blank" rel="noopener noreferrer" sx={{ color: ink, textDecoration: 'none', '&:hover': { color: accent } }}>
+                                                    {item.title}
+                                                </Box>
+                                            ) : (
+                                                <Box component="span" sx={{ color: ink }}>{item.title}</Box>
+                                            )}
+                                        </Typography>
+                                        <Typography sx={{ fontFamily: interFont, fontSize: '0.8125rem', color: inkSecondary }}>
+                                            {item.author}{item.year ? ` · ${item.year}` : ''}
+                                        </Typography>
+                                    </Box>
+                                ))}
+                            </Box>
                         </Box>
-                    </Box>
-                ))}
+                    ))}
+                </Box>
             </Box>
         </Container>
     );

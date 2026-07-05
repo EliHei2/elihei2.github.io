@@ -1,15 +1,15 @@
-/* Global styles inspired by SegBench lightweight clean schematic aesthetic */
+/* Ink, paper, one blue. The manifold is quiet atmosphere; prose sits on opaque paper. */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
 html,
 body {
   padding: 0;
   margin: 0;
-  background-color: #ffffff;
-  color: #343434;
-  /* Thin grid background */
-  background-image:
-    linear-gradient(rgba(52, 52, 52, 0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(52, 52, 52, 0.04) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-color: #fcfdfe;
+  color: #2f2f2f;
 }
 
 a {
@@ -17,20 +17,41 @@ a {
   text-decoration: none;
 }
 
-/* Custom scrollbar for clean schematic feel */
+/* The reading column: effectively opaque near-white with a soft feathered halo,
+   so body copy always clears WCAG AA regardless of the manifold behind it. */
+.reading-substrate {
+  background: #fcfdfe;
+  box-shadow: 0 0 64px 40px #fcfdfe;
+}
+
+/* A lighter radial glow behind the hero text — the manifold reads around the
+   name while the small result line stays legible. No hard card edge. */
+.hero-glow {
+  background: radial-gradient(
+    120% 100% at 20% 40%,
+    rgba(252, 253, 254, 0.92) 0%,
+    rgba(252, 253, 254, 0.7) 45%,
+    rgba(252, 253, 254, 0) 100%
+  );
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #ffffff;
+  background: #fcfdfe;
 }
-
 ::-webkit-scrollbar-thumb {
   background: rgba(52, 52, 52, 0.15);
   border-radius: 4px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #296b9f;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }
