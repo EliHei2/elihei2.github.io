@@ -1,6 +1,7 @@
 'use client';
 import { createTheme } from '@mui/material/styles';
 import {
+    displayFont,
     serifFont,
     interFont,
     ink,
@@ -10,7 +11,7 @@ import {
     hairline,
 } from './tokens';
 
-export { serifFont, interFont, ink, inkSecondary, inkFaint, accent, accentHover, hairline, oldstyle, venueItalic } from './tokens';
+export { displayFont, serifFont, interFont, ink, inkSecondary, inkFaint, accent, accentHover, hairline, paper, apple, oldstyle, venueItalic } from './tokens';
 
 const theme = createTheme({
     palette: {
@@ -28,30 +29,30 @@ const theme = createTheme({
         fontWeightMedium: 500,
         fontWeightBold: 600,
         h1: {
-            fontFamily: serifFont,
-            fontSize: 'clamp(2.5rem, 5vw, 3.4rem)',
-            fontWeight: 700,
-            lineHeight: 1.08,
-            letterSpacing: '-0.01em',
+            fontFamily: displayFont,
+            fontSize: 'clamp(2.4rem, 4.5vw, 3.1rem)',
+            fontWeight: 600,
+            lineHeight: 1.05,
+            letterSpacing: '-0.015em',
             color: ink,
         },
         h2: {
-            fontFamily: serifFont,
-            fontSize: 'clamp(1.4rem, 2.6vw, 1.7rem)',
+            fontFamily: displayFont,
+            fontSize: 'clamp(1.3rem, 2.4vw, 1.55rem)',
             fontWeight: 600,
             lineHeight: 1.2,
             letterSpacing: '-0.005em',
             color: ink,
         },
         h3: {
-            fontFamily: serifFont,
+            fontFamily: displayFont,
             fontSize: '1.1rem',
             fontWeight: 600,
             lineHeight: 1.3,
             color: ink,
         },
-        h4: { fontFamily: serifFont, fontSize: '1.05rem', fontWeight: 600, color: ink },
-        h5: { fontFamily: serifFont, fontSize: '1rem', fontWeight: 600, color: ink },
+        h4: { fontFamily: displayFont, fontSize: '1.05rem', fontWeight: 600, color: ink },
+        h5: { fontFamily: displayFont, fontSize: '1rem', fontWeight: 600, color: ink },
         h6: { fontFamily: interFont, fontSize: '0.9rem', fontWeight: 600, color: ink },
         body1: {
             fontFamily: serifFont,

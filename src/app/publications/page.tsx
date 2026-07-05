@@ -2,9 +2,13 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import { serifFont, interFont, ink, inkSecondary, accent, oldstyle, venueItalic } from '@/theme/tokens';
+import { serifFont, interFont, ink, inkSecondary, accent, apple, oldstyle, venueItalic } from '@/theme/tokens';
+import Thumb, { ThumbVariant } from '@/components/Thumb';
 
-const publications = [
+const publications: {
+    title: string; titleHref: string; authors: string; venue: string; year: string; role: string;
+    variant: ThumbVariant; accent: string;
+}[] = [
     {
         title: 'Segger: Fast and accurate cell segmentation of imaging-based spatial transcriptomics data',
         titleHref: 'https://www.biorxiv.org/content/10.1101/2025.03.14.643160v1',
@@ -12,6 +16,7 @@ const publications = [
         venue: 'bioRxiv',
         year: '2025',
         role: 'Lead developer. I reframed cell segmentation as heterogeneous-graph link prediction between transcript and cell nodes and built the multi-GPU pipeline (10–100M nodes), about a thousand times faster than the tools before it. Under revision at Nature Methods.',
+        variant: 'grid', accent: apple.teal,
     },
     {
         title: 'Integrated in vivo combinatorial functional genomics and spatial transcriptomics of tumours to decode genotype-to-phenotype relationships',
@@ -20,6 +25,7 @@ const publications = [
         venue: 'Nature Biomedical Engineering',
         year: '2025',
         role: 'Co-lead developer. Built the spatial phenotyping pipeline linking genetic perturbations to tumour microenvironments.',
+        variant: 'scatter', accent: apple.orange,
     },
     {
         title: 'SpatialData: an open and universal data framework for spatial omics',
@@ -28,6 +34,7 @@ const publications = [
         venue: 'Nature Methods 22(1):58–62',
         year: '2025',
         role: 'Contributor. Designed and built the flagship multi-layer breast-cancer analysis.',
+        variant: 'layers', accent: apple.purple,
     },
     {
         title: 'snRNA-seq stratifies multiple sclerosis patients into distinct white matter glial responses',
@@ -36,6 +43,7 @@ const publications = [
         venue: 'Neuron 113(3):396–410.e9',
         year: '2025',
         role: 'Contributor. Built the large-scale sc/snRNA-seq pipelines behind the analysis, across more than two hundred patients and about a million cells: integration, cell-type annotation, and the downstream statistics.',
+        variant: 'scatter', accent: apple.indigo,
     },
     {
         title: 'Meta-analysis of single-cell method benchmarks reveals the need for extensibility and interoperability',
@@ -44,6 +52,7 @@ const publications = [
         venue: 'Genome Biology 24(1):119',
         year: '2023',
         role: 'Contributor. Analysis and synthesis of the benchmarking results, and the software-design argument that came out of them.',
+        variant: 'bars', accent: apple.green,
     },
     {
         title: 'Supervised spatial inference of dissociated single-cell data with SageNet',
@@ -52,6 +61,7 @@ const publications = [
         venue: 'bioRxiv',
         year: '2022',
         role: 'Lead developer. Graph-attention spatial inference over a learned gene-interaction network; outperformed Tangram and NovoSpaRc.',
+        variant: 'graph', accent: apple.blue,
     },
     {
         title: 'An end-to-end workflow for high-throughput discovery of clinically relevant insights from large biomedical datasets',
@@ -60,6 +70,7 @@ const publications = [
         venue: 'bioRxiv',
         year: '2020',
         role: 'Lead developer. A modular analytics pipeline for population-scale biomedical data, built for reproducibility and automation.',
+        variant: 'network', accent: apple.pink,
     },
     {
         title: "Pin1 regulatory miRNAs as novel candidates for Alzheimer's disease treatment",
@@ -68,6 +79,7 @@ const publications = [
         venue: 'bioRxiv',
         year: '2018',
         role: 'Lead analyst. Statistical and meta-analysis identifying candidate regulatory miRNAs.',
+        variant: 'network', accent: apple.teal,
     },
 ];
 
@@ -134,26 +146,34 @@ export default function Publications() {
 
                 <Box sx={{ mb: 8 }}>
                     {publications.map((p, i) => (
-                        <Box key={i} sx={{ mb: 5 }}>
-                            <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', fontWeight: 600, lineHeight: 1.35, mb: 0.75 }}>
-                                {p.titleHref ? (
-                                    <Box component="a" href={p.titleHref} target="_blank" rel="noopener noreferrer" sx={{ color: ink, textDecoration: 'none', '&:hover': { color: accent } }}>
-                                        {p.title}
-                                    </Box>
-                                ) : (
-                                    <Box component="span" sx={{ color: ink }}>{p.title}</Box>
-                                )}
-                            </Typography>
-                            <Typography sx={{ fontFamily: interFont, fontSize: '0.875rem', color: inkSecondary, mb: 0.5 }}>
-                                <AuthorLine authors={p.authors} />
-                            </Typography>
-                            <Typography sx={{ fontFamily: serifFont, fontSize: '0.95rem', color: inkSecondary, mb: 1 }}>
-                                <Box component="span" sx={venueItalic}>{p.venue}</Box>{' '}
-                                <Box component="span" sx={oldstyle}>{p.year}</Box>
-                            </Typography>
-                            <Typography sx={{ fontFamily: serifFont, fontSize: '0.98rem', color: ink, lineHeight: 1.55 }}>
-                                {p.role}
-                            </Typography>
+                        <Box key={i} sx={{
+                            display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '104px 1fr' }, gap: { xs: 1.5, sm: 3 },
+                            mb: 5, alignItems: 'start',
+                        }}>
+                            <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+                                <Thumb variant={p.variant} accent={p.accent} seed={p.title} ariaLabel={`${p.title} figure`} />
+                            </Box>
+                            <Box>
+                                <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', fontWeight: 600, lineHeight: 1.35, mb: 0.5 }}>
+                                    {p.titleHref ? (
+                                        <Box component="a" href={p.titleHref} target="_blank" rel="noopener noreferrer" sx={{ color: ink, textDecoration: 'none', '&:hover': { color: accent } }}>
+                                            {p.title}
+                                        </Box>
+                                    ) : (
+                                        <Box component="span" sx={{ color: ink }}>{p.title}</Box>
+                                    )}
+                                </Typography>
+                                <Typography sx={{ fontFamily: interFont, fontSize: '0.875rem', color: inkSecondary, mb: 0.25 }}>
+                                    <AuthorLine authors={p.authors} />
+                                </Typography>
+                                <Typography sx={{ fontFamily: serifFont, fontSize: '0.95rem', color: inkSecondary, mb: 0.75 }}>
+                                    <Box component="span" sx={venueItalic}>{p.venue}</Box>{' '}
+                                    <Box component="span" sx={oldstyle}>{p.year}</Box>
+                                </Typography>
+                                <Typography sx={{ fontFamily: serifFont, fontSize: '0.98rem', color: ink, lineHeight: 1.55 }}>
+                                    {p.role}
+                                </Typography>
+                            </Box>
                         </Box>
                     ))}
                 </Box>

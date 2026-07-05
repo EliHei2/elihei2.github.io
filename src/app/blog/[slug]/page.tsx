@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 import { Metadata } from 'next';
 import rehypeRaw from 'rehype-raw';
 import BlogInteractions from '@/components/BlogInteractions';
-import { serifFont, interFont, ink, inkSecondary, accent, oldstyle } from '@/theme/tokens';
+import { displayFont, serifFont, interFont, ink, inkSecondary, accent, oldstyle } from '@/theme/tokens';
 
 interface Props {
     params: Promise<{ slug: string }>;
@@ -51,7 +51,7 @@ export default async function BlogPost({ params }: Props) {
                     <Typography
                         variant="h1"
                         component="h1"
-                        sx={{ fontFamily: serifFont, fontWeight: 700, mb: 3, color: ink, fontSize: { xs: '2rem', md: '2.6rem' }, lineHeight: 1.15 }}
+                        sx={{ fontFamily: displayFont, fontWeight: 600, mb: 3, color: ink, fontSize: { xs: '2rem', md: '2.6rem' }, lineHeight: 1.1, letterSpacing: '-0.015em' }}
                     >
                         {post.title}
                     </Typography>

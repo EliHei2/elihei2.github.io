@@ -1,7 +1,8 @@
-/* Ink, paper, one blue. The manifold is quiet atmosphere; prose sits on opaque paper. */
+/* Ink, paper, one blue + minimal Apple accents. The manifold is visible but quiet;
+   prose keeps a soft readable substrate. */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 90px;
+  scroll-padding-top: 84px;
 }
 
 html,
@@ -9,7 +10,7 @@ body {
   padding: 0;
   margin: 0;
   background-color: #fcfdfe;
-  color: #2f2f2f;
+  color: #242424;
 }
 
 a {
@@ -17,22 +18,12 @@ a {
   text-decoration: none;
 }
 
-/* The reading column: effectively opaque near-white with a soft feathered halo,
-   so body copy always clears WCAG AA regardless of the manifold behind it. */
+/* The reading column keeps a soft, near-invisible white cushion so prose stays
+   legible over the faint manifold in the margins — not a visible card. */
 .reading-substrate {
-  background: #fcfdfe;
-  box-shadow: 0 0 64px 40px #fcfdfe;
-}
-
-/* A lighter radial glow behind the hero text — the manifold reads around the
-   name while the small result line stays legible. No hard card edge. */
-.hero-glow {
-  background: radial-gradient(
-    120% 100% at 20% 40%,
-    rgba(252, 253, 254, 0.92) 0%,
-    rgba(252, 253, 254, 0.7) 45%,
-    rgba(252, 253, 254, 0) 100%
-  );
+  background: rgba(252, 253, 254, 0.82);
+  box-shadow: 0 0 40px 24px rgba(252, 253, 254, 0.82);
+  border-radius: 2px;
 }
 
 /* Custom scrollbar */
@@ -43,7 +34,7 @@ a {
   background: #fcfdfe;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(52, 52, 52, 0.15);
+  background: rgba(36, 36, 36, 0.16);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {

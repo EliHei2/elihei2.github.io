@@ -5,10 +5,9 @@ import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { serifFont, interFont, inkSecondary, accent } from '@/theme/theme';
+import { displayFont, interFont, inkSecondary, accent } from '@/theme/theme';
 
 const navItems = [
-    { name: 'About', href: '/#about' },
     { name: 'Work', href: '/#work' },
     { name: 'Publications', href: '/#publications' },
     { name: 'Writing', href: '/blog' },
@@ -46,10 +45,10 @@ export default function Header() {
                         component={Link}
                         href="/"
                         sx={{
-                            fontFamily: serifFont,
+                            fontFamily: displayFont,
                             fontWeight: 600,
-                            fontSize: '1.15rem',
-                            color: '#2f2f2f',
+                            fontSize: '1.2rem',
+                            color: '#242424',
                             textDecoration: 'none',
                             '&:hover': { color: accent },
                         }}

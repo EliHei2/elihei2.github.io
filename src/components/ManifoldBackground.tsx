@@ -18,8 +18,8 @@ const MANIFOLD = (() => {
     const positions = new Float32Array(COUNT * 3);
     const colors = new Float32Array(COUNT * 3);
     // Pale-mid blue so the surface itself reads as a graph, not near-white noise.
-    const color1 = new THREE.Color('#9cc4e0');
-    const color2 = new THREE.Color('#b9d6ea');
+    const color1 = new THREE.Color('#6ea8d4');
+    const color2 = new THREE.Color('#93c1e2');
 
     for (let i = 0; i < COUNT; i++) {
         const x = (Math.random() - 0.5) * 20;
@@ -140,11 +140,11 @@ function LocalGraphs({ pointsRef }: { pointsRef: React.RefObject<THREE.Points | 
         <group>
             <lineSegments ref={lineRef}>
                 <bufferGeometry />
-                <lineBasicMaterial color="#296b9f" transparent opacity={0.18} />
+                <lineBasicMaterial color="#296b9f" transparent opacity={0.32} />
             </lineSegments>
             <points ref={sparkPointsRef}>
                 <bufferGeometry />
-                <pointsMaterial size={0.12} color="#296b9f" transparent opacity={0.22} sizeAttenuation />
+                <pointsMaterial size={0.14} color="#296b9f" transparent opacity={0.42} sizeAttenuation />
             </points>
         </group>
     );
@@ -192,7 +192,7 @@ function ManifoldPoints({ reducedMotion }: { reducedMotion: boolean }) {
                         args={[points.colors, 3]}
                     />
                 </bufferGeometry>
-                <pointsMaterial size={0.12} vertexColors transparent opacity={0.32} sizeAttenuation />
+                <pointsMaterial size={0.13} vertexColors transparent opacity={0.5} sizeAttenuation />
             </points>
             {!reducedMotion && <LocalGraphs pointsRef={pointsRef} />}
         </group>
@@ -213,7 +213,7 @@ export default function ManifoldBackground() {
                 height: '100vh',
                 zIndex: -1,
                 pointerEvents: 'none',
-                background: 'linear-gradient(to bottom, #ffffff 0%, #f5f9fd 100%)',
+                background: 'linear-gradient(to bottom, #ffffff 0%, #eef5fc 100%)',
             }}
         >
             <Canvas
@@ -222,7 +222,7 @@ export default function ManifoldBackground() {
                 frameloop={reducedMotion ? 'demand' : 'always'}
             >
                 <ManifoldPoints reducedMotion={reducedMotion} />
-                <fog attach="fog" args={['#ffffff', 5, 20]} />
+                <fog attach="fog" args={['#eef5fc', 16, 40]} />
             </Canvas>
         </div>
     );
