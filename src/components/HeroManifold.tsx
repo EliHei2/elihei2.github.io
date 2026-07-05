@@ -2,13 +2,14 @@
 
 import { useEffect, useRef } from 'react';
 
-// An irregular, flat point field with a few soft density regions and a live
-// graph — the blue/gold "transcript-to-cell" look, not a sphere. Points cluster
-// unevenly around density blobs; a handful of edges light up; the whole field
-// drifts as you scroll. 2D canvas, so the density blobs are cheap radial washes.
+// A multi-scale field that builds the way tissue does: RNA/protein points cluster
+// into cells (a hub node each), cells gather into niches (the soft density regions),
+// and the whole thing is one tissue. Transcript→cell edges are Segger's
+// "transcript-to-cell" link, made literal. Blue = RNA, gold = protein. 2D canvas;
+// irregular; drifts with scroll.
 
-type Blob = { x: number; y: number; r: number; color: string; w: number };
-type Pt = { x: number; y: number; bx: number; by: number; c: string; s: number; ph: number };
+type Niche = { x: number; y: number; r: number; color: string; w: number };
+type Node = { x: number; y: number; bx: number; by: number; c: string; s: number; cell: boolean; ph: number };
 
 function mulberry(seed: number) {
     return () => {
@@ -19,14 +20,14 @@ function mulberry(seed: number) {
         return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
     };
 }
-
 function hexA(hex: string, a: number) {
     const h = hex.replace('#', '');
-    const r = parseInt(h.slice(0, 2), 16);
-    const g = parseInt(h.slice(2, 4), 16);
-    const b = parseInt(h.slice(4, 6), 16);
-    return `rgba(${r},${g},${b},${a})`;
+    return `rgba(${parseInt(h.slice(0, 2), 16)},${parseInt(h.slice(2, 4), 16)},${parseInt(h.slice(4, 6), 16)},${a})`;
 }
+
+const BLUE = '#3f86c6';   // RNA
+const GOLD = '#c99a3f';   // protein
+const CELLINK = '#2c6699';
 
 export default function HeroManifold() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -40,14 +41,11 @@ export default function HeroManifold() {
         const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         const rand = mulberry(20251015);
 
-        const blueP = '#3f86c6';
-        const goldP = '#d9a441';
-        const warmPts = ['#d1495b', '#e8823a', '#e6b34a', '#3f9e5a'];
-
         let W = 1, H = 1;
-        let blobs: Blob[] = [];
-        let pts: Pt[] = [];
-        let edges: [number, number][] = [];
+        let niches: Niche[] = [];
+        let nodes: Node[] = [];
+        let txEdges: [number, number][] = [];   // transcript → cell
+        let cellEdges: [number, number][] = []; // cell ↔ cell (niche graph)
 
         const build = () => {
             const rect = cv.getBoundingClientRect();
@@ -57,38 +55,62 @@ export default function HeroManifold() {
             cv.width = Math.round(W * dpr);
             cv.height = Math.round(H * dpr);
             g2d.setTransform(dpr, 0, 0, dpr, 0, 0);
+            const m = Math.min(W, H);
 
-            blobs = [
-                { x: W * 0.30, y: H * 0.26, r: Math.min(W, H) * 0.46, color: goldP, w: 0.9 },
-                { x: W * 0.66, y: H * 0.55, r: Math.min(W, H) * 0.55, color: blueP, w: 1.0 },
-                { x: W * 0.42, y: H * 0.82, r: Math.min(W, H) * 0.40, color: '#e8823a', w: 0.5 },
+            // niches — irregular density regions (blue/gold only)
+            niches = [
+                { x: W * 0.30, y: H * 0.22, r: m * 0.40, color: GOLD, w: 0.8 },
+                { x: W * 0.68, y: H * 0.44, r: m * 0.52, color: BLUE, w: 1.0 },
+                { x: W * 0.40, y: H * 0.72, r: m * 0.34, color: BLUE, w: 0.7 },
+                { x: W * 0.76, y: H * 0.82, r: m * 0.24, color: GOLD, w: 0.5 },
             ];
 
-            pts = [];
-            const N = Math.round(Math.min(260, Math.max(120, (W * H) / 950)));
-            for (let i = 0; i < N; i++) {
-                let x: number, y: number, c: string;
-                const pick = rand();
-                if (pick < 0.9) {
-                    const b = blobs[Math.floor(rand() * blobs.length)];
+            nodes = [];
+            txEdges = [];
+            cellEdges = [];
+            const cellIdx: number[] = [];
+
+            // place cells, biased into niches, then grow each cell out of transcripts
+            const nCells = Math.round(Math.min(52, Math.max(24, (W * H) / 6200)));
+            for (let i = 0; i < nCells; i++) {
+                let cx: number, cy: number, col: string;
+                if (rand() < 0.85) {
+                    const b = niches[Math.floor(rand() * niches.length)];
                     const g = () => rand() + rand() + rand() - 1.5;
-                    x = b.x + g() * b.r * 0.62;
-                    y = b.y + g() * b.r * 0.62;
-                    c = b.color === blueP ? blueP : b.color === goldP ? goldP : warmPts[1];
-                    if (rand() < 0.16) c = warmPts[Math.floor(rand() * warmPts.length)];
+                    const spread = (0.35 + rand() * 0.5) * b.r;
+                    cx = b.x + g() * spread;
+                    cy = b.y + g() * spread;
+                    col = b.color;
                 } else {
-                    x = rand() * W;
-                    y = rand() * H;
-                    c = rand() < 0.5 ? blueP : goldP;
+                    cx = rand() * W; cy = rand() * H; col = rand() < 0.5 ? BLUE : GOLD;
                 }
-                pts.push({ x, y, bx: x, by: y, c, s: 1.1 + rand() * 2.2, ph: rand() * Math.PI * 2 });
+                const ci = nodes.length;
+                nodes.push({ x: cx, y: cy, bx: cx, by: cy, c: CELLINK, s: 3 + rand() * 1.8, cell: true, ph: rand() * Math.PI * 2 });
+                cellIdx.push(ci);
+
+                // transcripts / proteins around the cell (irregular counts + radius)
+                const k = 4 + Math.floor(rand() * 9);
+                const cellR = 8 + rand() * 10;
+                for (let j = 0; j < k; j++) {
+                    const a = rand() * Math.PI * 2;
+                    const rr = (0.3 + rand() * 0.75) * cellR;
+                    const x = cx + Math.cos(a) * rr;
+                    const y = cy + Math.sin(a) * rr;
+                    // mostly the niche's flavour, some of the other (RNA vs protein)
+                    const c = rand() < 0.72 ? col : (col === BLUE ? GOLD : BLUE);
+                    const ti = nodes.length;
+                    nodes.push({ x, y, bx: x, by: y, c, s: 0.8 + rand() * 1.1, cell: false, ph: rand() * Math.PI * 2 });
+                    txEdges.push([ti, ci]);
+                }
             }
 
-            edges = [];
-            for (let i = 0; i < pts.length && edges.length < 120; i++) {
-                for (let j = i + 1; j < pts.length && edges.length < 120; j++) {
-                    const dx = pts[i].bx - pts[j].bx, dy = pts[i].by - pts[j].by;
-                    if (dx * dx + dy * dy < 46 * 46 && rand() < 0.5) edges.push([i, j]);
+            // cell ↔ cell edges between near neighbours (niche-level graph)
+            const R2 = 62 * 62;
+            for (let a = 0; a < cellIdx.length; a++) {
+                for (let b = a + 1; b < cellIdx.length; b++) {
+                    const na = nodes[cellIdx[a]], nb = nodes[cellIdx[b]];
+                    const d = (na.bx - nb.bx) ** 2 + (na.by - nb.by) ** 2;
+                    if (d < R2 && rand() < 0.5) cellEdges.push([cellIdx[a], cellIdx[b]]);
                 }
             }
         };
@@ -109,15 +131,16 @@ export default function HeroManifold() {
             const sOff = scrollY * 0.12;
             g2d.clearRect(0, 0, W, H);
 
+            // niche washes
             g2d.globalCompositeOperation = 'multiply';
-            blobs.forEach((b, k) => {
-                const dx = reduced ? 0 : Math.sin(t * 0.18 + k) * 10;
-                const dy = reduced ? 0 : Math.cos(t * 0.15 + k * 1.7) * 10;
+            niches.forEach((b, k) => {
+                const dx = reduced ? 0 : Math.sin(t * 0.16 + k) * 9;
+                const dy = reduced ? 0 : Math.cos(t * 0.14 + k * 1.7) * 9;
                 const cx = b.x + dx;
-                const cy = b.y + dy - sOff * (0.4 + k * 0.25);
+                const cy = b.y + dy - sOff * (0.4 + k * 0.2);
                 const g = g2d.createRadialGradient(cx, cy, 0, cx, cy, b.r);
-                g.addColorStop(0, hexA(b.color, 0.3 * b.w));
-                g.addColorStop(0.5, hexA(b.color, 0.14 * b.w));
+                g.addColorStop(0, hexA(b.color, 0.26 * b.w));
+                g.addColorStop(0.5, hexA(b.color, 0.11 * b.w));
                 g.addColorStop(1, hexA(b.color, 0));
                 g2d.fillStyle = g;
                 g2d.beginPath();
@@ -126,28 +149,55 @@ export default function HeroManifold() {
             });
             g2d.globalCompositeOperation = 'source-over';
 
-            for (const p of pts) {
-                p.x = p.bx + (reduced ? 0 : Math.sin(t * 0.5 + p.ph) * 2.2);
-                p.y = p.by + (reduced ? 0 : Math.cos(t * 0.4 + p.ph) * 2.2) - sOff;
+            // animate node positions
+            for (const p of nodes) {
+                const amp = p.cell ? 1.6 : 1.0;
+                p.x = p.bx + (reduced ? 0 : Math.sin(t * 0.5 + p.ph) * amp);
+                p.y = p.by + (reduced ? 0 : Math.cos(t * 0.4 + p.ph) * amp) - sOff;
             }
 
-            g2d.lineWidth = 1;
-            for (let e = 0; e < edges.length; e++) {
-                const a = pts[edges[e][0]], b = pts[edges[e][1]];
-                const pulse = reduced ? 0.12 : 0.08 + 0.12 * (0.5 + 0.5 * Math.sin(t * 1.3 + e));
-                g2d.strokeStyle = hexA(a.c, pulse);
+            // transcript → cell edges (faint, many)
+            g2d.lineWidth = 0.6;
+            for (let e = 0; e < txEdges.length; e++) {
+                const a = nodes[txEdges[e][0]], b = nodes[txEdges[e][1]];
+                g2d.strokeStyle = hexA(a.c, 0.14);
                 g2d.beginPath();
                 g2d.moveTo(a.x, a.y);
                 g2d.lineTo(b.x, b.y);
                 g2d.stroke();
             }
 
-            for (const p of pts) {
-                if (p.y < -20 || p.y > H + 20) continue;
-                g2d.fillStyle = hexA(p.c, 0.82);
+            // cell ↔ cell edges (the niche graph, pulsing)
+            for (let e = 0; e < cellEdges.length; e++) {
+                const a = nodes[cellEdges[e][0]], b = nodes[cellEdges[e][1]];
+                const pulse = reduced ? 0.2 : 0.12 + 0.14 * (0.5 + 0.5 * Math.sin(t * 1.2 + e));
+                g2d.strokeStyle = hexA(CELLINK, pulse);
+                g2d.lineWidth = 1.1;
+                g2d.beginPath();
+                g2d.moveTo(a.x, a.y);
+                g2d.lineTo(b.x, b.y);
+                g2d.stroke();
+            }
+
+            // transcripts / proteins (tiny), then cell hubs (bigger, ringed)
+            for (const p of nodes) {
+                if (p.cell || p.y < -20 || p.y > H + 20) continue;
+                g2d.fillStyle = hexA(p.c, 0.78);
                 g2d.beginPath();
                 g2d.arc(p.x, p.y, p.s, 0, Math.PI * 2);
                 g2d.fill();
+            }
+            for (const p of nodes) {
+                if (!p.cell || p.y < -20 || p.y > H + 20) continue;
+                g2d.fillStyle = hexA(p.c, 0.95);
+                g2d.beginPath();
+                g2d.arc(p.x, p.y, p.s, 0, Math.PI * 2);
+                g2d.fill();
+                g2d.strokeStyle = hexA(p.c, 0.28);
+                g2d.lineWidth = 1;
+                g2d.beginPath();
+                g2d.arc(p.x, p.y, p.s + 3, 0, Math.PI * 2);
+                g2d.stroke();
             }
 
             if (!reduced) raf = requestAnimationFrame(frame);

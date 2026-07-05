@@ -41,6 +41,7 @@ export default function Header() {
                         gap: 1.5,
                     }}
                 >
+                    {/* Name lives under the photo on home; show it here only on other pages */}
                     <Box
                         component={Link}
                         href="/"
@@ -50,6 +51,7 @@ export default function Header() {
                             fontSize: '1.2rem',
                             color: '#242424',
                             textDecoration: 'none',
+                            visibility: pathname === '/' ? 'hidden' : 'visible',
                             '&:hover': { color: accent },
                         }}
                     >
