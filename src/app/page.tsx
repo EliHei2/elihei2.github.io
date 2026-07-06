@@ -35,6 +35,7 @@ const labs = {
     scpotter: 'https://f1000research.com/slides/9-1469',
     eth: 'https://ethz.ch/en/',
     embl: 'https://www.embl.org/',
+    cruk: 'https://www.cruk.cam.ac.uk/',
 };
 
 const heroLinks = [
@@ -248,7 +249,7 @@ export default function Home() {
                             My main project, <ExtLink href="#work">Segger</ExtLink>, turns cell segmentation into link prediction on a graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised model that turns a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 3, ...justify }}>
-                            Before Heidelberg, I did a double bachelor’s in computer engineering and mathematics at <ExtLink href={labs.sharif}>Sharif University of Technology</ExtLink> in Tehran, where I worked with <ExtLink href={labs.sharifiZarchi}>Ali Sharifi-Zarchi</ExtLink> and built <ExtLink href={labs.muvis}>MUVis</ExtLink>. I then did a master’s in computational biology at <ExtLink href={labs.eth}>ETH Zürich</ExtLink>, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. Along the way: a summer at <ExtLink href={labs.embl}>EMBL</ExtLink> with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink>, where I built <ExtLink href={labs.scpotter}>scPotter</ExtLink>; single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich; and <ExtLink href={labs.sagenet}>SageNet</ExtLink> with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> in Cambridge.
+                            Before Heidelberg, I did a double bachelor’s in computer engineering and mathematics at <ExtLink href={labs.sharif}>Sharif University of Technology</ExtLink> in Tehran, where I worked with <ExtLink href={labs.sharifiZarchi}>Ali Sharifi-Zarchi</ExtLink> and built <ExtLink href={labs.muvis}>MUVis</ExtLink>. I then did a master’s in computational biology at <ExtLink href={labs.eth}>ETH Zürich</ExtLink>, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. Along the way: a summer at <ExtLink href={labs.embl}>EMBL</ExtLink> with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink>, where I built <ExtLink href={labs.scpotter}>scPotter</ExtLink>; single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich; and <ExtLink href={labs.sagenet}>SageNet</ExtLink> with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> at the <ExtLink href={labs.cruk}>Cancer Research UK Cambridge Institute</ExtLink>.
                         </Typography>
 
                         <Box sx={{ display: 'flex', gap: 2.5, flexWrap: 'wrap' }}>
