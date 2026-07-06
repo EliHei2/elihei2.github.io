@@ -46,6 +46,15 @@ const heroLinks = [
 
 const justify = { textAlign: 'justify' as const, hyphens: 'auto' as const, WebkitHyphens: 'auto' as const };
 
+const skills = [
+    { label: 'Machine learning', items: ['Graph neural nets', 'Transformers', 'Self-supervision', 'Generative models'] },
+    { label: 'Frameworks', items: ['PyTorch', 'PyG', 'Lightning', 'JAX', 'Pyro'] },
+    { label: 'Scale', items: ['Multi-GPU', 'Dask', 'RAPIDS', 'SLURM', 'Zarr'] },
+    { label: 'MLOps', items: ['Docker', 'Nextflow', 'Snakemake', 'W&B', 'CI/CD'] },
+    { label: 'Code', items: ['Python', 'R', 'C', 'Bash'] },
+    { label: 'Spoken', items: ['English', 'German · C1', 'Persian'] },
+];
+
 const projects = [
     {
         name: 'Segger',
@@ -196,25 +205,48 @@ export default function Home() {
 
     return (
         <Container maxWidth="lg" sx={{ position: 'relative', zIndex: 1 }}>
-            <Box sx={{
-                display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'minmax(0, 1fr) 300px' },
-                gap: { xs: 4, md: 6 }, alignItems: 'start', pt: { xs: 2, md: 3 },
-            }}>
-                {/* ---- Content column ---- */}
-                <Box sx={{ minWidth: 0 }}>
-                    {/* Hero: photo, then name + title underneath */}
-                    <Box sx={{ mb: { xs: 6, md: 8 } }}>
-                        <Box component="img" src="/portrait.jpg" alt="Elyas Heidari giving a talk"
-                            sx={{
-                                width: { xs: 150, md: 176 }, height: { xs: 188, md: 220 },
-                                borderRadius: '14px', objectFit: 'cover', objectPosition: 'center',
-                                border: '3px solid #fcfdfe', boxShadow: '0 6px 22px rgba(36,36,36,0.16)', display: 'block',
-                            }} />
-                        <Typography variant="h1" component="h1" sx={{ mt: 2.5, mb: 1 }}>Elyas Heidari</Typography>
-                        <Typography sx={{ fontFamily: interFont, fontSize: '0.9rem', color: inkSecondary, mb: 3 }}>
-                            PhD researcher · DKFZ &amp; EMBL, Heidelberg · finishing Sept. 2026
-                        </Typography>
+            {/* Header */}
+            <Box sx={{ pt: { xs: 2, md: 4 }, mb: { xs: 4, md: 5 } }}>
+                <Typography variant="h1" component="h1" sx={{ mb: 1 }}>Elyas Heidari</Typography>
+                <Typography sx={{ fontFamily: interFont, fontSize: '0.9rem', color: inkSecondary }}>
+                    PhD researcher · DKFZ &amp; EMBL, Heidelberg · finishing Sept. 2026
+                </Typography>
+            </Box>
 
+            <Box sx={{
+                display: 'grid', gridTemplateColumns: { xs: '1fr', md: '236px 1fr' },
+                gap: { xs: 5, md: 6 }, alignItems: 'start',
+            }}>
+                {/* ---- Left sidebar: photo → manifold → skills (sticky) ---- */}
+                <Box sx={{ position: { md: 'sticky' }, top: { md: 88 } }}>
+                    <Box component="img" src="/portrait.jpg" alt="Elyas Heidari"
+                        sx={{ width: '100%', maxWidth: { xs: 220, md: '100%' }, borderRadius: '12px', objectFit: 'cover', border: '3px solid #fcfdfe', boxShadow: '0 6px 22px rgba(36,36,36,0.14)', display: 'block' }} />
+                    <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'relative', height: 190, borderRadius: '12px', overflow: 'hidden', mt: 2 }}>
+                        <HeroManifold />
+                    </Box>
+                    <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                        {skills.map((g) => (
+                            <Box key={g.label}>
+                                <Typography sx={{ fontFamily: interFont, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#8a8a8a', mb: 0.75 }}>{g.label}</Typography>
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
+                                    {g.items.map((it) => (
+                                        <Box key={it} component="span" sx={{ fontFamily: interFont, fontSize: '0.72rem', color: inkSecondary, border: '1px solid rgba(36,36,36,0.14)', borderRadius: '4px', px: 0.85, py: '2px', lineHeight: 1.5, whiteSpace: 'nowrap' }}>{it}</Box>
+                                    ))}
+                                </Box>
+                            </Box>
+                        ))}
+                    </Box>
+                    <Box sx={{ display: { xs: 'none', md: 'block' }, mt: 3 }}>
+                        <Typography sx={{ fontFamily: serifFont, fontStyle: 'italic', fontSize: '0.9rem', lineHeight: 1.5, color: inkSecondary }}>
+                            “The important thing is not to stop questioning.”
+                        </Typography>
+                        <Typography sx={{ fontFamily: interFont, fontSize: '0.75rem', color: '#8a8a8a', mt: 0.5 }}>— Albert Einstein</Typography>
+                    </Box>
+                </Box>
+
+                {/* ---- Main content ---- */}
+                <Box sx={{ minWidth: 0 }}>
+                    <Box sx={{ mb: { xs: 6, md: 7 } }}>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
                             I’m a PhD researcher in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs, working on AI for spatial data. I’m interested in graphs, scalable and academic-budget AI, and <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That gap is the fun part.
                         </Typography>
@@ -355,24 +387,6 @@ export default function Home() {
                                 I grew up in <ExtLink href={labs.mashhad}>Mashhad</ExtLink>, in northeastern Iran, the city of saffron, and my family comes from the small village of <ExtLink href={labs.dastjerd}>Dastjerd</ExtLink>. <ExtLink href={labs.iran}>Iran</ExtLink> is always in my heart, and I think it shows: in how much I care about science and education, and in my weakness for a colorful figure.
                             </Typography>
                         </Box>
-                    </Box>
-                </Box>
-
-                {/* ---- Sticky manifold rail (scrolls with you) + a line to sit with ---- */}
-                <Box sx={{
-                    display: { xs: 'none', md: 'flex' }, flexDirection: 'column',
-                    position: 'sticky', top: 88, height: '82vh', minWidth: 0,
-                }}>
-                    <Box sx={{ position: 'relative', flex: 1, borderRadius: '12px', overflow: 'hidden' }}>
-                        <HeroManifold />
-                    </Box>
-                    <Box sx={{ mt: 2.5 }}>
-                        <Typography sx={{ fontFamily: serifFont, fontStyle: 'italic', fontSize: '0.95rem', lineHeight: 1.5, color: inkSecondary }}>
-                            “The important thing is not to stop questioning. Curiosity has its own reason for existing.”
-                        </Typography>
-                        <Typography sx={{ fontFamily: interFont, fontSize: '0.78rem', color: '#8a8a8a', mt: 0.75 }}>
-                            — Albert Einstein
-                        </Typography>
                     </Box>
                 </Box>
             </Box>
