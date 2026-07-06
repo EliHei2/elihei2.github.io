@@ -42,9 +42,8 @@ const labs = {
 const socials = [
     { name: 'GitHub', icon: 'github', href: GITHUB },
     { name: 'Google Scholar', icon: 'googlescholar', href: SCHOLAR },
-    { name: 'X', icon: 'x', href: 'https://x.com/EliHei2' },
-    { name: 'Bluesky', icon: 'bluesky', href: 'https://bsky.app/profile/elihei2.bsky.social' },
-    { name: 'LinkedIn', icon: 'linkedin', href: 'https://tinyurl.com/lnkdns' },
+    { name: 'X', icon: 'x', href: 'https://x.com/heidarielyas' },
+    { name: 'LinkedIn', icon: 'linkedin', href: 'https://www.linkedin.com/in/elyas-heidari-71024a42' },
     { name: 'Email', icon: 'email', href: EMAIL },
 ];
 
@@ -132,17 +131,17 @@ const selectedPubs: {
 const timeline = [
     {
         period: '2022 – now', place: 'DKFZ & EMBL Heidelberg', role: 'PhD, Stegle & Gerstung labs',
-        insts: [{ img: '/logos/dkfz.svg', alt: 'DKFZ', h: 18 }, { img: '/logos/embl.svg', alt: 'EMBL', h: 24 }],
+        insts: [{ img: '/logos/dkfz.png', alt: 'DKFZ' }, { img: '/logos/embl.png', alt: 'EMBL' }],
         text: 'Structured representation learning for large-scale spatial omics. Segger came out of this, and now Laminar. I contribute to scverse, mainly SpatialData.',
     },
     {
         period: '2019 – 2022', place: 'ETH Zürich · UZH · EMBL-EBI', role: 'MSc, Computational Biology & Bioinformatics',
-        insts: [{ img: '/logos/eth.svg', alt: 'ETH Zürich', h: 19 }, { img: '/logos/uzh.svg', alt: 'University of Zurich', h: 30 }, { img: '/logos/ebi.png', alt: 'EMBL-EBI', h: 22 }],
+        insts: [{ img: '/logos/eth.png', alt: 'ETH Zürich' }, { img: '/logos/uzh.png', alt: 'University of Zurich' }, { img: '/logos/ebi.png', alt: 'EMBL-EBI' }],
         text: 'A master’s in computational biology at ETH (5.76/6.0, top three), single-cell pipelines in Mark Robinson’s lab in Zurich, and a fellowship year in John Marioni’s lab in Cambridge where SageNet came out.',
     },
     {
         period: '2018', place: 'EMBL Heidelberg', role: 'Research trainee, Huber group',
-        insts: [{ img: '/logos/embl.svg', alt: 'EMBL', h: 26 }],
+        insts: [{ img: '/logos/embl.png', alt: 'EMBL' }],
         text: 'A summer in Wolfgang Huber’s group and my first taste of single-cell data. Enough to decide the rest.',
     },
     {
@@ -186,7 +185,7 @@ function InstRow({ insts }: { insts: { img?: string; alt?: string; chip?: string
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap', mb: 1 }}>
             {insts.map((it, i) => it.img ? (
                 <Box key={i} component="img" src={it.img} alt={it.alt || ''} sx={{
-                    height: it.h || 20, width: 'auto', filter: 'grayscale(1)', opacity: 0.6,
+                    height: it.h || 18, width: 'auto', filter: 'grayscale(1)', opacity: 0.6,
                     transition: 'opacity 0.2s, filter 0.2s', '&:hover': { opacity: 1, filter: 'grayscale(0)' },
                 }} />
             ) : <InstChip key={i} label={it.chip!} />)}
@@ -380,7 +379,7 @@ export default function Home() {
                             <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', alignItems: 'baseline' }}>
                                 <Box component="span" sx={{ fontFamily: interFont, fontSize: '0.9rem', color: ink }}>elyas.heidari [at] dkfz-heidelberg.de</Box>
                                 <ExtLink href={GITHUB} sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>GitHub</ExtLink>
-                                <ExtLink href="https://tinyurl.com/lnkdns" sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>LinkedIn</ExtLink>
+                                <ExtLink href="https://www.linkedin.com/in/elyas-heidari-71024a42" sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>LinkedIn</ExtLink>
                             </Box>
                         </Section>
 
