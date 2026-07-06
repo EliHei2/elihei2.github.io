@@ -6,6 +6,7 @@ import { getAllPosts } from '@/lib/blog';
 import HeroManifold from '@/components/HeroManifold';
 import Thumb, { ThumbVariant } from '@/components/Thumb';
 import { Pomegranate, Pistachio, Saffron } from '@/components/Motifs';
+import { ICON_PATHS } from '@/components/icons';
 import {
     displayFont, serifFont, interFont, ink, inkSecondary, accent, apple, oldstyle, venueItalic,
 } from '@/theme/tokens';
@@ -38,11 +39,12 @@ const labs = {
     cruk: 'https://www.cruk.cam.ac.uk/',
 };
 
-const heroLinks = [
-    { label: 'Email', href: EMAIL },
-    { label: 'Scholar', href: SCHOLAR },
-    { label: 'GitHub', href: GITHUB },
-    { label: 'CV', href: '/CV_Elyas_Heidari.pdf' },
+const socials = [
+    { name: 'GitHub', icon: 'github', href: GITHUB },
+    { name: 'X', icon: 'x', href: 'https://x.com/EliHei2' },
+    { name: 'Bluesky', icon: 'bluesky', href: 'https://bsky.app/profile/elihei2.bsky.social' },
+    { name: 'LinkedIn', icon: 'linkedin', href: 'https://tinyurl.com/lnkdns' },
+    { name: 'Email', icon: 'email', href: EMAIL },
 ];
 
 const justify = { textAlign: 'justify' as const, hyphens: 'auto' as const, WebkitHyphens: 'auto' as const };
@@ -219,9 +221,22 @@ export default function Home() {
                     <Box component="img" src="/portrait.jpg" alt="Elyas Heidari"
                         sx={{ width: { xs: 160, md: 168 }, borderRadius: '10px', objectFit: 'cover', display: 'block' }} />
                     <Typography variant="h1" component="h1" sx={{ fontSize: 'clamp(1.45rem, 2vw, 1.75rem)', lineHeight: 1.1, mt: 1.75, mb: 0.5 }}>Elyas Heidari</Typography>
-                    <Typography sx={{ fontFamily: interFont, fontSize: '0.8rem', color: inkSecondary, mb: 2, lineHeight: 1.5 }}>
+                    <Typography sx={{ fontFamily: interFont, fontSize: '0.8rem', color: inkSecondary, mb: 1.75, lineHeight: 1.5 }}>
                         PhD researcher · DKFZ &amp; EMBL, Heidelberg · finishing Sept. 2026
                     </Typography>
+                    <Box sx={{ display: 'flex', gap: 1.75, mb: 2.5, alignItems: 'center' }}>
+                        {socials.map((s) => (
+                            <Box key={s.name} component="a" href={s.href}
+                                target={s.href.startsWith('http') ? '_blank' : undefined}
+                                rel={s.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                                aria-label={s.name} title={s.name}
+                                sx={{ color: inkSecondary, display: 'inline-flex', transition: 'color 0.2s', '&:hover': { color: accent } }}>
+                                <Box component="svg" viewBox="0 0 24 24" sx={{ width: 19, height: 19, fill: 'currentColor', display: 'block' }}>
+                                    <path d={ICON_PATHS[s.icon]} />
+                                </Box>
+                            </Box>
+                        ))}
+                    </Box>
                     <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'relative', height: 150, borderRadius: '10px', overflow: 'hidden', mb: 2 }}>
                         <HeroManifold />
                     </Box>
@@ -252,11 +267,6 @@ export default function Home() {
                             Before Heidelberg, I did a double bachelor’s in computer engineering and mathematics at <ExtLink href={labs.sharif}>Sharif University of Technology</ExtLink> in Tehran, where I worked with <ExtLink href={labs.sharifiZarchi}>Ali Sharifi-Zarchi</ExtLink> and built <ExtLink href={labs.muvis}>MUVis</ExtLink>. I then did a master’s in computational biology at <ExtLink href={labs.eth}>ETH Zürich</ExtLink>, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. Along the way: a summer at <ExtLink href={labs.embl}>EMBL</ExtLink> with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink>, where I built <ExtLink href={labs.scpotter}>scPotter</ExtLink>; single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich; and <ExtLink href={labs.sagenet}>SageNet</ExtLink> with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> at the <ExtLink href={labs.cruk}>Cancer Research UK Cambridge Institute</ExtLink>.
                         </Typography>
 
-                        <Box sx={{ display: 'flex', gap: 2.5, flexWrap: 'wrap' }}>
-                            {heroLinks.map((l) => (
-                                <ExtLink key={l.label} href={l.href} sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>{l.label}</ExtLink>
-                            ))}
-                        </Box>
                     </Box>
 
                     {/* Below */}
@@ -369,7 +379,7 @@ export default function Home() {
                             <Box sx={{ display: 'flex', gap: 3, flexWrap: 'wrap', alignItems: 'baseline' }}>
                                 <Box component="span" sx={{ fontFamily: interFont, fontSize: '0.9rem', color: ink }}>elyas.heidari [at] dkfz-heidelberg.de</Box>
                                 <ExtLink href={GITHUB} sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>GitHub</ExtLink>
-                                <ExtLink href={SCHOLAR} sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>Scholar</ExtLink>
+                                <ExtLink href="https://tinyurl.com/lnkdns" sx={{ fontFamily: interFont, fontSize: '0.9rem' }}>LinkedIn</ExtLink>
                             </Box>
                         </Section>
 
