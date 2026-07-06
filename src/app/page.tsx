@@ -50,7 +50,7 @@ const socials = [
 const justify = { textAlign: 'justify' as const, hyphens: 'auto' as const, WebkitHyphens: 'auto' as const };
 
 const skills = [
-    { label: 'AI/ML', items: ['Foundation models', 'Self-supervised learning', 'Graph neural networks', 'Transformers', 'Generative models', 'Representation learning', 'Multimodal learning'] },
+    { label: 'AI/ML', items: ['Foundation models', 'Graph neural networks', 'Representation learning', 'Generative models', 'Interpretability'] },
     { label: 'Bioinformatics', items: ['Single-cell genomics', 'Spatial transcriptomics', 'Multi-omics integration', 'Perturbation modeling', 'scverse / scvi-tools', 'SpatialData'] },
     { label: 'MLOps', items: ['Distributed training', 'HPC / SLURM', 'Docker', 'CI/CD', 'Testing', 'Benchmarking', 'Reproducibility'] },
     { label: 'Programming', items: ['Python', 'R', 'PyTorch', 'PyTorch Geometric', 'JAX', 'Bash'] },
@@ -62,7 +62,7 @@ const projects = [
         name: 'Segger',
         logo: '/segger_logo.png',
         accent: apple.teal,
-        tagline: 'Cell segmentation as a graph problem — the tokenizer for spatial foundation models.',
+        tagline: 'Cell segmentation as a graph problem: the tokenizer for spatial foundation models.',
         paragraph:
             'Cell segmentation is the rate-limiting step in spatial transcriptomics: which transcript belongs to which cell. Segger reframes it as link prediction on one big heterogeneous graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it. Those cells become the tokens the foundation models above them are built on. Under revision at Nature Methods.',
         links: [
@@ -147,7 +147,7 @@ const timeline = [
     {
         period: '2014 – 2019', place: 'Sharif University of Technology, Tehran', role: 'BSc CE & Applied Mathematics',
         insts: [{ chip: 'Sharif' }],
-        text: 'Where a lot of this started, and where I first got into graphs. Head TA for advanced programming and probability, founded Sharif DataDays, wrote MUVis on the side.',
+        text: 'Where a lot of this started, and where I first got into graphs. Head TA for advanced programming and probability & statistics, founded Sharif DataDays, wrote MUVis on the side.',
     },
 ];
 
@@ -237,8 +237,15 @@ export default function Home() {
                             </Box>
                         ))}
                     </Box>
-                    <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'relative', height: 150, borderRadius: '10px', overflow: 'hidden', mb: 2 }}>
-                        <HeroManifold />
+                    <Box sx={{ display: { xs: 'none', md: 'block' }, mb: 2.5 }}>
+                        <Box sx={{ position: 'relative', height: 186, borderRadius: '10px', overflow: 'hidden' }}>
+                            <HeroManifold />
+                        </Box>
+                        <Typography sx={{ fontFamily: interFont, fontSize: '0.6rem', letterSpacing: '0.09em', textTransform: 'uppercase', color: '#a0a0a0', mt: 1 }}>the subconscious</Typography>
+                        <Typography sx={{ fontFamily: serifFont, fontStyle: 'italic', fontSize: '0.8rem', lineHeight: 1.45, color: inkSecondary, mt: 0.4 }}>
+                            “Until you make the unconscious conscious, it will direct your life and you will call it fate.”
+                        </Typography>
+                        <Typography sx={{ fontFamily: interFont, fontSize: '0.68rem', color: '#a0a0a0', mt: 0.4 }}>— C. G. Jung</Typography>
                     </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.4 }}>
                         {skills.map((g) => (
@@ -258,13 +265,13 @@ export default function Home() {
                 <Box sx={{ minWidth: 0 }}>
                     <Box sx={{ mb: { xs: 6, md: 7 } }}>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
-                            I am a PhD researcher in AI for Biology, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in scalable, academic-budget AI, and in <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That’s why I care less about the fanciness of an architecture than whether it’s usable, accurate, robust, fast, and scales. That’s what the benchmarks and metrics I build measure, and why I still run the single-cell and spatial analysis by hand. The devil is in the details.
+                            I am a PhD researcher in AI for Biology, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in scalable, academic-budget AI, and in <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t. So I care less about how fancy an architecture is than whether it works: whether it’s accurate and fast enough that people use it. That’s what the benchmarks and metrics I build measure, and why I still run the single-cell and spatial analysis by hand.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
-                            My main project, <ExtLink href="#work">Segger</ExtLink>, turns cell segmentation into link prediction on a graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised model that turns a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
+                            My main project, <ExtLink href="#work">Segger</ExtLink>, turns cell segmentation into link prediction on a graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised model that maps a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 3, ...justify }}>
-                            Before Heidelberg, I did a double bachelor’s in computer engineering and mathematics at <ExtLink href={labs.sharif}>Sharif University of Technology</ExtLink> in Tehran, where I worked with <ExtLink href={labs.sharifiZarchi}>Ali Sharifi-Zarchi</ExtLink> and built <ExtLink href={labs.muvis}>MUVis</ExtLink>. I then did a master’s in computational biology at <ExtLink href={labs.eth}>ETH Zürich</ExtLink>, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. Along the way: a summer at <ExtLink href={labs.embl}>EMBL</ExtLink> with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink>, where I built <ExtLink href={labs.scpotter}>scPotter</ExtLink>; single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich; and <ExtLink href={labs.sagenet}>SageNet</ExtLink> with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> at the <ExtLink href={labs.cruk}>Cancer Research UK Cambridge Institute</ExtLink>.
+                            Before Heidelberg, I did a double bachelor’s in computer engineering and mathematics at <ExtLink href={labs.sharif}>Sharif University of Technology</ExtLink> in Tehran; there I worked with <ExtLink href={labs.sharifiZarchi}>Ali Sharifi-Zarchi</ExtLink> and built <ExtLink href={labs.muvis}>MUVis</ExtLink>. I then did a master’s in computational biology at <ExtLink href={labs.eth}>ETH Zürich</ExtLink>, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. Along the way: a summer at <ExtLink href={labs.embl}>EMBL</ExtLink> with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink>, where I built <ExtLink href={labs.scpotter}>scPotter</ExtLink>; single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich; and <ExtLink href={labs.sagenet}>SageNet</ExtLink> with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> at the <ExtLink href={labs.cruk}>Cancer Research UK Cambridge Institute</ExtLink>.
                         </Typography>
 
                     </Box>
