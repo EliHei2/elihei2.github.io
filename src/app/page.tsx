@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { getAllPosts } from '@/lib/blog';
+import HeroManifold from '@/components/HeroManifold';
 import Thumb, { ThumbVariant } from '@/components/Thumb';
 import { Pomegranate, Pistachio, Saffron } from '@/components/Motifs';
 import {
@@ -46,13 +47,13 @@ const heroLinks = [
 const justify = { textAlign: 'justify' as const, hyphens: 'auto' as const, WebkitHyphens: 'auto' as const };
 
 const skills = [
-    { label: 'Machine learning', items: ['Graph neural nets', 'Transformers', 'Self-supervision', 'Foundation models', 'Generative models'] },
-    { label: 'Frameworks', items: ['PyTorch', 'PyTorch Geometric', 'Lightning', 'JAX'] },
-    { label: 'Scale & training', items: ['Multi-GPU', 'torch.compile', 'bf16', 'FSDP', 'HPC (SLURM)', 'Dask', 'Zarr'] },
-    { label: 'Single-cell & spatial', items: ['scanpy', 'scverse', 'SpatialData', 'Seurat / Bioconductor', 'integration', 'cell typing', 'differential expression'] },
-    { label: 'Engineering', items: ['Docker', 'Git', 'CI/CD', 'testing', 'open source', 'W&B'] },
-    { label: 'Languages', items: ['Python', 'R', 'C', 'Bash'] },
-    { label: 'Spoken', items: ['English', 'German · C1', 'Persian'] },
+    { label: 'Machine learning', items: ['Foundation models', 'Self-supervision (JEPA)', 'Graph neural nets', 'Transformers', 'Generative models'] },
+    { label: 'Modeling', items: ['Representation learning', 'Multimodal integration', 'Geometric deep learning', 'Variational inference'] },
+    { label: 'Scale & training', items: ['Multi-GPU', 'FSDP', 'torch.compile', 'bf16', 'HPC (SLURM)'] },
+    { label: 'Single-cell & spatial', items: ['Spatial transcriptomics', 'Perturbation modeling', 'Cell embeddings', 'scverse', 'scvi-tools', 'SpatialData'] },
+    { label: 'Evaluation', items: ['Benchmarking', 'Metric design', 'CI/CD', 'Testing', 'Reproducibility'] },
+    { label: 'Stack', items: ['PyTorch', 'PyTorch Geometric', 'JAX', 'Docker', 'Git', 'open source'] },
+    { label: 'Languages', items: ['Python', 'R', 'Bash', 'English', 'German · C1', 'Persian'] },
 ];
 
 const projects = [
@@ -209,7 +210,7 @@ export default function Home() {
                 display: 'grid', gridTemplateColumns: { xs: '1fr', md: '250px 1fr' },
                 gap: { xs: 4, md: 6 }, alignItems: 'start', pt: { xs: 2, md: 4 },
             }}>
-                {/* ---- Left column: photo → name → skills, fixed and fitting one screen ---- */}
+                {/* ---- Left column: photo → name → manifold → skills (sticky) ---- */}
                 <Box sx={{ position: { md: 'sticky' }, top: { md: 84 } }}>
                     <Box component="img" src="/portrait.jpg" alt="Elyas Heidari"
                         sx={{ width: { xs: 160, md: 168 }, borderRadius: '10px', objectFit: 'cover', display: 'block' }} />
@@ -217,6 +218,9 @@ export default function Home() {
                     <Typography sx={{ fontFamily: interFont, fontSize: '0.8rem', color: inkSecondary, mb: 2, lineHeight: 1.5 }}>
                         PhD researcher · DKFZ &amp; EMBL, Heidelberg · finishing Sept. 2026
                     </Typography>
+                    <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'relative', height: 150, borderRadius: '10px', overflow: 'hidden', mb: 2 }}>
+                        <HeroManifold />
+                    </Box>
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.4 }}>
                         {skills.map((g) => (
                             <Box key={g.label}>
@@ -235,7 +239,7 @@ export default function Home() {
                 <Box sx={{ minWidth: 0 }}>
                     <Box sx={{ mb: { xs: 6, md: 7 } }}>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
-                            I work on AI for spatial data, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in graphs, scalable and academic-budget AI, and <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That also means I do the whole pipeline, the ordinary single-cell and spatial analysis (QC, integration, cell typing, differential expression) as much as the modelling. That gap is the fun part.
+                            I work on AI for spatial data, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in graphs, scalable and academic-budget AI, and <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. So I care about the whole pipeline, not just the model: the single-cell and spatial analysis, and the testing, benchmarking, and metric design that tell you whether it works. The devil is in the details.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
                             My main project, <ExtLink href="#work">Segger</ExtLink>, turns cell segmentation into link prediction on a graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised model that turns a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
