@@ -41,6 +41,7 @@ const labs = {
 
 const socials = [
     { name: 'GitHub', icon: 'github', href: GITHUB },
+    { name: 'Google Scholar', icon: 'googlescholar', href: SCHOLAR },
     { name: 'X', icon: 'x', href: 'https://x.com/EliHei2' },
     { name: 'Bluesky', icon: 'bluesky', href: 'https://bsky.app/profile/elihei2.bsky.social' },
     { name: 'LinkedIn', icon: 'linkedin', href: 'https://tinyurl.com/lnkdns' },
@@ -131,17 +132,17 @@ const selectedPubs: {
 const timeline = [
     {
         period: '2022 – now', place: 'DKFZ & EMBL Heidelberg', role: 'PhD, Stegle & Gerstung labs',
-        insts: [{ img: '/logos/dkfz.svg', alt: 'DKFZ' }, { img: '/logos/embl.svg', alt: 'EMBL' }],
+        insts: [{ img: '/logos/dkfz.svg', alt: 'DKFZ', h: 18 }, { img: '/logos/embl.svg', alt: 'EMBL', h: 24 }],
         text: 'Structured representation learning for large-scale spatial omics. Segger came out of this, and now Laminar. I contribute to scverse, mainly SpatialData.',
     },
     {
-        period: '2019 – 2022', place: 'ETH Zürich · UZH · EMBL-EBI', role: 'MSc · RA (Robinson) · thesis (Marioni)',
-        insts: [{ img: '/logos/eth.svg', alt: 'ETH Zürich' }, { img: '/logos/uzh.svg', alt: 'University of Zurich', h: 27 }, { img: '/logos/ebi.png', alt: 'EMBL-EBI' }],
+        period: '2019 – 2022', place: 'ETH Zürich · UZH · EMBL-EBI', role: 'MSc, Computational Biology & Bioinformatics',
+        insts: [{ img: '/logos/eth.svg', alt: 'ETH Zürich', h: 19 }, { img: '/logos/uzh.svg', alt: 'University of Zurich', h: 30 }, { img: '/logos/ebi.png', alt: 'EMBL-EBI', h: 22 }],
         text: 'A master’s in computational biology at ETH (5.76/6.0, top three), single-cell pipelines in Mark Robinson’s lab in Zurich, and a fellowship year in John Marioni’s lab in Cambridge where SageNet came out.',
     },
     {
         period: '2018', place: 'EMBL Heidelberg', role: 'Research trainee, Huber group',
-        insts: [{ img: '/logos/embl.svg', alt: 'EMBL' }],
+        insts: [{ img: '/logos/embl.svg', alt: 'EMBL', h: 26 }],
         text: 'A summer in Wolfgang Huber’s group and my first taste of single-cell data. Enough to decide the rest.',
     },
     {
@@ -339,7 +340,7 @@ export default function Home() {
                             </Box>
                         </Section>
 
-                        <Section id="path" title="A random walk">
+                        <Section id="path" title="A recurrent random walk">
                             {timeline.map((t, i) => (
                                 <Box key={i} sx={{
                                     display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '92px 1fr' }, gap: { xs: 0.5, sm: 3 },
