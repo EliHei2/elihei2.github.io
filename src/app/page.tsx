@@ -47,7 +47,7 @@ const heroLinks = [
 const justify = { textAlign: 'justify' as const, hyphens: 'auto' as const, WebkitHyphens: 'auto' as const };
 
 const skills = [
-    { label: 'Machine learning', items: ['Foundation models', 'Self-supervised learning', 'Graph neural networks', 'Transformers', 'Generative models', 'Representation learning', 'Multimodal learning'] },
+    { label: 'AI/ML', items: ['Foundation models', 'Self-supervised learning', 'Graph neural networks', 'Transformers', 'Generative models', 'Representation learning', 'Multimodal learning'] },
     { label: 'Bioinformatics', items: ['Single-cell genomics', 'Spatial transcriptomics', 'Multi-omics integration', 'Perturbation modeling', 'scverse / scvi-tools', 'SpatialData'] },
     { label: 'MLOps', items: ['Distributed training', 'HPC / SLURM', 'Docker', 'CI/CD', 'Testing', 'Benchmarking', 'Reproducibility'] },
     { label: 'Programming', items: ['Python', 'R', 'PyTorch', 'PyTorch Geometric', 'JAX', 'Bash'] },
