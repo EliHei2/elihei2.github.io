@@ -134,7 +134,7 @@ const timeline = [
     },
     {
         period: '2019 – 2022', place: 'ETH Zürich · UZH · EMBL-EBI', role: 'MSc · RA (Robinson) · thesis (Marioni)',
-        insts: [{ img: '/logos/eth.svg', alt: 'ETH Zürich' }, { img: '/logos/uzh.svg', alt: 'University of Zurich' }, { img: '/logos/ebi.png', alt: 'EMBL-EBI' }],
+        insts: [{ img: '/logos/eth.svg', alt: 'ETH Zürich' }, { img: '/logos/uzh.svg', alt: 'University of Zurich', h: 27 }, { img: '/logos/ebi.png', alt: 'EMBL-EBI' }],
         text: 'A master’s in computational biology at ETH (5.76/6.0, top three), single-cell pipelines in Mark Robinson’s lab in Zurich, and a fellowship year in John Marioni’s lab in Cambridge where SageNet came out.',
     },
     {
@@ -178,12 +178,12 @@ function InstChip({ label }: { label: string }) {
     );
 }
 
-function InstRow({ insts }: { insts: { img?: string; alt?: string; chip?: string }[] }) {
+function InstRow({ insts }: { insts: { img?: string; alt?: string; chip?: string; h?: number }[] }) {
     return (
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5, flexWrap: 'wrap', mb: 1 }}>
             {insts.map((it, i) => it.img ? (
                 <Box key={i} component="img" src={it.img} alt={it.alt || ''} sx={{
-                    height: 20, width: 'auto', filter: 'grayscale(1)', opacity: 0.6,
+                    height: it.h || 20, width: 'auto', filter: 'grayscale(1)', opacity: 0.6,
                     transition: 'opacity 0.2s, filter 0.2s', '&:hover': { opacity: 1, filter: 'grayscale(0)' },
                 }} />
             ) : <InstChip key={i} label={it.chip!} />)}
