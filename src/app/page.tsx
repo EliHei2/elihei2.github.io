@@ -129,12 +129,12 @@ const selectedPubs: {
 const timeline = [
     {
         period: '2022 – now', place: 'DKFZ & EMBL Heidelberg', role: 'PhD, Stegle & Gerstung labs',
-        insts: [{ chip: 'DKFZ' }, { img: '/logos/embl.svg', alt: 'EMBL' }],
+        insts: [{ img: '/logos/dkfz.svg', alt: 'DKFZ' }, { img: '/logos/embl.svg', alt: 'EMBL' }],
         text: 'Structured representation learning for large-scale spatial omics. Segger came out of this, and now Laminar. I contribute to scverse, mainly SpatialData.',
     },
     {
         period: '2019 – 2022', place: 'ETH Zürich · UZH · EMBL-EBI', role: 'MSc · RA (Robinson) · thesis (Marioni)',
-        insts: [{ img: '/logos/eth.svg', alt: 'ETH Zürich' }, { img: '/logos/uzh.svg', alt: 'University of Zurich' }, { chip: 'EMBL-EBI' }],
+        insts: [{ img: '/logos/eth.svg', alt: 'ETH Zürich' }, { img: '/logos/uzh.svg', alt: 'University of Zurich' }, { img: '/logos/ebi.png', alt: 'EMBL-EBI' }],
         text: 'A master’s in computational biology at ETH (5.76/6.0, top three), single-cell pipelines in Mark Robinson’s lab in Zurich, and a fellowship year in John Marioni’s lab in Cambridge where SageNet came out.',
     },
     {
@@ -243,7 +243,7 @@ export default function Home() {
                 <Box sx={{ minWidth: 0 }}>
                     <Box sx={{ mb: { xs: 6, md: 7 } }}>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
-                            I work on AI for spatial data, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in graphs, scalable and academic-budget AI, and <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That’s why I care less about the fanciness of an architecture than whether it’s usable, accurate, robust, fast, and scales. That’s what the benchmarks and metrics I build measure, and why I still run the single-cell and spatial analysis by hand. The devil is in the details.
+                            I build graph and foundation models for spatial data, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in scalable, academic-budget AI, and in <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That’s why I care less about the fanciness of an architecture than whether it’s usable, accurate, robust, fast, and scales. That’s what the benchmarks and metrics I build measure, and why I still run the single-cell and spatial analysis by hand. The devil is in the details.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
                             My main project, <ExtLink href="#work">Segger</ExtLink>, turns cell segmentation into link prediction on a graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised model that turns a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
@@ -329,7 +329,7 @@ export default function Home() {
                             </Box>
                         </Section>
 
-                        <Section id="path" title="Tehran to Heidelberg">
+                        <Section id="path" title="A random walk">
                             {timeline.map((t, i) => (
                                 <Box key={i} sx={{
                                     display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '92px 1fr' }, gap: { xs: 0.5, sm: 3 },
