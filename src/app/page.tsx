@@ -47,12 +47,10 @@ const heroLinks = [
 const justify = { textAlign: 'justify' as const, hyphens: 'auto' as const, WebkitHyphens: 'auto' as const };
 
 const skills = [
-    { label: 'Machine learning', items: ['Foundation models', 'Self-supervision (JEPA)', 'Graph neural networks', 'Transformers', 'Generative models'] },
-    { label: 'Modeling', items: ['Representation learning', 'Multimodal integration', 'Geometric deep learning', 'Variational inference'] },
-    { label: 'Systems', items: ['Distributed multi-GPU', 'HPC / SLURM', 'Billion-scale data'] },
-    { label: 'Single-cell & spatial', items: ['Spatial transcriptomics', 'Perturbation modeling', 'Cell embeddings', 'scverse / scvi-tools', 'SpatialData'] },
-    { label: 'Evaluation', items: ['Benchmarking', 'Metric design', 'Reproducibility'] },
-    { label: 'Tools', items: ['Python', 'R', 'PyTorch', 'PyTorch Geometric', 'JAX', 'Docker', 'Git'] },
+    { label: 'Machine learning', items: ['Foundation models', 'Self-supervised learning', 'Graph neural networks', 'Transformers', 'Generative models', 'Representation learning', 'Multimodal learning'] },
+    { label: 'Bioinformatics', items: ['Single-cell genomics', 'Spatial transcriptomics', 'Multi-omics integration', 'Perturbation modeling', 'scverse / scvi-tools', 'SpatialData'] },
+    { label: 'MLOps', items: ['Distributed training', 'HPC / SLURM', 'Docker', 'CI/CD', 'Testing', 'Benchmarking', 'Reproducibility'] },
+    { label: 'Programming', items: ['Python', 'R', 'PyTorch', 'PyTorch Geometric', 'JAX', 'Bash'] },
     { label: 'Spoken', items: ['English', 'German · C1', 'Persian'] },
 ];
 
@@ -210,8 +208,13 @@ export default function Home() {
                 display: 'grid', gridTemplateColumns: { xs: '1fr', md: '250px 1fr' },
                 gap: { xs: 4, md: 6 }, alignItems: 'start', pt: { xs: 2, md: 4 },
             }}>
-                {/* ---- Left column: photo → name → manifold → skills (sticky) ---- */}
-                <Box sx={{ position: { md: 'sticky' }, top: { md: 84 } }}>
+                {/* ---- Left column: photo → name → manifold → skills (fixed panel, scrolls itself) ---- */}
+                <Box sx={{
+                    position: { md: 'sticky' }, top: { md: 84 },
+                    height: { md: 'calc(100vh - 104px)' }, overflowY: { md: 'auto' }, pr: { md: 1 },
+                    '&::-webkit-scrollbar': { width: '4px' },
+                    '&::-webkit-scrollbar-thumb': { background: 'rgba(36,36,36,0.14)', borderRadius: '2px' },
+                }}>
                     <Box component="img" src="/portrait.jpg" alt="Elyas Heidari"
                         sx={{ width: { xs: 160, md: 168 }, borderRadius: '10px', objectFit: 'cover', display: 'block' }} />
                     <Typography variant="h1" component="h1" sx={{ fontSize: 'clamp(1.45rem, 2vw, 1.75rem)', lineHeight: 1.1, mt: 1.75, mb: 0.5 }}>Elyas Heidari</Typography>
@@ -239,7 +242,7 @@ export default function Home() {
                 <Box sx={{ minWidth: 0 }}>
                     <Box sx={{ mb: { xs: 6, md: 7 } }}>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
-                            I work on AI for spatial data, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in graphs, scalable and academic-budget AI, and <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That’s why I care less about the architecture than the benchmarks and metrics that decide whether it works, and why I still run the single-cell and spatial analysis by hand. The devil is in the details.
+                            I work on AI for spatial data, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in graphs, scalable and academic-budget AI, and <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That’s why I care less about the fanciness of an architecture than whether it’s usable, accurate, robust, fast, and scales. That’s what the benchmarks and metrics I build measure, and why I still run the single-cell and spatial analysis by hand. The devil is in the details.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
                             My main project, <ExtLink href="#work">Segger</ExtLink>, turns cell segmentation into link prediction on a graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised model that turns a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
