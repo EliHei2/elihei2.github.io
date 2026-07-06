@@ -47,13 +47,13 @@ const heroLinks = [
 const justify = { textAlign: 'justify' as const, hyphens: 'auto' as const, WebkitHyphens: 'auto' as const };
 
 const skills = [
-    { label: 'Machine learning', items: ['Foundation models', 'Self-supervision (JEPA)', 'Graph neural nets', 'Transformers', 'Generative models'] },
+    { label: 'Machine learning', items: ['Foundation models', 'Self-supervision (JEPA)', 'Graph neural networks', 'Transformers', 'Generative models'] },
     { label: 'Modeling', items: ['Representation learning', 'Multimodal integration', 'Geometric deep learning', 'Variational inference'] },
-    { label: 'Scale & training', items: ['Multi-GPU', 'FSDP', 'torch.compile', 'bf16', 'HPC (SLURM)'] },
-    { label: 'Single-cell & spatial', items: ['Spatial transcriptomics', 'Perturbation modeling', 'Cell embeddings', 'scverse', 'scvi-tools', 'SpatialData'] },
-    { label: 'Evaluation', items: ['Benchmarking', 'Metric design', 'CI/CD', 'Testing', 'Reproducibility'] },
-    { label: 'Stack', items: ['PyTorch', 'PyTorch Geometric', 'JAX', 'Docker', 'Git', 'open source'] },
-    { label: 'Languages', items: ['Python', 'R', 'Bash', 'English', 'German · C1', 'Persian'] },
+    { label: 'Systems', items: ['Distributed multi-GPU', 'HPC / SLURM', 'Billion-scale data'] },
+    { label: 'Single-cell & spatial', items: ['Spatial transcriptomics', 'Perturbation modeling', 'Cell embeddings', 'scverse / scvi-tools', 'SpatialData'] },
+    { label: 'Evaluation', items: ['Benchmarking', 'Metric design', 'Reproducibility'] },
+    { label: 'Tools', items: ['Python', 'R', 'PyTorch', 'PyTorch Geometric', 'JAX', 'Docker', 'Git'] },
+    { label: 'Spoken', items: ['English', 'German · C1', 'Persian'] },
 ];
 
 const projects = [
