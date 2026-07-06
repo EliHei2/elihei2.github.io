@@ -3,7 +3,6 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { getAllPosts } from '@/lib/blog';
-import HeroManifold from '@/components/HeroManifold';
 import Thumb, { ThumbVariant } from '@/components/Thumb';
 import { Pomegranate, Pistachio, Saffron } from '@/components/Motifs';
 import {
@@ -63,7 +62,7 @@ const projects = [
         accent: apple.teal,
         tagline: 'Cell segmentation as a graph problem — the tokenizer for spatial foundation models.',
         paragraph:
-            'Cell segmentation is the rate-limiting step in spatial transcriptomics: which transcript belongs to which cell. Segger reframes it as link prediction on one big heterogeneous graph and runs 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it. Those cells become the tokens the foundation models above them are built on. Under revision at Nature Methods.',
+            'Cell segmentation is the rate-limiting step in spatial transcriptomics: which transcript belongs to which cell. Segger reframes it as link prediction on one big heterogeneous graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it. Those cells become the tokens the foundation models above them are built on. Under revision at Nature Methods.',
         links: [
             { label: 'Paper', href: 'https://www.biorxiv.org/content/10.1101/2025.03.14.643160v1' },
             { label: 'Docs', href: 'https://elihei2.github.io/segger_dev/' },
@@ -210,34 +209,25 @@ export default function Home() {
                 display: 'grid', gridTemplateColumns: { xs: '1fr', md: '250px 1fr' },
                 gap: { xs: 4, md: 6 }, alignItems: 'start', pt: { xs: 2, md: 4 },
             }}>
-                {/* ---- Left column: photo → name → manifold → skills (scrolls with the page) ---- */}
-                <Box>
+                {/* ---- Left column: photo → name → skills, fixed and fitting one screen ---- */}
+                <Box sx={{ position: { md: 'sticky' }, top: { md: 84 } }}>
                     <Box component="img" src="/portrait.jpg" alt="Elyas Heidari"
-                        sx={{ width: '100%', maxWidth: { xs: 220, md: '100%' }, borderRadius: '10px', objectFit: 'cover', display: 'block' }} />
-                    <Typography variant="h1" component="h1" sx={{ fontSize: 'clamp(1.5rem, 2vw, 1.85rem)', lineHeight: 1.1, mt: 2, mb: 0.5 }}>Elyas Heidari</Typography>
-                    <Typography sx={{ fontFamily: interFont, fontSize: '0.82rem', color: inkSecondary, mb: 2.5, lineHeight: 1.5 }}>
+                        sx={{ width: { xs: 160, md: 168 }, borderRadius: '10px', objectFit: 'cover', display: 'block' }} />
+                    <Typography variant="h1" component="h1" sx={{ fontSize: 'clamp(1.45rem, 2vw, 1.75rem)', lineHeight: 1.1, mt: 1.75, mb: 0.5 }}>Elyas Heidari</Typography>
+                    <Typography sx={{ fontFamily: interFont, fontSize: '0.8rem', color: inkSecondary, mb: 2, lineHeight: 1.5 }}>
                         PhD researcher · DKFZ &amp; EMBL, Heidelberg · finishing Sept. 2026
                     </Typography>
-                    <Box sx={{ display: { xs: 'none', md: 'block' }, position: 'relative', height: 180, borderRadius: '10px', overflow: 'hidden', mb: 1 }}>
-                        <HeroManifold />
-                    </Box>
-                    <Box sx={{ mt: 3, display: 'flex', flexDirection: 'column', gap: 2 }}>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1.4 }}>
                         {skills.map((g) => (
                             <Box key={g.label}>
-                                <Typography sx={{ fontFamily: interFont, fontSize: '0.68rem', fontWeight: 600, letterSpacing: '0.06em', textTransform: 'uppercase', color: '#8a8a8a', mb: 0.75 }}>{g.label}</Typography>
-                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.75 }}>
+                                <Typography sx={{ fontFamily: interFont, fontSize: '0.64rem', fontWeight: 600, letterSpacing: '0.05em', textTransform: 'uppercase', color: '#8a8a8a', mb: 0.5 }}>{g.label}</Typography>
+                                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                                     {g.items.map((it) => (
-                                        <Box key={it} component="span" sx={{ fontFamily: interFont, fontSize: '0.72rem', color: inkSecondary, border: '1px solid rgba(36,36,36,0.14)', borderRadius: '4px', px: 0.85, py: '2px', lineHeight: 1.5, whiteSpace: 'nowrap' }}>{it}</Box>
+                                        <Box key={it} component="span" sx={{ fontFamily: interFont, fontSize: '0.7rem', color: inkSecondary, border: '1px solid rgba(36,36,36,0.14)', borderRadius: '4px', px: 0.7, py: '1px', lineHeight: 1.45, whiteSpace: 'nowrap' }}>{it}</Box>
                                     ))}
                                 </Box>
                             </Box>
                         ))}
-                    </Box>
-                    <Box sx={{ display: { xs: 'none', md: 'block' }, mt: 3 }}>
-                        <Typography sx={{ fontFamily: serifFont, fontStyle: 'italic', fontSize: '0.9rem', lineHeight: 1.5, color: inkSecondary }}>
-                            “The important thing is not to stop questioning.”
-                        </Typography>
-                        <Typography sx={{ fontFamily: interFont, fontSize: '0.75rem', color: '#8a8a8a', mt: 0.5 }}>— Albert Einstein</Typography>
                     </Box>
                 </Box>
 
@@ -248,7 +238,7 @@ export default function Home() {
                             I work on AI for spatial data, in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs. I’m interested in graphs, scalable and academic-budget AI, and <ExtLink href="https://en.wikipedia.org/wiki/Realist_Evaluation">realist evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That also means I do the whole pipeline, the ordinary single-cell and spatial analysis (QC, integration, cell typing, differential expression) as much as the modelling. That gap is the fun part.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
-                            My main project, <ExtLink href="#work">Segger</ExtLink>, turns cell segmentation into link prediction on a graph and runs 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised model that turns a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
+                            My main project, <ExtLink href="#work">Segger</ExtLink>, turns cell segmentation into link prediction on a graph and assigns 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised model that turns a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 3, ...justify }}>
                             Before Heidelberg, I did a double bachelor’s in computer engineering and mathematics at <ExtLink href={labs.sharif}>Sharif University of Technology</ExtLink> in Tehran, where I worked with <ExtLink href={labs.sharifiZarchi}>Ali Sharifi-Zarchi</ExtLink> and built <ExtLink href={labs.muvis}>MUVis</ExtLink>. I then did a master’s in computational biology at <ExtLink href={labs.eth}>ETH Zürich</ExtLink>, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. Along the way: a summer at <ExtLink href={labs.embl}>EMBL</ExtLink> with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink>, where I built <ExtLink href={labs.scpotter}>scPotter</ExtLink>; single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich; and <ExtLink href={labs.sagenet}>SageNet</ExtLink> with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> in Cambridge.
