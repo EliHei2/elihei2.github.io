@@ -28,6 +28,11 @@ const labs = {
     mashhad: 'https://www.google.com/maps/search/?api=1&query=Mashhad%2C+Iran',
     dastjerd: 'https://www.google.com/maps/search/?api=1&query=Dastjerd%2C+Iran',
     iran: 'https://www.youtube.com/watch?v=rWj9UdYknlI',
+    sharif: 'https://en.wikipedia.org/wiki/Sharif_University_of_Technology',
+    sagenet: 'https://github.com/MarioniLab/sagenet',
+    danapeer: 'https://www.mskcc.org/research/ski/labs/dana-pe-er',
+    sharifiZarchi: 'https://scholar.google.com/citations?user=GbJMZLIAAAAJ',
+    scpotter: 'https://github.com/EliHei2/scPotter',
 };
 
 const heroLinks = [
@@ -70,43 +75,43 @@ const projects = [
 
 const selectedPubs: {
     title: string; titleHref: string; authors: string; venue: string; year: string;
-    note?: string; variant: ThumbVariant; accent: string;
+    note?: string; img?: string; variant?: ThumbVariant; accent?: string;
 }[] = [
     {
         title: 'Segger: Fast and accurate cell segmentation of imaging-based spatial transcriptomics data',
         titleHref: 'https://www.biorxiv.org/content/10.1101/2025.03.14.643160v1',
         authors: 'Heidari, E.*, Moorman, A.*, Unyi, D., et al.', venue: 'bioRxiv', year: '2025',
-        note: 'Under revision at Nature Methods.', variant: 'grid', accent: apple.teal,
-    },
-    {
-        title: 'Integrated in vivo combinatorial functional genomics and spatial transcriptomics of tumours',
-        titleHref: 'https://doi.org/10.1038/s41551-025-01437-1',
-        authors: 'Breinig, M.*, Lomakin, A.*, Heidari, E.*, et al.', venue: 'Nature Biomedical Engineering', year: '2025',
-        variant: 'scatter', accent: apple.orange,
+        note: 'Under revision at Nature Methods.', img: '/pubfigs/segger.jpg',
     },
     {
         title: 'SpatialData: an open and universal data framework for spatial omics',
         titleHref: 'https://doi.org/10.1038/s41592-024-02212-x',
         authors: 'Marconato, L.*, Palla, G.*, …, Heidari, E., et al.', venue: 'Nature Methods 22(1):58–62', year: '2025',
-        variant: 'layers', accent: apple.purple,
+        img: '/pubfigs/spatialdata.png',
     },
     {
-        title: 'snRNA-seq stratifies multiple sclerosis patients into distinct white matter glial responses',
-        titleHref: 'https://doi.org/10.1016/j.neuron.2024.11.016',
-        authors: 'Macnair, W., Calini, D., Agirre, E., Heidari, E., et al.', venue: 'Neuron 113(3):396–410.e9', year: '2025',
-        variant: 'scatter', accent: apple.indigo,
+        title: 'Integrated in vivo combinatorial functional genomics and spatial transcriptomics of tumours',
+        titleHref: 'https://doi.org/10.1038/s41551-025-01437-1',
+        authors: 'Breinig, M.*, Lomakin, A.*, Heidari, E.*, et al.', venue: 'Nature Biomedical Engineering', year: '2025',
+        img: '/pubfigs/natbme.png',
     },
     {
         title: 'Supervised spatial inference of dissociated single-cell data with SageNet',
         titleHref: 'https://www.biorxiv.org/content/10.1101/2022.04.14.488419v1',
         authors: 'Heidari, E., Lohoff, T., …, Ghazanfar, S.', venue: 'bioRxiv', year: '2022',
-        variant: 'graph', accent: apple.blue,
+        img: '/pubfigs/sagenet.gif',
     },
     {
-        title: 'Meta-analysis of single-cell method benchmarks reveals the need for extensibility and interoperability',
-        titleHref: 'https://doi.org/10.1186/s13059-023-02962-5',
-        authors: 'Sonrel, A., …, Heidari, E., et al.', venue: 'Genome Biology 24(1):119', year: '2023',
-        variant: 'bars', accent: apple.green,
+        title: 'scPotter: geometric deep learning on single-cell gene networks',
+        titleHref: 'https://github.com/EliHei2/scPotter',
+        authors: 'Heidari, E., et al.', venue: 'ISMB/ECCB poster', year: '2019',
+        img: '/pubfigs/scpotter.jpg',
+    },
+    {
+        title: 'MUVis: learning dependency structure in mixed-type data',
+        titleHref: 'https://baio-lab.github.io/muvis',
+        authors: 'Heidari, E., et al.', venue: 'R package · bioRxiv', year: '2018',
+        img: '/pubfigs/muvis.png',
     },
 ];
 
@@ -209,13 +214,13 @@ export default function Home() {
                         </Typography>
 
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
-                            I’m a PhD researcher in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs, working on AI for spatial data. I’m interested in graphs, multi-scale representation learning, and <ExtLink href={GITHUB}>realistic evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That gap is the fun part.
+                            I’m a PhD researcher in <ExtLink href={labs.stegle}>Oliver Stegle</ExtLink>’s and <ExtLink href={labs.gerstung}>Moritz Gerstung</ExtLink>’s labs, working on AI for spatial data. I’m interested in graphs, efficient and low-budget ML, and <ExtLink href={GITHUB}>realistic evaluation</ExtLink>: whether a method survives contact with real biological data, which most AI doesn’t, out of the box. That gap is the fun part.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 2, ...justify }}>
                             My main project, <ExtLink href="#work" sx={{ color: ink, borderBottom: `1px solid ${accent}66` }}>Segger</ExtLink>, turns cell segmentation into link prediction on a graph and runs 30 million transcripts in about 10 minutes, roughly 1,000× faster than the tools before it; it’s the tokenizer the spatial foundation models above it are built on. I’m now building one of those, <Box component="span" sx={{ fontWeight: 600 }}>Laminar</Box>: a self-supervised, DINOv2/I-JEPA-style model that turns a tumour into a cross-scale embedding field, an <ExtLink href={labs.alphaearth}>AlphaEarth</ExtLink> for tissues rather than the planet, trained on 50 billion transcripts and 500 million cells at the <ExtLink href={labs.dkfz}>German Cancer Research Center</ExtLink>.
                         </Typography>
                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.1rem', lineHeight: 1.62, color: ink, mb: 3, ...justify }}>
-                            Before Heidelberg, I did my bachelor’s at Sharif University of Technology in Tehran, where I built <ExtLink href={labs.muvis}>MUVis</ExtLink>, and a master’s in computational biology at ETH Zürich, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. Along the way I worked with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink> at EMBL, <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich, and <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> in Cambridge, where I built SageNet.
+                            Before Heidelberg, I did a double bachelor’s in computer engineering and mathematics at <ExtLink href={labs.sharif}>Sharif University of Technology</ExtLink> in Tehran, where I worked with <ExtLink href={labs.sharifiZarchi}>Ali Sharifi-Zarchi</ExtLink> and built <ExtLink href={labs.muvis}>MUVis</ExtLink>, an R package for learning dependency structure in high-dimensional mixed-type data. I then did a master’s in computational biology at ETH Zürich, where my thesis won the <ExtLink href={labs.ethMedal}>ETH Medal</ExtLink>. Along the way: a summer at EMBL with <ExtLink href={labs.huber}>Wolfgang Huber</ExtLink>, single-cell pipelines with <ExtLink href={labs.robinson}>Mark Robinson</ExtLink> in Zurich, and <ExtLink href={labs.sagenet}>SageNet</ExtLink> with <ExtLink href={labs.marioni}>John Marioni</ExtLink> and <ExtLink href={labs.ghazanfar}>Shila Ghazanfar</ExtLink> in Cambridge.
                         </Typography>
 
                         <Box sx={{ display: 'flex', gap: 2.5, flexWrap: 'wrap' }}>
@@ -250,22 +255,29 @@ export default function Home() {
                                                 <ExtLink key={l.label} href={l.href} sx={{ fontFamily: interFont, fontSize: '0.85rem' }}>{l.label}</ExtLink>
                                             ))}
                                         </Box>
+                                        {p.name === 'Segger' && (
+                                            <Typography sx={{ fontFamily: interFont, fontSize: '0.82rem', color: inkSecondary, mt: 1.25 }}>
+                                                A collaboration with Andrew Moorman and <ExtLink href={labs.danapeer} sx={{ fontSize: '0.82rem' }}>Dana Pe’er’s lab</ExtLink> at MSK.
+                                            </Typography>
+                                        )}
                                     </Box>
                                 </Box>
                             ))}
-                            <Typography sx={{ fontFamily: serifFont, fontSize: '1rem', color: inkSecondary, lineHeight: 1.55, ...justify }}>
-                                Earlier: <ExtLink href="https://github.com/EliHei2/scPotter">scPotter</ExtLink> (graph-convolutional cell annotation, back when GNNs for single cells were barely a thing) and <ExtLink href={labs.muvis}>MUVis</ExtLink> (an R package for dependencies in mixed-type data, from my Sharif years).
-                            </Typography>
                         </Section>
 
                         <Section id="publications" title="Selected publications">
                             {selectedPubs.map((p, i) => (
                                 <Box key={i} sx={{
-                                    display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '96px 1fr' }, gap: { xs: 1.5, sm: 2.5 },
+                                    display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '128px 1fr' }, gap: { xs: 1.5, sm: 2.5 },
                                     mb: 4, alignItems: 'start',
                                 }}>
                                     <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-                                        <Thumb variant={p.variant} accent={p.accent} seed={p.title} size={88} ariaLabel={`${p.title} figure`} />
+                                        {p.img ? (
+                                            <Box component="img" src={p.img} alt={`${p.title} figure`} loading="lazy"
+                                                sx={{ width: '100%', height: 'auto', maxHeight: 128, objectFit: 'contain', borderRadius: '6px', border: '1px solid rgba(36,36,36,0.08)', bgcolor: '#fff', display: 'block' }} />
+                                        ) : (
+                                            <Thumb variant={p.variant!} accent={p.accent!} seed={p.title} size={100} ariaLabel={`${p.title} figure`} />
+                                        )}
                                     </Box>
                                     <Box>
                                         <Typography sx={{ fontFamily: serifFont, fontSize: '1.05rem', fontWeight: 600, lineHeight: 1.35, mb: 0.5 }}>
